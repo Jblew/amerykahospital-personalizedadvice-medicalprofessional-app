@@ -13,4 +13,5 @@ export const labels = {
     searchAdvice: "Szukaj",
     showAll: "Wszystkie",
     close: "Zamknij",
+    logOut: "Wyloguj się",
 };
