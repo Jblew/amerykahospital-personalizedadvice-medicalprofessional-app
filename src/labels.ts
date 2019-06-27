@@ -12,4 +12,5 @@ export const labels = {
     options: "Opcja",
     searchAdvice: "Szukaj",
     showAll: "Wszystkie",
+    close: "Zamknij",
 };

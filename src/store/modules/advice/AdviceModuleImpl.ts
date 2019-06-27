@@ -82,7 +82,7 @@ export namespace AdviceModuleImpl {
                 try {
                     commit(Mutations.setAddOpState, { loading: true, error: "", result: "" });
                     await AdvicesManager.addAdvice(payload);
-                    commit(Mutations.setAddOpState, { loading: false, error: "", result: "setd" });
+                    commit(Mutations.setAddOpState, { loading: false, error: "", result: "Ok." });
                 } catch (error) {
                     commit(Mutations.setAddOpState, { loading: false, error: "Error: " + error, result: "" });
                 }

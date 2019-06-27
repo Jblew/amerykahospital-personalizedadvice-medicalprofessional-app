@@ -109,6 +109,5 @@ export default Vue.extend({
 </script>
 <style scoped lang="scss">
 .add-advice-panel {
-    min-width: 40em;
 }
 </style>
