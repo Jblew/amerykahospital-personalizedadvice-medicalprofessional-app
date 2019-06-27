@@ -3,8 +3,9 @@
 import ow from "ow";
 import { ActionTree, GetterTree, Module, MutationTree } from "vuex";
 
+import { FirebaseAuthHelper } from "ahpaa-core";
+
 import { AuthModule, AuthModule as Me } from "./AuthModule";
-import { FirebaseAuthHelper } from "./FirebaseAuthHelper";
 
 export namespace AuthModuleImpl {
     /**

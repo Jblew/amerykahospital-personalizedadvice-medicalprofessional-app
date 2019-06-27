@@ -6,6 +6,7 @@
 </template>
 
 <script lang="ts">
+import { FirebaseAuthHelper } from "ahpaa-core";
 import firebase from "firebase/app";
 import firebaseui from "firebaseui";
 import Vue from "vue";
@@ -17,9 +18,9 @@ export default Vue.extend({
     mounted() {
         const uiConfig = {
             signInSuccessUrl: routes.home.path,
-            signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID, firebase.auth.EmailAuthProvider.PROVIDER_ID],
+            signInOptions: FirebaseAuthHelper.getSignInProviders(),
         };
-        const ui = new firebaseui.auth.AuthUI(firebase.auth());
+        const ui = new firebaseui.auth.AuthUI(FirebaseAuthHelper.doAuth());
         ui.start("#firebaseui-auth-container", uiConfig);
     },
 });

@@ -35,7 +35,6 @@
 </template>
 
 <script lang="ts">
-import firebase from "firebase";
 import Vue from "vue";
 
 import { labels, s } from "../../global";

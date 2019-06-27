@@ -26,7 +26,6 @@
 </template>
 
 <script lang="ts">
-import firebase from "firebase";
 import Vue from "vue";
 
 import { s } from "../../global";
