@@ -26,8 +26,9 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
 import firebase from "firebase";
+import Vue from "vue";
+
 import { s } from "../../global";
 import { AuthModule } from "../../store/modules/auth/AuthModule";
 
@@ -41,11 +42,9 @@ export default Vue.extend({
             return s(this.$store).state.auth.state === AuthModule.AuthState.AUTHENTICATED;
         },
         photoUrl(): string {
-            console.log("photoUrl", s(this.$store).state.auth.profileImageURL);
             return s(this.$store).state.auth.profileImageURL || "";
         },
         name(): string {
-            console.log("name", s(this.$store).state.auth.username);
             return s(this.$store).state.auth.username || "";
         },
     },

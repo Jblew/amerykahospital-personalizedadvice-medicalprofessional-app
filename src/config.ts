@@ -1,4 +1,4 @@
 export const config = {
-    appTitle: "Ameryka Hospital advice",
+    appTitle: "Szspital w Ameryce — spersonalizowane porady — panel medyka",
     author: "Jędrzej Lewandowski <jedrzejblew@gmail.com>",
 };

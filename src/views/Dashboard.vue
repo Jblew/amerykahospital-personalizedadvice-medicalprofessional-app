@@ -1,19 +1,18 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-    <profile-component/>
+    <!--<img alt="Hospital logo" src="../assets/logo-ameryka.png">-->
+    <add-advice-panel/>
   </div>
 </template>
 
 <script lang="ts">
+import AddAdvicePanel from "@/components/add-advice/AddAdvicePanel.vue";
 import Vue from "vue";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
 
 export default Vue.extend({
-  name: "home",
-  components: {
-    HelloWorld
-  }
+    name: "home",
+    components: {
+        AddAdvicePanel,
+    },
 });
 </script>

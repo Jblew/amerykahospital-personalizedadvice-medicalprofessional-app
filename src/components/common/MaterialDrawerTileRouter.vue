@@ -15,12 +15,12 @@
 import Vue from "vue";
 
 export default Vue.extend({
-  props: ["to", "icon"],
-  data() {
-    return {};
-  },
-  methods: {},
-  computed: {},
-  components: {}
+    props: ["to", "icon"],
+    data() {
+        return {};
+    },
+    methods: {},
+    computed: {},
+    components: {},
 });
 </script>
