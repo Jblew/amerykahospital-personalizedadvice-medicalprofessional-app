@@ -3,9 +3,9 @@
     <h1>{{ text.sendAdvice }}</h1>
     <v-form ref="form" v-model="valid">
       <v-text-field
-        v-model="proffesionalName"
-        :rules="proffesionalNameRules"
-        :label="text.proffesionalName"
+        v-model="professionalName"
+        :rules="professionalNameRules"
+        :label="text.professionalName"
         required
       ></v-text-field>
 
@@ -53,7 +53,7 @@ export default Vue.extend({
         return {
             text: {
                 sendAdvice: labels.sendAdvice,
-                proffesionalName: labels.proffesionalName,
+                professionalName: labels.professionalName,
                 patientName: labels.patientName,
                 parentPhoneNumber: labels.parentPhoneNumber,
                 advice: labels.advice,
@@ -61,8 +61,8 @@ export default Vue.extend({
                 sendingAdvice: labels.sendingAdvice,
             },
             valid: true,
-            proffesionalName: "",
-            proffesionalNameRules: [(v: string) => !!v || labels.requiredField],
+            professionalName: "",
+            professionalNameRules: [(v: string) => !!v || labels.requiredField],
             patientName: "",
             patientNameRules: [(v: string) => !!v || labels.requiredField],
             parentPhoneNumber: "",
@@ -94,7 +94,7 @@ export default Vue.extend({
         addAdvice() {
             const advice: Advice = {
                 patientName: this.patientName,
-                medicalproffesionalName: this.proffesionalName,
+                medicalprofessionalName: this.professionalName,
                 parentPhoneNumber: this.parentPhoneNumber,
                 advice: this.advice,
                 dateISO: new Date().toISOString(),
