@@ -7,6 +7,9 @@ import { ActionTree, Commit, Dispatch, Module, ModuleTree } from "vuex";
 import { AuthModule } from "./modules/auth/AuthModule";
 import { AuthModuleImpl } from "./modules/auth/AuthModuleImpl";
 
+import { AdviceModule } from "./modules/advice/AdviceModule";
+import { AdviceModuleImpl } from "./modules/advice/AdviceModuleImpl";
+
 Vue.use(Vuex);
 
 /**
@@ -45,13 +48,16 @@ const actions: ActionTree<RootState, RootState> = {
  */
 export interface Modules {
     [AuthModule.modulePathName]: Module<AuthModule.State, RootState>;
+    [AdviceModule.modulePathName]: Module<AdviceModule.State, RootState>;
 }
 const modules: Modules & ModuleTree<RootState> = {
     [AuthModule.modulePathName]: AuthModuleImpl.module,
+    [AdviceModule.modulePathName]: AdviceModuleImpl.module,
 };
 
 export type State = {
     [AuthModule.modulePathName]: AuthModule.State;
+    [AdviceModule.modulePathName]: AdviceModule.State;
 } & RootState;
 
 /**
@@ -76,7 +82,7 @@ export function s(incognitoStore: any): Store {
  * Store
  */
 export const store = new Vuex.Store<RootState>({
-    strict: window.location.hostname === "localhost" ? true : false,
+    strict: window.location.hostname === "localhost" ? true : false, // TODO remove if app
     state: rootState,
     actions,
     mutations,

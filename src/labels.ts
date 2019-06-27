@@ -7,4 +7,5 @@ export const labels = {
     phoneNumberMustBeValid: "Numer telefonu musi być prawidłowy",
     advice: "Porada",
     resetForm: "Resetuj formularz",
+    sendingAdvice: "Wysyłanie porady...",
 };
