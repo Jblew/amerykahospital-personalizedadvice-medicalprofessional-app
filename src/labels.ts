@@ -8,4 +8,7 @@ export const labels = {
     advice: "Porada",
     resetForm: "Resetuj formularz",
     sendingAdvice: "Wysyłanie porady...",
+    showAdvice: "Pokaż poradę",
+    options: "Opcja",
+    searchAdvice: "Szukaj",
 };

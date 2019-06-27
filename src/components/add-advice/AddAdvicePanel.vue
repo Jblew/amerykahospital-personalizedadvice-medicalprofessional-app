@@ -1,6 +1,5 @@
 <template>
   <div class="add-advice-panel">
-    <h1>{{ text.sendAdvice }}</h1>
     <v-form ref="form" v-model="valid">
       <v-text-field
         v-model="professionalName"
@@ -48,7 +47,7 @@ import { Advice } from "ahpaa-core";
 const phoneNumberRegex = /^[0-9]{9}$/;
 
 export default Vue.extend({
-    name: "ProfileComponent",
+    name: "AddAdviceComponent",
     data() {
         return {
             text: {

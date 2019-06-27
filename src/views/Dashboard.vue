@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <!--<img alt="Hospital logo" src="../assets/logo-ameryka.png">-->
+    <h1 class="mb-3 ml-2">{{ text.sendAdvice }}</h1>
     <add-advice-panel/>
   </div>
 </template>
@@ -9,8 +9,17 @@
 import AddAdvicePanel from "@/components/add-advice/AddAdvicePanel.vue";
 import Vue from "vue";
 
+import { labels } from "../global";
+
 export default Vue.extend({
     name: "home",
+    data() {
+        return {
+            text: {
+                sendAdvice: labels.sendAdvice,
+            },
+        };
+    },
     components: {
         AddAdvicePanel,
     },

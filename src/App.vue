@@ -5,17 +5,18 @@
 
       <v-list dense>
         <v-divider></v-divider>
-        <material-drawer-tile-router to="/" icon="dashboard">{{ text.dashboard | capitalize }}</material-drawer-tile-router>
+        <material-drawer-tile-router to="/add" icon="dashboard">{{ text.sendAdvice | capitalize }}</material-drawer-tile-router>
+        <material-drawer-tile-router to="/list" icon="list">{{ text.list | capitalize }}</material-drawer-tile-router>
         <material-drawer-tile-router to="/about" icon="copyright">{{ text.about | capitalize }}</material-drawer-tile-router>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar app fixed clipped-left>
+    <v-toolbar app fixed clipped-left color="#00796b" dark>
       <v-toolbar-title>{{ text.appTitle }}</v-toolbar-title>
     </v-toolbar>
     <v-content>
       <v-container fluid fill-height>
-        <v-layout justify-center align-center>
-          <v-flex shrink>
+        <v-layout justify-center align-start>
+          <v-flex>
             <router-view v-if="authenticated"/>
             <auth-view v-else/>
           </v-flex>
@@ -42,7 +43,8 @@ export default Vue.extend({
     data() {
         return {
             text: {
-                dashboard: "Panel",
+                sendAdvice: "Wyślij poradę",
+                list: "Porady",
                 about: "O aplikacji",
                 author: config.author,
                 appTitle: config.appTitle,

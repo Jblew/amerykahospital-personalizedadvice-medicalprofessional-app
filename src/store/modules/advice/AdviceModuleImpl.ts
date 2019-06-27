@@ -16,6 +16,10 @@ export namespace AdviceModuleImpl {
             error: "",
             result: "",
         },
+        listLoadingState: {
+            loading: false,
+            error: "",
+        },
     };
     Me.validateState(myState);
 
