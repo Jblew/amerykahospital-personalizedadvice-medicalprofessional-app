@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire app">
-    <v-navigation-drawer clipped permanent fixed app>
+    <v-navigation-drawer v-model="drawer" clipped fixed app>
       <profile-component/>
 
       <v-list dense>
@@ -11,6 +11,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-toolbar app fixed clipped-left color="#00796b" dark>
+      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title>{{ text.appTitle }}</v-toolbar-title>
     </v-toolbar>
     <v-content>
@@ -49,6 +50,7 @@ export default Vue.extend({
                 author: config.author,
                 appTitle: config.appTitle,
             },
+            drawer: null,
         };
     },
     methods: {},
