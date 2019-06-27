@@ -79,8 +79,7 @@ export default Vue.extend({
             return s(this.$store).state.advice.addOp.loading;
         },
         error(): string {
-            const e = s(this.$store).state.advice.addOp.error;
-            return e;
+            return s(this.$store).state.advice.addOp.error;
         },
         result(): string {
             return s(this.$store).state.advice.addOp.result;

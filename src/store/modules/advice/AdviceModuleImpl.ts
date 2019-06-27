@@ -40,7 +40,6 @@ export namespace AdviceModuleImpl {
             state.addOp.loading = payload.loading;
             state.addOp.error = payload.error;
             state.addOp.result = payload.result;
-            console.log("State updated");
             Me.validateState(state);
         },
     };
