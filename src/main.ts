@@ -12,6 +12,7 @@ import "./components/common/common_components";
 import "./filters";
 import router from "./router";
 import { routes } from "./routes";
+import { AdviceModule } from "./store/modules/advice/AdviceModule";
 import { AuthModule } from "./store/modules/auth/AuthModule";
 import { Actions, s, store } from "./store/store";
 
@@ -30,10 +31,12 @@ new Vue({
         },
     },
     watch: {
-        authState(oldAuthState, authState) {
+        authState(authState, oldAuthState) {
             if (authState === AuthModule.AuthState.NOTAUTHENTICATED) {
-                console.log("Main: user not authenticated");
                 this.$router.push(routes.auth.path);
+            } else if (authState === AuthModule.AuthState.AUTHENTICATED) {
+                console.log("Dispatch loadList");
+                this.$store.dispatch(AdviceModule.Actions.updateQueryFilter, {});
             }
         },
     },

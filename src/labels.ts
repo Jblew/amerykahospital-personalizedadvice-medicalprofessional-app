@@ -11,4 +11,5 @@ export const labels = {
     showAdvice: "Pokaż poradę",
     options: "Opcja",
     searchAdvice: "Szukaj",
+    showAll: "Wszystkie",
 };

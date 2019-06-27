@@ -1,5 +1,6 @@
 // tslint:disable:max-classes-per-file
 
+import { Advice, AdvicesManager } from "ahpaa-core";
 import ow from "ow";
 
 export namespace AdviceModule {
@@ -18,6 +19,8 @@ export namespace AdviceModule {
             loading: boolean;
             error: string;
         };
+        filter: AdvicesManager.FetchFilter;
+        list: Advice[];
     }
     export function validateState(state: State) {
         ow(state.addOp, "state.addOp", ow.object);
@@ -25,6 +28,7 @@ export namespace AdviceModule {
         ow(state.addOp.error, "state.addOp.error", ow.string);
         ow(state.addOp.result, "state.addOp.result", ow.string);
 
+        ow(state.filter, "state.filter", ow.object);
         ow(state.listLoadingState, "state.listLoadingState", ow.object);
         ow(state.listLoadingState.loading, "state.listLoadingState.loading", ow.boolean);
         ow(state.listLoadingState.error, "state.listLoadingState.error", ow.string);
@@ -32,6 +36,10 @@ export namespace AdviceModule {
 
     export class Actions {
         public static addAdvice = localName("addAdvice");
+        public static updateQueryFilter = localName("updateQueryFilter");
+
+        // tslint:disable:variable-name
+        public static _reloadList = localName("_reloadList");
     }
 
     export class Getters {}

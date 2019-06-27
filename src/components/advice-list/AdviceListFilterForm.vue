@@ -1,11 +1,15 @@
 <template>
   <div class="advice-list-filter-form">
     <v-card class="mb-3 elevation-1">
-      <v-form v-model="valid">
+      <v-form>
         <v-container>
           <v-layout>
             <v-flex xs12 md3>
-              <v-text-field v-model="professionalName" valid="true" :label="text.professionalName"></v-text-field>
+              <v-text-field
+                v-model="medicalprofessionalName"
+                valid="true"
+                :label="text.medicalprofessionalName"
+              ></v-text-field>
             </v-flex>
 
             <v-flex xs12 md3>
@@ -19,8 +23,13 @@
                 :label="text.parentPhoneNumber"
               ></v-text-field>
             </v-flex>
-            <v-flex xs12 md3>
-              <v-btn color="info">{{ text.searchAdvice }}</v-btn>
+            <v-flex xs6 md1>
+              <v-btn @click="filterAdvices" color="info" fab>
+                <v-icon>search</v-icon>
+              </v-btn>
+            </v-flex>
+            <v-flex xs6 md2 class="ma-2">
+              <v-btn @click="resetFilters">{{ text.showAll }}</v-btn>
             </v-flex>
           </v-layout>
         </v-container>
@@ -41,18 +50,35 @@ export default Vue.extend({
     data() {
         return {
             text: {
-                professionalName: labels.professionalName,
+                medicalprofessionalName: labels.professionalName,
                 patientName: labels.patientName,
                 parentPhoneNumber: labels.parentPhoneNumber,
                 searchAdvice: labels.searchAdvice,
+                showAll: labels.showAll,
             },
-            professionalName: "",
+            medicalprofessionalName: "",
             patientName: "",
             parentPhoneNumber: "",
         };
     },
     computed: {},
-    methods: {},
+    methods: {
+        filterAdvices() {
+            const filter = {
+                medicalprofessionalName:
+                    this.medicalprofessionalName.length > 0 ? this.medicalprofessionalName : undefined,
+                patientName: this.patientName.length > 0 ? this.patientName : undefined,
+                parentPhoneNumber: this.parentPhoneNumber.length > 0 ? this.parentPhoneNumber : undefined,
+            };
+            s(this.$store).dispatch(AdviceModule.Actions.updateQueryFilter, filter);
+        },
+        resetFilters() {
+            this.medicalprofessionalName = "";
+            this.patientName = "";
+            this.parentPhoneNumber = "";
+            this.filterAdvices();
+        },
+    },
     components: {},
 });
 </script>
