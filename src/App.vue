@@ -10,7 +10,7 @@
         <material-drawer-tile-router to="/about" icon="copyright">{{ text.about | capitalize }}</material-drawer-tile-router>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar app fixed clipped-left color="#00796b" dark>
+    <v-toolbar app fixed clipped-left color="#00885B" dark>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title>{{ text.appTitle }}</v-toolbar-title>
     </v-toolbar>
