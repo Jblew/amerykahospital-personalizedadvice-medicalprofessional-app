@@ -33,10 +33,11 @@
 </template>
 
 <script lang="ts">
+import AddAdvicePanel from "@/components/add-advice/AddAdvicePanel.vue";
 import AdviceListPanel from "@/components/advice-list/AdviceListPanel.vue";
 import Vue from "vue";
+
 import { labels, s } from "../global";
-import AddAdvicePanel from "@/components/add-advice/AddAdvicePanel.vue";
 
 export default Vue.extend({
     name: "ListView",

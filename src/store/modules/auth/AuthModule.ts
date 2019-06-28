@@ -18,15 +18,31 @@ export namespace AuthModule {
         state: AuthState;
         username?: string;
         profileImageURL?: string;
+        uid: string;
+        confirmationState: {
+            confirmedMedicalProfessional: boolean;
+            loading: boolean;
+            error: string;
+        };
     }
     export function validateState(state: State) {
         ow(state.username, "state.username", ow.any(ow.undefined, ow.string));
         ow(state.profileImageURL, "state.profileImageURL", ow.any(ow.undefined, ow.string));
+        ow(state.confirmationState, "state.confirmationState", ow.object);
+        ow(state.confirmationState.error, "state.error", ow.string);
+        ow(state.confirmationState.loading, "state.confirmationState.loading", ow.boolean);
+        ow(
+            state.confirmationState.confirmedMedicalProfessional,
+            "state.confirmationState.confirmedMedicalProfessional",
+            ow.boolean,
+        );
     }
 
     export class Actions {
         public static initialize = localName("initialize");
         public static logout = localName("logout");
+        // tslint:disable:variable-name
+        public static _verifyMedicalProfessional = localName("_verifyMedicalProfessional");
     }
 
     export class Getters {

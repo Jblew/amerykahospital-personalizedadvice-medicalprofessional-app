@@ -15,6 +15,12 @@ export namespace AuthModuleImpl {
         state: AuthModule.AuthState.LOADING,
         profileImageURL: undefined,
         username: undefined,
+        uid: "",
+        confirmationState: {
+            confirmedMedicalProfessional: false,
+            loading: false,
+            error: "",
+        },
     };
     Me.validateState(myState);
 
@@ -26,6 +32,7 @@ export namespace AuthModuleImpl {
         public static setUser = Me.localName("setUser");
         public static resetUser = Me.localName("resetUser");
         public static setState = Me.localName("setState");
+        public static setConfirmationState = Me.localName("setConfirmationState");
     }
 
     const mutations: MutationTree<Me.State> = {
@@ -33,6 +40,7 @@ export namespace AuthModuleImpl {
             ow(payload.user, "payload.user", ow.object);
             const user = payload.user;
             state.username = user.displayName ? user.displayName : "";
+            state.uid = user.uid;
             state.profileImageURL = user.photoURL ? user.photoURL : "";
             Me.validateState(state);
         },
@@ -52,6 +60,23 @@ export namespace AuthModuleImpl {
             state.state = payload.state;
             Me.validateState(state);
         },
+
+        [Mutations.setConfirmationState](
+            state: Me.State,
+            payload: {
+                confirmedMedicalProfessional: boolean;
+                loading: boolean;
+                error: string;
+            },
+        ) {
+            ow(payload, "payload", ow.object);
+            ow(payload.loading, "payload.loading", ow.boolean);
+            ow(payload.confirmedMedicalProfessional, "payload.confirmedMedicalProfessional", ow.boolean);
+            ow(payload.error, "payload.error", ow.string);
+
+            state.confirmationState = { ...payload };
+            Me.validateState(state);
+        },
     };
 
     /**
@@ -65,10 +90,16 @@ export namespace AuthModuleImpl {
                     console.log("Authenticated user", user);
                     commit(Mutations.setUser, { user: user as FirebaseAuthHelper.User });
                     commit(Mutations.setState, { state: Me.AuthState.AUTHENTICATED });
+                    dispatch(Me.Actions._verifyMedicalProfessional);
                 },
                 notAuthenticatedCb: () => {
                     console.log("User not authenticated");
                     commit(Mutations.setState, { state: Me.AuthState.NOTAUTHENTICATED });
+                    commit(Mutations.setConfirmationState, {
+                        confirmedMedicalProfessional: false,
+                        loading: false,
+                        error: "",
+                    });
                 },
             });
         },
@@ -78,6 +109,27 @@ export namespace AuthModuleImpl {
                 await FirebaseAuthHelper.signOut();
                 commit(Mutations.resetUser);
                 commit(Mutations.setState, { state: Me.AuthState.NOTAUTHENTICATED });
+            })();
+        },
+        [Me.Actions._verifyMedicalProfessional]: ({ commit, dispatch, state }): void => {
+            commit(Mutations.setConfirmationState, { confirmedMedicalProfessional: false, loading: true, error: "" });
+            (async () => {
+                try {
+                    const confResult = await FirebaseAuthHelper.checkIfUserIsConfirmedMedicalProfessional(
+                        state.uid, //
+                    );
+                    commit(Mutations.setConfirmationState, {
+                        confirmedMedicalProfessional: confResult,
+                        loading: false,
+                        error: "",
+                    });
+                } catch (error) {
+                    commit(Mutations.setConfirmationState, {
+                        confirmedMedicalProfessional: false,
+                        loading: false,
+                        error: error + "",
+                    });
+                }
             })();
         },
     };

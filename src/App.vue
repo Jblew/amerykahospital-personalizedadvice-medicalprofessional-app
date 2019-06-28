@@ -2,6 +2,7 @@
   <v-app id="inspire app">
     <v-navigation-drawer v-model="drawer" clipped fixed app>
       <profile-component/>
+      <account-warning-dialog/>
 
       <v-list dense>
         <v-divider></v-divider>
@@ -38,6 +39,7 @@ import Vue from "vue";
 import { config, s } from "./global";
 import { AuthModule } from "./store/modules/auth/AuthModule";
 import AuthView from "./views/Auth.vue";
+import AccountWarningDialog from "./components/AccountWarningDialog.vue";
 
 export default Vue.extend({
     props: [],
@@ -62,6 +64,7 @@ export default Vue.extend({
     },
     components: {
         AuthView,
+        AccountWarningDialog,
     },
 });
 </script>
