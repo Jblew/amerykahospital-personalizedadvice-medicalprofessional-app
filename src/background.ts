@@ -2,7 +2,7 @@
 
 // tslint:disable:no-console
 
-import { app, protocol, BrowserWindow } from "electron";
+import { app, BrowserWindow, protocol } from "electron";
 import { createProtocol, installVueDevtools } from "vue-cli-plugin-electron-builder/lib";
 const isDevelopment = process.env.NODE_ENV !== "production";
 
