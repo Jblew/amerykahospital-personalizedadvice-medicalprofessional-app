@@ -14,7 +14,11 @@ export const labels = {
     showAll: "Wszystkie",
     close: "Zamknij",
     logOut: "Wyloguj się",
+    logIn: "Zaloguj się",
+    loading: "Ładowanie",
     yourAccountIsNotConfirmed: "Twoje konto nie jest potwierdzone",
+    adviceList: "Lista porad",
+    aboutApp: "O aplikacji",
     yourAccountIsNotConfirmedAdMedicalprofessionalExplanation:
         "Twoje konto nie jest oznaczone jako konto medyka. " +
         "Skontaktuj się z administratorem w celu potwierdzenia Twojego konta.",

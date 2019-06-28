@@ -4,7 +4,8 @@
       <v-list class="pa-0 pb-0 mb-0">
         <v-list-tile avatar>
           <v-list-tile-avatar>
-            <img :src="photoUrl">
+            <img :src="photoUrl" v-if="photoUrl.length > 0">
+            <v-icon v-else>person</v-icon>
           </v-list-tile-avatar>
 
           <v-list-tile-content>
@@ -28,7 +29,7 @@
 <script lang="ts">
 import Vue from "vue";
 
-import { s, labels } from "../../global";
+import { labels, s } from "../../global";
 import { AuthModule } from "../../store/modules/auth/AuthModule";
 
 export default Vue.extend({

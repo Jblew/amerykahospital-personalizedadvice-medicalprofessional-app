@@ -1,13 +1,15 @@
 <template>
   <v-app id="inspire app">
+    <account-warning-dialog/>
+
     <v-navigation-drawer v-model="drawer" clipped fixed app>
       <profile-component/>
-      <account-warning-dialog/>
+      <p>&nbsp;</p>
 
       <v-list dense>
         <v-divider></v-divider>
-        <material-drawer-tile-router to="/add" icon="dashboard">{{ text.sendAdvice | capitalize }}</material-drawer-tile-router>
         <material-drawer-tile-router to="/list" icon="list">{{ text.list | capitalize }}</material-drawer-tile-router>
+        <material-drawer-tile-router to="/add" icon="dashboard">{{ text.sendAdvice | capitalize }}</material-drawer-tile-router>
         <material-drawer-tile-router to="/about" icon="copyright">{{ text.about | capitalize }}</material-drawer-tile-router>
       </v-list>
     </v-navigation-drawer>
@@ -36,7 +38,7 @@
 
 import Vue from "vue";
 
-import { config, s } from "./global";
+import { config, labels, s } from "./global";
 import { AuthModule } from "./store/modules/auth/AuthModule";
 import AuthView from "./views/Auth.vue";
 import AccountWarningDialog from "./components/AccountWarningDialog.vue";
@@ -46,9 +48,9 @@ export default Vue.extend({
     data() {
         return {
             text: {
-                sendAdvice: "Wyślij poradę",
-                list: "Porady",
-                about: "O aplikacji",
+                sendAdvice: labels.sendAdvice,
+                list: labels.adviceList,
+                about: labels.aboutApp,
                 author: config.author,
                 appTitle: config.appTitle,
             },

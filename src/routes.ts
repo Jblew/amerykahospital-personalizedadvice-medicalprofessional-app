@@ -1,6 +1,6 @@
 export const routes = {
-    home: { path: "/add", name: "home" },
+    home: { path: "/", name: "list" },
+    sendAdvice: { path: "/add", name: "send-advice" },
     about: { path: "/about", name: "about" },
     auth: { path: "/auth", name: "auth" },
-    list: { path: "/", name: "list" },
 };

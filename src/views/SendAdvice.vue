@@ -12,7 +12,7 @@ import Vue from "vue";
 import { labels } from "../global";
 
 export default Vue.extend({
-    name: "home",
+    name: "send-advice",
     data() {
         return {
             text: {
