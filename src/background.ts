@@ -1,8 +1,11 @@
 "use strict";
+/* global __static */
+declare const __static: string;
 
 // tslint:disable:no-console
 
 import { app, BrowserWindow, protocol } from "electron";
+import * as path from "path";
 import { createProtocol, installVueDevtools } from "vue-cli-plugin-electron-builder/lib";
 const isDevelopment = process.env.NODE_ENV !== "production";
 
@@ -16,11 +19,12 @@ protocol.registerSchemesAsPrivileged([{ scheme: "app", privileges: { secure: tru
 function createWindow() {
     // Create the browser window.
     win = new BrowserWindow({
-        width: 800,
-        height: 600,
+        width: 1024,
+        height: 800,
         webPreferences: {
             nodeIntegration: true,
         },
+        icon: path.join(__static, "icon.png"),
     });
 
     if (process.env.WEBPACK_DEV_SERVER_URL) {
