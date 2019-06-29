@@ -20,7 +20,7 @@ function createWindow() {
     // Create the browser window.
     win = new BrowserWindow({
         width: 1024,
-        height: 800,
+        height: 950,
         webPreferences: {
             nodeIntegration: true,
         },

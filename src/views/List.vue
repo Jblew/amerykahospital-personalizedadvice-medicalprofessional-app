@@ -5,7 +5,17 @@
       <v-btn small outline class="mb-3" @click="addAdvice">Dodaj</v-btn>
     </h1>
     <advice-list-panel/>
-    <v-btn class="add-btn" absolute dark fab large bottom right color="pink" @click="addAdvice">
+    <v-btn
+      class="add-btn"
+      absolute
+      dark
+      fab
+      large
+      bottom
+      right
+      :color="colors.floatingAddButton"
+      @click="addAdvice"
+    >
       <v-icon>add</v-icon>
     </v-btn>
 
@@ -37,7 +47,7 @@ import AddAdvicePanel from "@/components/add-advice/AddAdvicePanel.vue";
 import AdviceListPanel from "@/components/advice-list/AdviceListPanel.vue";
 import Vue from "vue";
 
-import { labels, s } from "../global";
+import { config, labels, s } from "../global";
 
 export default Vue.extend({
     name: "ListView",
@@ -47,6 +57,9 @@ export default Vue.extend({
             text: {
                 sendAdvice: labels.sendAdvice,
                 close: labels.close,
+            },
+            colors: {
+                floatingAddButton: "pink",
             },
         };
     },

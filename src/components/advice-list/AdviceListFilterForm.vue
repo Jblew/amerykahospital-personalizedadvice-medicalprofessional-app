@@ -70,7 +70,7 @@ export default Vue.extend({
                 patientName: this.patientName.length > 0 ? this.patientName : undefined,
                 parentPhoneNumber: this.parentPhoneNumber.length > 0 ? this.parentPhoneNumber : undefined,
             };
-            s(this.$store).dispatch(AdviceModule.Actions.updateQueryFilter, filter);
+            s(this.$store).dispatch(AdviceModule.Actions.updateQueryFilterAndReloadList, filter);
         },
         resetFilters() {
             this.medicalprofessionalName = "";

@@ -22,4 +22,5 @@ export const labels = {
     yourAccountIsNotConfirmedAdMedicalprofessionalExplanation:
         "Twoje konto nie jest oznaczone jako konto medyka. " +
         "Skontaktuj się z administratorem w celu potwierdzenia Twojego konta.",
+    adviceCode: "Kod porady",
 };

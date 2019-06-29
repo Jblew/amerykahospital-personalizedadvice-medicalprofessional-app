@@ -27,9 +27,7 @@
         </v-layout>
       </v-container>
     </v-content>
-    <v-footer app fixed>
-      <span>&copy; 2019 - {{ text.year }} by {{ text.author }}</span>
-    </v-footer>
+    <footer-component/>
   </v-app>
 </template>
 
@@ -39,9 +37,10 @@
 import Vue from "vue";
 
 import { config, labels, s } from "./global";
+import AccountWarningDialog from "./components/AccountWarningDialog.vue";
+import FooterComponent from "./components/FooterComponent.vue";
 import { AuthModule } from "./store/modules/auth/AuthModule";
 import AuthView from "./views/Auth.vue";
-import AccountWarningDialog from "./components/AccountWarningDialog.vue";
 
 export default Vue.extend({
     props: [],
@@ -51,7 +50,6 @@ export default Vue.extend({
                 sendAdvice: labels.sendAdvice,
                 list: labels.adviceList,
                 about: labels.aboutApp,
-                author: config.author,
                 appTitle: config.appTitle,
             },
             drawer: null,
@@ -62,11 +60,11 @@ export default Vue.extend({
         authenticated(): boolean {
             return s(this.$store).state.auth.state === AuthModule.AuthState.AUTHENTICATED;
         },
-        year: () => new Date().getFullYear(),
     },
     components: {
         AuthView,
         AccountWarningDialog,
+        FooterComponent,
     },
 });
 </script>
