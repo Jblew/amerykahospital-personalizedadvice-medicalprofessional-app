@@ -36,7 +36,7 @@ new Vue({
                 this.$router.push(routes.auth.path);
             } else if (authState === AuthModule.AuthState.AUTHENTICATED) {
                 console.log("Dispatch loadList");
-                this.$store.dispatch(AdviceModule.Actions.updateQueryFilter, {});
+                this.$store.dispatch(AdviceModule.Actions.updateQueryFilterAndReloadList, {});
             }
         },
     },

@@ -83,22 +83,26 @@ export namespace AdviceModuleImpl {
                     commit(Mutations.setAddOpState, { loading: true, error: "", result: "" });
                     await AdvicesManager.addAdvice(payload);
                     commit(Mutations.setAddOpState, { loading: false, error: "", result: "Ok." });
+                    dispatch(Me.Actions.reloadList);
                 } catch (error) {
                     commit(Mutations.setAddOpState, { loading: false, error: "Error: " + error, result: "" });
                 }
             })();
         },
-        [Me.Actions.updateQueryFilter]: ({ commit, dispatch, state }, payload: AdvicesManager.FetchFilter): void => {
-            if (
+        [Me.Actions.updateQueryFilterAndReloadList]: (
+            { commit, dispatch, state },
+            payload: AdvicesManager.FetchFilter,
+        ): void => {
+            /*if (
                 state.filter.medicalprofessionalName !== payload.medicalprofessionalName ||
                 state.filter.patientName !== payload.patientName ||
                 state.filter.parentPhoneNumber !== payload.parentPhoneNumber
-            ) {
-                commit(Mutations.setFilter, payload);
-                dispatch(Me.Actions._reloadList);
-            }
+            ) {*/
+            commit(Mutations.setFilter, payload);
+            dispatch(Me.Actions.reloadList);
+            /*}*/
         },
-        [Me.Actions._reloadList]: ({ commit, dispatch, state }): void => {
+        [Me.Actions.reloadList]: ({ commit, dispatch, state }): void => {
             if (state.listLoadingState.loading) return;
             (async () => {
                 try {

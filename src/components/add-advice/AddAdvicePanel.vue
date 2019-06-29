@@ -26,6 +26,8 @@
 
       <v-textarea solo v-model="advice" :rules="adviceRules" :label="text.advice" required></v-textarea>
 
+      <v-text-field v-model="shortId" valid="true" :label="text.adviceCode" disabled readonly box></v-text-field>
+
       <v-btn :disabled="!valid" color="success" @click="validateAndAddAdvice">{{ text.sendAdvice }}</v-btn>
 
       <v-btn @click="reset">{{ text.resetForm }}</v-btn>
@@ -38,11 +40,11 @@
 </template>
 
 <script lang="ts">
+import { Advice, AdviceIdGenerator } from "ahpaa-core";
 import Vue from "vue";
 
 import { labels, s } from "../../global";
 import { AdviceModule } from "../../store/modules/advice/AdviceModule";
-import { Advice } from "ahpaa-core";
 
 const phoneNumberRegex = /^[0-9]{9}$/;
 
@@ -58,6 +60,7 @@ export default Vue.extend({
                 advice: labels.advice,
                 resetForm: labels.resetForm,
                 sendingAdvice: labels.sendingAdvice,
+                adviceCode: labels.adviceCode,
             },
             valid: true,
             professionalName: "",
@@ -71,7 +74,11 @@ export default Vue.extend({
             ],
             advice: "",
             adviceRules: [(v: string) => !!v || labels.requiredField],
+            id: "",
         };
+    },
+    mounted() {
+        this.id = AdviceIdGenerator.generateId();
     },
     computed: {
         loading(): boolean {
@@ -83,6 +90,14 @@ export default Vue.extend({
         result(): string {
             return s(this.$store).state.advice.addOp.result;
         },
+        shortId: {
+            get(): string {
+                return this.id.substring(0, 5);
+            },
+            set(v: string) {
+                // do nothing
+            },
+        },
     },
     methods: {
         validateAndAddAdvice() {
@@ -92,6 +107,7 @@ export default Vue.extend({
         },
         addAdvice() {
             const advice: Advice = {
+                id: this.id,
                 patientName: this.patientName,
                 medicalprofessionalName: this.professionalName,
                 parentPhoneNumber: this.parentPhoneNumber,
@@ -103,6 +119,7 @@ export default Vue.extend({
         },
         reset() {
             (this.$refs.form as any).reset();
+            this.id = AdviceIdGenerator.generateId();
         },
     },
 });

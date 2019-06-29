@@ -36,10 +36,8 @@ export namespace AdviceModule {
 
     export class Actions {
         public static addAdvice = localName("addAdvice");
-        public static updateQueryFilter = localName("updateQueryFilter");
-
-        // tslint:disable:variable-name
-        public static _reloadList = localName("_reloadList");
+        public static updateQueryFilterAndReloadList = localName("updateQueryFilterAndReloadList");
+        public static reloadList = localName("reloadList");
     }
 
     export class Getters {}
