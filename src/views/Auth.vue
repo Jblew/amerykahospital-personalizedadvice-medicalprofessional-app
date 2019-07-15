@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import { FirebaseAuthHelper } from "ahpaa-core";
+import { FirebaseAuthHelper } from "ahpaa-core-ui";
 import Vue from "vue";
 
 import { config, labels, s } from "../global";
