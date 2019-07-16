@@ -1,10 +1,10 @@
 // tslint:disable:no-console
 
-import { Advice, AdvicesManager } from "ahpaa-core";
+import { Advice, AdvicesManager } from "amerykahospital-personalizedadvices-core";
 import ow from "ow";
 import { ActionTree, GetterTree, Module, MutationTree } from "vuex";
 
-import { AdviceModule, AdviceModule as Me } from "./AdviceModule";
+import { AdviceModule as Me } from "./AdviceModule";
 
 export namespace AdviceModuleImpl {
     /**

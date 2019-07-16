@@ -4,11 +4,10 @@ import Vue from "vue";
 import Vuex, { MutationTree } from "vuex";
 import { ActionTree, Commit, Dispatch, Module, ModuleTree } from "vuex";
 
-import { AuthModule } from "./modules/auth/AuthModule";
-import { AuthModuleImpl } from "./modules/auth/AuthModuleImpl";
-
 import { AdviceModule } from "./modules/advice/AdviceModule";
 import { AdviceModuleImpl } from "./modules/advice/AdviceModuleImpl";
+import { AuthModule } from "./modules/auth/AuthModule";
+import { AuthModuleImpl } from "./modules/auth/AuthModuleImpl";
 
 Vue.use(Vuex);
 

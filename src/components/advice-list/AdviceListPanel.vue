@@ -27,7 +27,7 @@ import AdviceListFilterForm from "./AdviceListFilterForm.vue";
 
 import { labels, s } from "../../global";
 import { AdviceModule } from "../../store/modules/advice/AdviceModule";
-import { Advice } from "ahpaa-core";
+import { Advice } from "amerykahospital-personalizedadvices-core";
 
 export default Vue.extend({
     name: "AdviceListPanel",

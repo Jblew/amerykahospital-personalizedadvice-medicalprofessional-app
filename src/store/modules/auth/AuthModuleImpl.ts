@@ -1,9 +1,8 @@
 // tslint:disable:no-console
 
+import { FirebaseAuthHelper } from "ahpaa-core-ui";
 import ow from "ow";
 import { ActionTree, GetterTree, Module, MutationTree } from "vuex";
-
-import { FirebaseAuthHelper } from "ahpaa-core-ui";
 
 import { AuthModule, AuthModule as Me } from "./AuthModule";
 

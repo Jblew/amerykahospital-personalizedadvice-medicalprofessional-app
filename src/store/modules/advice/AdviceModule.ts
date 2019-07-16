@@ -1,6 +1,6 @@
 // tslint:disable:max-classes-per-file
 
-import { Advice, AdvicesManager } from "ahpaa-core";
+import { Advice, AdvicesManager } from "amerykahospital-personalizedadvices-core";
 import ow from "ow";
 
 export namespace AdviceModule {
