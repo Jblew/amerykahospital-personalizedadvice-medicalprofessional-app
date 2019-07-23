@@ -43,7 +43,7 @@ import Vue from "vue";
 
 import { labels, s } from "../../global";
 import { AdviceModule } from "../../store/modules/advice/AdviceModule";
-import { Advice } from "amerykahospital-personalizedadvices-core";
+import { Advice } from "amerykahospital-personalizedadvice-core";
 
 export default Vue.extend({
     name: "AdviceListPanel",

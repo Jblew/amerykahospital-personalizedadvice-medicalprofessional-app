@@ -1,5 +1,5 @@
 {
-  "name": "ahpaa-medicalproffesional-app-ui",
+  "name": "amerykahospital-personalizedadvice-medicalprofessional-app",
   "version": "0.1.0",
   "private": true,
   "description": "Edytor porad — Ameryka Szpital",
@@ -19,8 +19,8 @@
   },
   "main": "background.js",
   "dependencies": {
-    "amerykahospital-personalizedadvices-core": "^1.0.0",
-    "ahpaa-core-ui": "^0.2.0",
+    "amerykahospital-personalizedadvice-core": "^2.0.0",
+    "amerykahospital-personalizedadvice-vue-commons": "^1.0.0",
     "firebase": "^6.3.0",
     "firebaseui": "^4.0.0",
     "material-design-icons-iconfont": "^5.0.1",

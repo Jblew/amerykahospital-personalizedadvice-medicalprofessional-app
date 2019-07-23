@@ -1,6 +1,6 @@
 // tslint:disable:max-classes-per-file
 
-import { Advice, AdvicesManager } from "amerykahospital-personalizedadvices-core";
+import { Advice, AdvicesManager } from "amerykahospital-personalizedadvice-core";
 import ow from "ow";
 
 export namespace AdviceModule {

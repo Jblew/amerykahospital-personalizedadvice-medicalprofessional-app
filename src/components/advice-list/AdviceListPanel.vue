@@ -1,6 +1,6 @@
 <template>
   <div class="advice-list-panel">
-    <advice-list-filter-form/>
+    <advice-list-filter-form />
 
     <v-alert v-if="loading" value="true" type="info">{{ text.sendingAdvice }}</v-alert>
     <v-alert v-if="error.length > 0" value="true" type="error">{{ error }}</v-alert>
@@ -27,7 +27,7 @@ import AdviceListFilterForm from "./AdviceListFilterForm.vue";
 
 import { labels, s } from "../../global";
 import { AdviceModule } from "../../store/modules/advice/AdviceModule";
-import { Advice } from "amerykahospital-personalizedadvices-core";
+import { Advice } from "amerykahospital-personalizedadvice-core";
 
 export default Vue.extend({
     name: "AdviceListPanel",

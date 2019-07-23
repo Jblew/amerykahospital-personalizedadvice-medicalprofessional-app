@@ -1,6 +1,6 @@
 // tslint:disable:no-console
 
-import { Advice, AdvicesManager } from "amerykahospital-personalizedadvices-core";
+import { Advice, AdvicesManager } from "amerykahospital-personalizedadvice-core";
 import ow from "ow";
 import { ActionTree, GetterTree, Module, MutationTree } from "vuex";
 

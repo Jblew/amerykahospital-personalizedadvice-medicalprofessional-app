@@ -40,7 +40,7 @@
 </template>
 
 <script lang="ts">
-import { Advice, AdviceIdGenerator } from "amerykahospital-personalizedadvices-core";
+import { Advice, AdviceIdGenerator } from "amerykahospital-personalizedadvice-core";
 import Vue from "vue";
 
 import { labels, s } from "../../global";
