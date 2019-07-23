@@ -1,6 +1,6 @@
-# amerykahospital-personalizedadvice-vue-commons
+# amerykahospital-personalizedadvice-medicalprofessional-app
 
-Vue components shared among AmerykaHospital personalized patient advice system
+App for medical professionals in AmerykaHospital personalized patient advice system
 
 ---
 
