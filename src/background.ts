@@ -22,7 +22,7 @@ function createWindow() {
         width: 1024,
         height: 950,
         webPreferences: {
-            nodeIntegration: true,
+            nodeIntegration: false,
             nativeWindowOpen: true,
         },
         icon: path.join(__static, "icon.png"),

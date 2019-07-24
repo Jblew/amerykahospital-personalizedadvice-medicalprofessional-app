@@ -2,6 +2,9 @@ module.exports = {
   lintOnSave: false,
   pluginOptions: {
     electronBuilder: {
+      chainWebpackRendererProcess: config => {
+        return config.target("web");
+      },
       builderOptions: {
         appId: "pl.com.ameryka.advicesystem.medicalprofessionalapp",
         productName: "Spersonalizowane porady — panel profesjonalisty — Ameryka Szpital",
