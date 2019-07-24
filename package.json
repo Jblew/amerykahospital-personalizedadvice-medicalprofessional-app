@@ -33,6 +33,7 @@
     "firebaseui": "^4.0.0",
     "material-design-icons-iconfont": "^5.0.1",
     "ow": "^0.13.2",
+    "typeface-roboto": "0.0.75",
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",
     "vue-property-decorator": "^8.1.0",

@@ -2,10 +2,10 @@
 
 import "firebaseui/dist/firebaseui.css";
 import "material-design-icons-iconfont/dist/material-design-icons.css"; // Ensure you are using css-loader
+import "typeface-roboto"; // offline version of roboto font
 import Vue from "vue";
 import Vuetify from "vuetify";
 import "vuetify/dist/vuetify.min.css";
-import WebFontLoader from "webfontloader";
 
 import App from "./App.vue";
 import "./components/common/common_components";
@@ -44,16 +44,7 @@ new Vue({
         this.$store.dispatch(Actions.initialize);
     },
     mounted() {
-        WebFontLoader.load({
-            google: {
-                families: ["Roboto:100,300,400,500,700,900"],
-            },
-            active: this.setFontLoaded,
-        });
+        //
     },
-    methods: {
-        setFontLoaded() {
-            this.$emit("font-loaded");
-        },
-    },
+    methods: {},
 }).$mount("#app");
