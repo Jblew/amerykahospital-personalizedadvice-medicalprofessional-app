@@ -17,9 +17,17 @@
     "postuninstall": "electron-builder install-app-deps",
     "test:unit": "vue-cli-service test:unit"
   },
+  "files": [
+    "/dist",
+    "/dist_electron",
+    "/src",
+    "preload.js",
+    "/build",
+    "/public"
+  ],
   "main": "background.js",
   "dependencies": {
-    "amerykahospital-personalizedadvice-core": "^2.0.0",
+    "amerykahospital-personalizedadvice-core": "^2.0.1",
     "amerykahospital-personalizedadvice-vue-commons": "^2.0.0",
     "firebase": "^6.3.0",
     "firebaseui": "^4.0.0",

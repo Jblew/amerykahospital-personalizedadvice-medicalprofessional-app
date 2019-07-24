@@ -13,7 +13,10 @@ export namespace AdviceModule {
         addOp: {
             loading: boolean;
             error: string;
-            result: string;
+            result: {
+                log: string;
+                adviceId: string;
+            };
         };
         listLoadingState: {
             loading: boolean;
@@ -26,7 +29,9 @@ export namespace AdviceModule {
         ow(state.addOp, "state.addOp", ow.object);
         ow(state.addOp.loading, "state.addOp.loading", ow.boolean);
         ow(state.addOp.error, "state.addOp.error", ow.string);
-        ow(state.addOp.result, "state.addOp.result", ow.string);
+        ow(state.addOp.result, "state.addOp.result", ow.object);
+        ow(state.addOp.result.log, "state.addOp.result.log", ow.string);
+        ow(state.addOp.result.adviceId, "state.addOp.result.adviceId", ow.string);
 
         ow(state.filter, "state.filter", ow.object);
         ow(state.listLoadingState, "state.listLoadingState", ow.object);

@@ -26,7 +26,7 @@
 
       <v-textarea solo v-model="advice" :rules="adviceRules" :label="text.advice" required></v-textarea>
 
-      <v-text-field v-model="shortId" valid="true" :label="text.adviceCode" disabled readonly box></v-text-field>
+      <v-text-field v-model="adviceId" valid="true" :label="text.adviceCode" disabled readonly box></v-text-field>
 
       <v-btn :disabled="!valid" color="success" @click="validateAndAddAdvice">{{ text.sendAdvice }}</v-btn>
 
@@ -74,11 +74,7 @@ export default Vue.extend({
             ],
             advice: "",
             adviceRules: [(v: string) => !!v || labels.requiredField],
-            id: "",
         };
-    },
-    mounted() {
-        this.id = AdviceIdGenerator.generateId();
     },
     computed: {
         loading(): boolean {
@@ -88,15 +84,11 @@ export default Vue.extend({
             return s(this.$store).state.advice.addOp.error;
         },
         result(): string {
-            return s(this.$store).state.advice.addOp.result;
+            return s(this.$store).state.advice.addOp.result.log;
         },
-        shortId: {
-            get(): string {
-                return this.id.substring(0, 5);
-            },
-            set(v: string) {
-                // do nothing
-            },
+        adviceId(): string {
+            const loadedId = s(this.$store).state.advice.addOp.result.adviceId;
+            return loadedId || labels.idWillBeVisibleAfterAdd;
         },
     },
     methods: {
@@ -107,7 +99,7 @@ export default Vue.extend({
         },
         addAdvice() {
             const advice: Advice = {
-                id: this.id,
+                id: "",
                 patientName: this.patientName,
                 medicalprofessionalName: this.professionalName,
                 parentPhoneNumber: this.parentPhoneNumber,
@@ -119,7 +111,6 @@ export default Vue.extend({
         },
         reset() {
             (this.$refs.form as any).reset();
-            this.id = AdviceIdGenerator.generateId();
         },
     },
 });

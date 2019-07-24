@@ -1,5 +1,6 @@
 // tslint:disable:no-console
 
+import { AddAdviceAdapter } from "@/adapter/AddAdviceAdapter";
 import { Advice, AdvicesManager } from "amerykahospital-personalizedadvice-core";
 import ow from "ow";
 import { ActionTree, GetterTree, Module, MutationTree } from "vuex";
@@ -14,7 +15,10 @@ export namespace AdviceModuleImpl {
         addOp: {
             loading: false,
             error: "",
-            result: "",
+            result: {
+                log: "",
+                adviceId: "",
+            },
         },
         listLoadingState: {
             loading: false,
@@ -39,11 +43,11 @@ export namespace AdviceModuleImpl {
     const mutations: MutationTree<Me.State> = {
         [Mutations.setAddOpState]: async (
             state: Me.State,
-            payload: { loading: boolean; error: string; result: string },
+            payload: { loading: boolean; error: string; result: { log: string; adviceId: string } },
         ) => {
             ow(payload.loading, "payload.loading", ow.boolean);
             ow(payload.error, "payload.error", ow.string);
-            ow(payload.result, "payload.result", ow.string);
+            ow(payload.result, "payload.result", ow.object);
 
             state.addOp.loading = payload.loading;
             state.addOp.error = payload.error;
@@ -80,12 +84,19 @@ export namespace AdviceModuleImpl {
         [Me.Actions.addAdvice]: ({ commit, dispatch, state }, payload: Advice): void => {
             (async () => {
                 try {
-                    commit(Mutations.setAddOpState, { loading: true, error: "", result: "" });
-                    await AdvicesManager.addAdvice(payload);
-                    commit(Mutations.setAddOpState, { loading: false, error: "", result: "Ok." });
+                    console.log("Begin send");
+                    commit(Mutations.setAddOpState, { loading: true, error: "", result: { log: "", adviceId: "" } });
+                    const result = await new AddAdviceAdapter().addAdvice(payload);
+                    console.log("After send");
+                    commit(Mutations.setAddOpState, { loading: false, error: "", result });
                     dispatch(Me.Actions.reloadList);
                 } catch (error) {
-                    commit(Mutations.setAddOpState, { loading: false, error: "Error: " + error, result: "" });
+                    console.error(error);
+                    commit(Mutations.setAddOpState, {
+                        loading: false,
+                        error: "Error: " + error,
+                        result: { log: "", adviceId: "" },
+                    });
                 }
             })();
         },
