@@ -23,6 +23,7 @@ function createWindow() {
         height: 950,
         webPreferences: {
             nodeIntegration: true,
+            nativeWindowOpen: true,
         },
         icon: path.join(__static, "icon.png"),
     });

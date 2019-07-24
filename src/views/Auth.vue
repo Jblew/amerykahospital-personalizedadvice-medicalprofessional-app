@@ -17,6 +17,7 @@ import Vue from "vue";
 import { config, labels, s } from "../global";
 import { routes } from "../routes";
 import { AuthModule } from "../store/modules/auth/AuthModule";
+import { AuthConfig } from "../AuthConfig";
 
 export default Vue.extend({
     name: "auth",
@@ -32,7 +33,7 @@ export default Vue.extend({
         };
     },
     mounted() {
-        FirebaseAuthHelper.startFirebaseAuthUI("#firebaseui-auth-container", routes.home.path);
+        FirebaseAuthHelper.startFirebaseAuthUI("#firebaseui-auth-container", routes.home.path, AuthConfig.PROVIDERS);
     },
     computed: {
         loading(): boolean {
