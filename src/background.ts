@@ -24,6 +24,7 @@ function createWindow() {
         webPreferences: {
             nodeIntegration: false,
             nativeWindowOpen: true,
+            webSecurity: false,
         },
         icon: path.join(__static, "icon.png"),
     });
