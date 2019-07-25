@@ -27,7 +27,7 @@
   ],
   "main": "background.js",
   "dependencies": {
-    "amerykahospital-personalizedadvice-core": "^6.3.0",
+    "amerykahospital-personalizedadvice-core": "^6.5.0",
     "amerykahospital-personalizedadvice-vue-commons": "^2.0.0",
     "firebase": "^6.3.0",
     "firebaseui": "^4.0.0",
