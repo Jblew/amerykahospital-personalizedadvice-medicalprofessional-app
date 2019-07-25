@@ -28,8 +28,6 @@
     <v-text-field v-model="adviceId" valid="true" :label="text.adviceCode" disabled readonly box></v-text-field>
 
     <v-btn :disabled="!valid" color="success" @click="validateAndAddAdvice">{{ text.sendAdvice }}</v-btn>
-
-    <v-btn @click="reset">{{ text.resetForm }}</v-btn>
   </v-form>
 </template>
 
