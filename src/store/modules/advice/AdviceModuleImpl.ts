@@ -148,7 +148,7 @@ export namespace AdviceModuleImpl {
                     if (!adviceId) throw new Error("Advice must be specified");
                     commit(Mutations.setSendSMSOpState, { loading: true, error: "", result: "" });
                     const result = await new SendSMSAdapter().sendSMS({ adviceId });
-                    commit(Mutations.setSendSMSOpState, { loading: false, error: "", result });
+                    commit(Mutations.setSendSMSOpState, { loading: false, error: "", result: result.message });
                     dispatch(Me.Actions.reloadList);
                 } catch (error) {
                     console.error(error);
