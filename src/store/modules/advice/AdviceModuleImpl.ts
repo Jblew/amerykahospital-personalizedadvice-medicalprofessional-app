@@ -158,8 +158,8 @@ export namespace AdviceModuleImpl {
         },
 
         [Me.Actions.resetResults]: ({ commit }): void => {
-            commit(Mutations.setAddOpState, { loading: true, error: "", result: { log: "", adviceId: "" } });
-            commit(Mutations.setSendSMSOpState, { loading: true, error: "", result: "" });
+            commit(Mutations.setAddOpState, { loading: false, error: "", result: { log: "", adviceId: "" } });
+            commit(Mutations.setSendSMSOpState, { loading: false, error: "", result: "" });
         },
 
         [Me.Actions.updateQueryFilterAndReloadList]: (

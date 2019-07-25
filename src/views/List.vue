@@ -1,10 +1,10 @@
 <template>
   <div class="advicelist">
     <h1 class="mb-3 ml-2">
-      Lista porad
-      <v-btn small outline class="mb-3" @click="addAdvice">Dodaj</v-btn>
+      {{ text.adviceList }}
+      <v-btn small outline class="mb-3" @click="addAdvice">{{ text.sendAdvice }}</v-btn>
     </h1>
-    <advice-list-panel/>
+    <advice-list-panel />
     <v-btn
       class="add-btn"
       absolute
@@ -28,14 +28,14 @@
           <v-container fluid fill-height>
             <v-layout justify-center align-start>
               <v-flex>
-                <add-advice-panel/>
+                <add-advice-panel />
               </v-flex>
             </v-layout>
           </v-container>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click="dialog = false">{{ text.close }}</v-btn>
+          <v-btn color="blue darken-1" flat @click="closeDialog()">{{ text.close }}</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -48,6 +48,7 @@ import AdviceListPanel from "@/components/advice-list/AdviceListPanel.vue";
 import Vue from "vue";
 
 import { config, labels, s } from "../global";
+import { AdviceModule } from "../store/modules/advice/AdviceModule";
 
 export default Vue.extend({
     name: "ListView",
@@ -55,6 +56,7 @@ export default Vue.extend({
         return {
             dialog: false,
             text: {
+                adviceList: labels.adviceList,
                 sendAdvice: labels.sendAdvice,
                 close: labels.close,
             },
@@ -66,6 +68,10 @@ export default Vue.extend({
     methods: {
         addAdvice() {
             this.dialog = true;
+        },
+        closeDialog() {
+            this.dialog = false;
+            s(this.$store).dispatch(AdviceModule.Actions.resetResults);
         },
     },
     components: {
