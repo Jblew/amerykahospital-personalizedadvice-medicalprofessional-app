@@ -24,4 +24,6 @@ export const labels = {
         "Skontaktuj się z administratorem w celu potwierdzenia Twojego konta.",
     adviceCode: "Kod porady",
     idWillBeVisibleAfterAdd: "Będzie widoczny po dodaniu porady",
+    sendingSMS: "Wysyłanie wiadomości sms...",
+    resendSMS: "Wyślij SMS ponownie",
 };

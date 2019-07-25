@@ -18,6 +18,11 @@ export namespace AdviceModule {
                 adviceId: string;
             };
         };
+        sendSMSOp: {
+            loading: boolean;
+            error: string;
+            result: string;
+        };
         listLoadingState: {
             loading: boolean;
             error: string;
@@ -33,6 +38,11 @@ export namespace AdviceModule {
         ow(state.addOp.result.log, "state.addOp.result.log", ow.string);
         ow(state.addOp.result.adviceId, "state.addOp.result.adviceId", ow.string);
 
+        ow(state.sendSMSOp, "state.sendSMSOp", ow.object);
+        ow(state.sendSMSOp.loading, "state.sendSMSOp.loading", ow.boolean);
+        ow(state.sendSMSOp.error, "state.sendSMSOp.error", ow.string);
+        ow(state.sendSMSOp.result, "state.sendSMSOp.result", ow.string);
+
         ow(state.filter, "state.filter", ow.object);
         ow(state.listLoadingState, "state.listLoadingState", ow.object);
         ow(state.listLoadingState.loading, "state.listLoadingState.loading", ow.boolean);
@@ -40,7 +50,9 @@ export namespace AdviceModule {
     }
 
     export class Actions {
-        public static addAdvice = localName("addAdvice");
+        public static addAdviceAndSendSMS = localName("addAdviceAndSendSMS");
+        public static sendSMS = localName("sendSMS");
+        public static resetResults = localName("resetResults");
         public static updateQueryFilterAndReloadList = localName("updateQueryFilterAndReloadList");
         public static reloadList = localName("reloadList");
     }

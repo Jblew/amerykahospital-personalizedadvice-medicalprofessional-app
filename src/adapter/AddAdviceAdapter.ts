@@ -1,4 +1,4 @@
-import { Advice, FirebaseFunctionDefinitions } from "amerykahospital-personalizedadvice-core";
+import { FirebaseFunctionDefinitions, PendingAdvice } from "amerykahospital-personalizedadvice-core";
 import firebase from "firebase/app";
 import "firebase/functions";
 
@@ -7,9 +7,8 @@ interface AddAdviceAdapterTypeguard {
 }
 
 export class AddAdviceAdapter implements AddAdviceAdapterTypeguard {
-    public async addAdvice(advice: Advice): Promise<FirebaseFunctionDefinitions.AddAdvice.Result> {
+    public async addAdvice(advice: PendingAdvice): Promise<FirebaseFunctionDefinitions.AddAdvice.Result> {
         const fnCallable = firebase.functions().httpsCallable(FirebaseFunctionDefinitions.AddAdvice.NAME);
-        console.log("Fn callable: " + fnCallable);
         const result = await fnCallable(advice);
         return result.data;
     }
