@@ -9,6 +9,7 @@
       v-if="!loading && !error"
       :headers="headers"
       :items="adviceList"
+      items-per-page="15"
       class="elevation-1"
     >
       <template v-slot:items="props">
@@ -22,12 +23,13 @@
 </template>
 
 <script lang="ts">
+import { Advice } from "amerykahospital-personalizedadvice-core";
 import Vue from "vue";
-import AdviceListFilterForm from "./AdviceListFilterForm.vue";
 
 import { labels, s } from "../../global";
 import { AdviceModule } from "../../store/modules/advice/AdviceModule";
-import { Advice } from "amerykahospital-personalizedadvice-core";
+
+import AdviceListFilterForm from "./AdviceListFilterForm.vue";
 
 export default Vue.extend({
     name: "AdviceListPanel",
@@ -42,11 +44,11 @@ export default Vue.extend({
             headers: [
                 {
                     text: labels.professionalName,
-                    value: "medicalprofessionalName",
+                    value: Advice.keys.medicalprofessionalName,
                 },
-                { text: labels.patientName, value: "patientName" },
-                { text: labels.parentPhoneNumber, value: "parentPhoneNumber" },
-                { text: labels.advice, value: "advice" },
+                { text: labels.patientName, value: Advice.keys.patientName },
+                { text: labels.parentPhoneNumber, value: Advice.keys.parentPhoneNumber },
+                { text: labels.advice, value: Advice.keys.advice },
             ],
         };
     },
