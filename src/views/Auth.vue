@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import { FirebaseAuthHelper } from "amerykahospital-personalizedadvice-vue-commons";
+import { FirebaseAuthHelper } from "../helper/FirebaseAuthHelper";
 import Vue from "vue";
 
 import { config, labels, s } from "../global";
@@ -20,7 +20,6 @@ import { AuthModule } from "../store/modules/auth/AuthModule";
 import { AuthConfig } from "../AuthConfig";
 
 export default Vue.extend({
-    name: "auth",
     data() {
         return {
             colors: {
