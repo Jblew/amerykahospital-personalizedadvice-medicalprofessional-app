@@ -1,17 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>ahpaa-medicalproffesional-app-ui</title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but ahpaa-medicalproffesional-app-ui doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <title>AmerykaHospital PersonalizedAdvice MedicalProfessional app</title>
+
+
+  <style type="text/css">
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .loading-info {
+      text-align: center;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 90%;
+    }
+
+    .loading-info h1,
+    .loading-info h2,
+    .loading-info p {
+      color: rgb(150, 150, 150);
+      font-family: sans-serif;
+    }
+
+    .loading-info h1 {
+      text-transform: uppercase;
+      font-weight: bolder;
+      font-size: 4em;
+      letter-spacing: -0.07em;
+      margin: 0;
+    }
+
+    .loading-info h2 {
+      text-transform: uppercase;
+      font-weight: bolder;
+      font-size: 1em;
+      letter-spacing: 1em;
+      margin: 0;
+    }
+
+    .loading-info .subtitle {
+      font-weight: lighter;
+      margin: 0;
+      letter-spacing: 0.5em;
+    }
+
+    .error-info {
+      text-align: center;
+      font-family: sans-serif;
+      line-height: 1.5;
+      font-size: 0.8rem;
+      color: rgb(190, 190, 190);
+      max-width: 15rem;
+      margin: 0 auto;
+      padding: 0;
+      margin-top: 2rem;
+    }
+
+    /* Source & thank you: https://github.com/loadingio/css-spinner/ */
+    .spnr {
+      display: inline-block;
+      position: relative;
+      width: 64px;
+      height: 64px
+    }
+
+    .spnr div {
+      position: absolute;
+      top: 27px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: rgb(175, 175, 175);
+      animation-timing-function: cubic-bezier(0, 1, 1, 0)
+    }
+
+    .spnr div:nth-child(1) {
+      left: 6px;
+      animation: spnr1 .6s infinite
+    }
+
+    .spnr div:nth-child(2) {
+      left: 6px;
+      animation: spnr2 .6s infinite
+    }
+
+    .spnr div:nth-child(3) {
+      left: 26px;
+      animation: spnr2 .6s infinite
+    }
+
+    .spnr div:nth-child(4) {
+      left: 45px;
+      animation: spnr3 .6s infinite
+    }
+
+    @keyframes spnr1 {
+      0% {
+        transform: scale(0)
+      }
+
+      100% {
+        transform: scale(1)
+      }
+    }
+
+    @keyframes spnr3 {
+      0% {
+        transform: scale(1)
+      }
+
+      100% {
+        transform: scale(0)
+      }
+    }
+
+    @keyframes spnr2 {
+      0% {
+        transform: translate(0, 0)
+      }
+
+      100% {
+        transform: translate(19px, 0)
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but ahpaa-medicalproffesional-app-ui doesn't work properly without JavaScript enabled. Please
+      enable it to continue.</strong>
+  </noscript>
+
+  <div id="app">
+    <div class="loading-info">
+      <h1>Medical professional</h1>
+      <p class="subtitle">advice editor for AmerykaApp</p>
+      <div class="spnr">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <p class="error-info">
+        If there are any issues or an error occured please contact me on:<br />
+        &lt;jedrzej [at] lewandowski.doctor&gt;<br /> or file a <a
+          href="https://github.com/Jblew/firestore-roles-manager-ui/issues">github issue</a>
+    </div>
+  </div>
+  <!-- built files will be auto injected -->
+</body>
+
 </html>
