@@ -25,7 +25,7 @@
 
     <v-textarea solo v-model="advice" :rules="adviceRules" :label="text.advice" required></v-textarea>
 
-    <v-text-field v-model="adviceId" valid="true" :label="text.adviceCode" disabled readonly box></v-text-field>
+    <v-text-field v-model="adviceId" valid="true" :label="text.adviceCode" disabled readonly filled></v-text-field>
 
     <v-btn :disabled="!valid" color="success" @click="validateAndAddAdvice">{{ text.sendAdvice }}</v-btn>
   </v-form>

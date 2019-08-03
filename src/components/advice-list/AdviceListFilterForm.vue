@@ -25,7 +25,7 @@
             </v-flex>
             <v-flex xs6 md1>
               <v-btn @click="filterAdvices" color="info" fab class="elevation-4">
-                <v-icon>search</v-icon>
+                <v-icon>fa-search</v-icon>
               </v-btn>
             </v-flex>
             <v-flex xs6 md2 class="ma-2">
@@ -43,7 +43,6 @@ import Vue from "vue";
 
 import { labels, s } from "../../global";
 import { AdviceModule } from "../../store/modules/advice/AdviceModule";
-import { Advice } from "amerykahospital-personalizedadvice-core";
 
 export default Vue.extend({
     name: "AdviceListPanel",

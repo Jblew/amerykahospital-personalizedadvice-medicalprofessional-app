@@ -2,14 +2,14 @@
   <div class="advice-list-panel">
     <advice-list-filter-form />
 
-    <v-alert v-if="loading" value="true" type="info">{{ text.sendingAdvice }}</v-alert>
-    <v-alert v-if="error.length > 0" value="true" type="error">{{ error }}</v-alert>
+    <v-alert v-if="loading" :value="true" type="info">{{ text.sendingAdvice }}</v-alert>
+    <v-alert v-if="error.length > 0" :value="true" type="error">{{ error }}</v-alert>
 
     <v-data-table
       v-if="!loading && !error"
       :headers="headers"
       :items="adviceList"
-      items-per-page="15"
+      :items-per-page="15"
       class="elevation-1"
     >
       <template v-slot:items="props">
@@ -27,7 +27,6 @@ import { Advice } from "amerykahospital-personalizedadvice-core";
 import Vue from "vue";
 
 import { labels, s } from "../../global";
-import { AdviceModule } from "../../store/modules/advice/AdviceModule";
 
 import AdviceListFilterForm from "./AdviceListFilterForm.vue";
 

@@ -14,7 +14,7 @@
 
 import Vue from "vue";
 
-import { config, labels, s } from "../global";
+import { config } from "../global";
 
 export default Vue.extend({
     props: [],

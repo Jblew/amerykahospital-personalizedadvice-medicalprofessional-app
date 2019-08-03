@@ -2,7 +2,7 @@
   <div class="advicelist">
     <h1 class="mb-3 ml-2">
       {{ text.adviceList }}
-      <v-btn small outline class="mb-3" @click="addAdvice">{{ text.sendAdvice }}</v-btn>
+      <v-btn small outlined class="mb-3" @click="addAdvice">{{ text.sendAdvice }}</v-btn>
     </h1>
     <advice-list-panel />
     <v-btn
@@ -16,7 +16,7 @@
       :color="colors.floatingAddButton"
       @click="addAdvice"
     >
-      <v-icon>add</v-icon>
+      <v-icon>fa-plus</v-icon>
     </v-btn>
 
     <v-dialog v-model="dialog" persistent max-width="600px">
@@ -35,7 +35,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click="closeDialog()">{{ text.close }}</v-btn>
+          <v-btn color="blue darken-1" text @click="closeDialog()">{{ text.close }}</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -47,7 +47,7 @@ import AddAdvicePanel from "@/components/add-advice/AddAdvicePanel.vue";
 import AdviceListPanel from "@/components/advice-list/AdviceListPanel.vue";
 import Vue from "vue";
 
-import { config, labels, s } from "../global";
+import { labels, s } from "../global";
 import { AdviceModule } from "../store/modules/advice/AdviceModule";
 
 export default Vue.extend({

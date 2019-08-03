@@ -11,13 +11,13 @@
 </template>
 
 <script lang="ts">
-import { FirebaseAuthHelper } from "../helper/FirebaseAuthHelper";
 import Vue from "vue";
 
+import { AuthConfig } from "../AuthConfig";
 import { config, labels, s } from "../global";
+import { FirebaseAuthHelper } from "../helper/FirebaseAuthHelper";
 import { routes } from "../routes";
 import { AuthModule } from "../store/modules/auth/AuthModule";
-import { AuthConfig } from "../AuthConfig";
 
 export default Vue.extend({
     data() {

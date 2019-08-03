@@ -2,25 +2,25 @@
   <div v-if="authenticated">
     <v-toolbar flat class="transparent">
       <v-list class="pa-0 pb-0 mb-0">
-        <v-list-tile avatar>
-          <v-list-tile-avatar>
-            <img :src="photoUrl" v-if="photoUrl.length > 0">
+        <v-list-item avatar>
+          <v-list-item-avatar>
+            <img :src="photoUrl" v-if="photoUrl.length > 0" />
             <v-icon v-else>person</v-icon>
-          </v-list-tile-avatar>
+          </v-list-item-avatar>
 
-          <v-list-tile-content>
-            <v-list-tile-title>{{ name }}</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+          <v-list-item-content>
+            <v-list-item-title>{{ name }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
     </v-toolbar>
     <v-toolbar flat class="transparent">
       <v-list class="pa-0">
-        <v-list-tile>
-          <v-list-tile-content>
+        <v-list-item>
+          <v-list-item-content>
             <v-btn small @click="signOut()">{{ text.signOut }}</v-btn>
-          </v-list-tile-content>
-        </v-list-tile>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
     </v-toolbar>
   </div>
