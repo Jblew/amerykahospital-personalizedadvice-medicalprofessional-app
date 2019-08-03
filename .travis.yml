@@ -9,15 +9,13 @@ install:
     - npm ci
 
 script:
-    - npm run build
-#    - npm run test
-#    - npm run verify
+    - npm run lint
+    - npm run build:lib
 
 deploy:
     - provider: script
       script: npx semantic-release
       skip_cleanup: true
-      node_js: 10
       on:
           tags: false
-          all_branches: true
+          branch: release
