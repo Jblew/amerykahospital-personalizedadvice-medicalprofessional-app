@@ -24,7 +24,7 @@
               ></v-text-field>
             </v-flex>
             <v-flex xs6 md1 lg1 class="mx-1" text-center>
-              <v-btn @click="filterAdvices" color="accent" fab class="elevation-4">
+              <v-btn @click="filterAdvices" color="accent" fab class="elevation-2">
                 <v-icon>fa-search</v-icon>
               </v-btn>
             </v-flex>

@@ -1,6 +1,6 @@
 <template>
   <div class="add-advice-panel">
-    <add-advice-form />
+    <add-advice-form class="mb-5" />
     <add-advice-results />
   </div>
 </template>
