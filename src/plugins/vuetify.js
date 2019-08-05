@@ -1,5 +1,5 @@
+// tslint:disable
 import Vue from "vue";
-import colors from "vuetify/lib/util/colors";
 import Vuetify from "vuetify/lib";
 Vue.use(Vuetify);
 
@@ -10,10 +10,10 @@ export default new Vuetify({
     theme: {
         themes: {
             light: {
-                primary: "#00885B",
                 accent: "#D20738",
-                secondary: "#1B88E5",
                 footer: "#00885B",
+                primary: "#00885B",
+                secondary: "#1B88E5",
             },
         },
     },

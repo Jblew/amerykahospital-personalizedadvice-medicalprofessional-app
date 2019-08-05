@@ -13,11 +13,11 @@
 </template>
 
 <script lang="ts">
+import Vue from "vue";
+
 import AddAdviceFab from "../components/advice-list/AddAdviceFab.vue";
 import AdviceListFilterForm from "../components/advice-list/AdviceListFilterForm.vue";
 import AdviceListPanel from "../components/advice-list/AdviceListPanel.vue";
-import Vue from "vue";
-
 import { labels } from "../global";
 
 export default Vue.extend({
