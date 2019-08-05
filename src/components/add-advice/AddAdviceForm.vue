@@ -37,7 +37,6 @@ import Vue from "vue";
 
 import { labels } from "../../global";
 import { AdviceModule } from "../../store/modules/advice/AdviceModule";
-import { Store } from "../../store/Store";
 
 const phoneNumberRegex = /^[0-9]{9}$/;
 
@@ -70,7 +69,7 @@ export default Vue.extend({
     },
     computed: {
         adviceId(): string {
-            const loadedId = Store.of(this).state.advice.addOp.result.adviceId;
+            const loadedId = AdviceModule.stateOf(this).addOp.result.adviceId;
             return loadedId || labels.idWillBeVisibleAfterAdd;
         },
     },
@@ -87,8 +86,7 @@ export default Vue.extend({
                 parentPhoneNumber: this.parentPhoneNumber,
                 advice: this.advice,
             };
-
-            Store.of(this).dispatch(AdviceModule.Actions.addAdviceAndSendSMS, advice);
+            AdviceModule.Actions.AddAdviceAndSendSMS.dispatch(this.$store.dispatch, advice);
         },
         reset() {
             (this.$refs.form as any).reset();

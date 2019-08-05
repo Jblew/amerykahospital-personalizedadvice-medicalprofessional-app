@@ -17,7 +17,6 @@ import Vue from "vue";
 
 import { labels } from "../../global";
 import { AdviceModule } from "../../store/modules/advice/AdviceModule";
-import { Store } from "../../store/Store";
 
 import AddAdviceForm from "./AddAdviceForm.vue";
 
@@ -32,35 +31,41 @@ export default Vue.extend({
         };
     },
     computed: {
+        addOpState() {
+            return AdviceModule.stateOf(this).addOp;
+        },
         addLoading(): boolean {
-            return Store.of(this).state.advice.addOp.loading;
+            return this.addOpState.loading;
         },
         addError(): string {
-            return Store.of(this).state.advice.addOp.error;
+            return this.addOpState.error;
         },
         addResult(): string {
-            return Store.of(this).state.advice.addOp.result.log;
+            return this.addOpState.result.log;
+        },
+        sendSMSOpState() {
+            return AdviceModule.stateOf(this).sendSMSOp;
         },
         sendSMSLoading(): boolean {
-            return Store.of(this).state.advice.sendSMSOp.loading;
+            return this.sendSMSOpState.loading;
         },
         sendSMSError(): string {
-            return Store.of(this).state.advice.sendSMSOp.error;
+            return this.sendSMSOpState.error;
         },
         sendSMSResult(): string {
-            return Store.of(this).state.advice.sendSMSOp.result;
+            return this.sendSMSOpState.result;
         },
         resendSMSBtnEnabled(): boolean {
             return (this.sendSMSError.length > 0 || this.sendSMSResult.length > 0) && !this.sendSMSLoading;
         },
         adviceId(): string {
-            const loadedId = Store.of(this).state.advice.addOp.result.adviceId;
+            const loadedId = this.addOpState.result.adviceId;
             return loadedId || labels.idWillBeVisibleAfterAdd;
         },
     },
     methods: {
         resendSMS() {
-            Store.of(this).dispatch(AdviceModule.Actions.sendSMS);
+            AdviceModule.Actions.SendSMS.dispatch(this.$store.dispatch);
         },
     },
     components: {

@@ -27,12 +27,11 @@ import { Advice } from "amerykahospital-personalizedadvice-core";
 import Vue from "vue";
 
 import { labels } from "../../global";
-import { Store } from "../../store/Store";
+import { AdviceModule } from "../../store/modules/advice/AdviceModule";
 
 import AdviceListFilterForm from "./AdviceListFilterForm.vue";
 
 export default Vue.extend({
-    name: "AdviceListPanel",
     data() {
         return {
             text: {
@@ -53,14 +52,17 @@ export default Vue.extend({
         };
     },
     computed: {
+        listLoadingState() {
+            return AdviceModule.stateOf(this).listLoadingState;
+        },
         loading(): boolean {
-            return Store.of(this).state.advice.listLoadingState.loading;
+            return this.listLoadingState.loading;
         },
         error(): string {
-            return Store.of(this).state.advice.listLoadingState.error;
+            return this.listLoadingState.error;
         },
         adviceList(): Advice[] {
-            return Store.of(this).state.advice.list;
+            return AdviceModule.stateOf(this).list;
         },
     },
     methods: {},

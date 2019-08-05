@@ -49,10 +49,8 @@ import Vue from "vue";
 
 import { labels } from "../global";
 import { AdviceModule } from "../store/modules/advice/AdviceModule";
-import { Store } from "../store/Store";
 
 export default Vue.extend({
-    name: "ListView",
     data() {
         return {
             dialog: false,
@@ -72,7 +70,7 @@ export default Vue.extend({
         },
         closeDialog() {
             this.dialog = false;
-            Store.of(this).dispatch(AdviceModule.Actions.resetResults);
+            AdviceModule.Actions.ResetResults.dispatch(this.$store.dispatch);
         },
     },
     components: {

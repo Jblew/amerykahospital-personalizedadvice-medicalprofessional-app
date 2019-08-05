@@ -43,10 +43,8 @@ import Vue from "vue";
 
 import { labels } from "../../global";
 import { AdviceModule } from "../../store/modules/advice/AdviceModule";
-import { Store } from "../../store/Store";
 
 export default Vue.extend({
-    name: "AdviceListPanel",
     data() {
         return {
             text: {
@@ -70,7 +68,7 @@ export default Vue.extend({
                 patientName: this.patientName.length > 0 ? this.patientName : undefined,
                 parentPhoneNumber: this.parentPhoneNumber.length > 0 ? this.parentPhoneNumber : undefined,
             };
-            Store.of(this).dispatch(AdviceModule.Actions.updateQueryFilterAndReloadList, filter);
+            AdviceModule.Actions.UpdateQueryFilterAndReloadList.dispatch(this.$store.dispatch, filter);
         },
         resetFilters() {
             this.medicalprofessionalName = "";

@@ -42,7 +42,7 @@ import Vue from "vue";
 
 import AccountWarningDialog from "./components/AccountWarningDialog.vue";
 import FooterComponent from "./components/FooterComponent.vue";
-import { config, labels, s } from "./global";
+import { config, labels } from "./global";
 import AuthView from "./views/Auth.vue";
 
 export default Vue.extend({

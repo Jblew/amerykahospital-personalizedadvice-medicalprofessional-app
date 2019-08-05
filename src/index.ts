@@ -35,7 +35,7 @@ export default () => {
                     this.$router.push(routes.auth.path);
                 } else if (authState === RolesAuthModule.AuthState.AUTHENTICATED) {
                     console.log("Dispatch loadList");
-                    this.$store.dispatch(AdviceModule.Actions.updateQueryFilterAndReloadList, {});
+                    AdviceModule.Actions.UpdateQueryFilterAndReloadList.dispatch(this.$store.dispatch, {});
                 }
             },
         },
