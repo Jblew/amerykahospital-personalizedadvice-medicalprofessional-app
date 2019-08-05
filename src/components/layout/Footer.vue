@@ -1,9 +1,16 @@
 <template>
-  <v-footer height="auto" :color="colors.primary">
+  <v-footer app height="auto" color="secondary">
     <v-layout justify-center row wrap>
-      <v-flex dark text-xs-center white--text xs12 caption>
+      <v-flex text-center xs12 caption>
         &copy; {{ yearStr }} by
         <a :href="links.author" target="_blank">{{ text.author }}</a>
+
+        <v-divider vertical class="mx-3" />
+        <a :href="links.license">{{ text.licenseCode }}</a>
+
+        <v-divider vertical class="mx-3" />
+        {{ text.thisIsAFreeSoftware }}:
+        <a :href="links.source">{{ text.getSource }}</a>
       </v-flex>
     </v-layout>
   </v-footer>
@@ -14,20 +21,22 @@
 
 import Vue from "vue";
 
-import { config } from "../global";
+import { labels, visualConfig } from "../../global";
 
 export default Vue.extend({
     props: [],
     data() {
         return {
             text: {
-                author: config.author.display,
+                author: visualConfig.author.display,
+                licenseCode: visualConfig.license.code,
+                thisIsAFreeSoftware: labels.thisIsAFreeSoftware,
+                getSource: labels.getSource,
             },
             links: {
-                author: config.author.link,
-            },
-            colors: {
-                primary: config.colors.primary,
+                author: visualConfig.author.link,
+                license: visualConfig.license.url,
+                source: visualConfig.source.url,
             },
         };
     },

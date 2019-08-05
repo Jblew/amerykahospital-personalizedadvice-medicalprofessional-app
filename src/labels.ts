@@ -35,4 +35,7 @@ export const labels = {
     alreadyRequestingTheRole:
         "Poprosiłeś już o przyznanie tej roli. Pamiętaj, że administrator nie dostaje " +
         "powiadomienia o prośbie. Musisz mu powiedzieć, aby otworzył panel i zatwierdził prośbę.",
+    thisIsAFreeSoftware: "Ten program jest wolnym oprogramowaniem",
+    getSource: "kod źródłowy",
+    logInPanelTitle: "Zaloguj do panelu profesjonalisty",
 };
