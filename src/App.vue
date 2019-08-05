@@ -1,6 +1,7 @@
 <template>
   <v-app id="app">
     <account-warning-dialog />
+    <notifications-snackbar />
     <drawer-layout v-if="authenticated">
       <router-view />
     </drawer-layout>
@@ -18,6 +19,7 @@ import Vue from "vue";
 import AccountWarningDialog from "./components/AccountWarningDialog.vue";
 import DrawerLayout from "./components/layout/DrawerLayout.vue";
 import FooterComponent from "./components/layout/Footer.vue";
+import NotificationsSnackbar from "./components/misc/NotificationsSnackbar.vue";
 import AuthView from "./views/Auth.vue";
 
 export default Vue.extend({
@@ -30,6 +32,7 @@ export default Vue.extend({
         AuthView,
         DrawerLayout,
         FooterComponent,
+        NotificationsSnackbar,
         AccountWarningDialog,
     },
 });
