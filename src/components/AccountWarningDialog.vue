@@ -37,10 +37,10 @@
 // tslint:disable no-console
 import AddAdvicePanel from "@/components/add-advice/AddAdvicePanel.vue";
 import AdviceListPanel from "@/components/advice-list/AdviceListPanel.vue";
+import { RoleKey } from "amerykahospital-personalizedadvice-core";
 import { RolesAuthModule } from "firestore-roles-vuex-module";
 import Vue from "vue";
 
-import { RoleKey } from "../../../amerykahospital-personalizedadvice-core/src";
 import { FirestoreRolesAdapter } from "../adapter/FirestoreRolesAdapter";
 import { labels } from "../global";
 
