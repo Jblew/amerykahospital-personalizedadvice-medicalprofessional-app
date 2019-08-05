@@ -47,8 +47,9 @@ import AddAdvicePanel from "@/components/add-advice/AddAdvicePanel.vue";
 import AdviceListPanel from "@/components/advice-list/AdviceListPanel.vue";
 import Vue from "vue";
 
-import { labels, s } from "../global";
+import { labels } from "../global";
 import { AdviceModule } from "../store/modules/advice/AdviceModule";
+import { Store } from "../store/Store";
 
 export default Vue.extend({
     name: "ListView",
@@ -71,7 +72,7 @@ export default Vue.extend({
         },
         closeDialog() {
             this.dialog = false;
-            s(this.$store).dispatch(AdviceModule.Actions.resetResults);
+            Store.of(this).dispatch(AdviceModule.Actions.resetResults);
         },
     },
     components: {

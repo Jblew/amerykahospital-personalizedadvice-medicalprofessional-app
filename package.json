@@ -19,9 +19,11 @@
   ],
   "main": "dist/ahpa-medicalprofessional-app.common.js",
   "dependencies": {
-    "amerykahospital-personalizedadvice-core": "^6.6.1",
+    "amerykahospital-personalizedadvice-core": "^6.7.0",
     "firebase": "^6.3.4",
     "firebaseui": "^4.1.0",
+    "firestore-roles-vuex-module": "^2.3.3",
+    "lodash": "^4.17.15",
     "ow": "^0.13.2",
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",
@@ -34,6 +36,7 @@
   },
   "devDependencies": {
     "@types/chai": "^4.1.0",
+    "@types/lodash": "^4.14.136",
     "@types/mocha": "^5.2.4",
     "@vue/cli-plugin-babel": "^3.10.0",
     "@vue/cli-plugin-typescript": "^3.10.0",
@@ -50,8 +53,8 @@
     "sass-loader": "^7.1.0",
     "semantic-release": "^15.13.19",
     "typescript": "^3.5.3",
-    "vue-template-compiler": "^2.6.10",
     "vue-cli-plugin-vuetify": "^0.6.1",
+    "vue-template-compiler": "^2.6.10",
     "vuetify-loader": "^1.3.0"
   },
   "release": {

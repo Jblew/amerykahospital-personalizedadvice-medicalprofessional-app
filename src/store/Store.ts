@@ -1,5 +1,6 @@
 // tslint:disable:max-classes-per-file
 
+import { RolesAuthModule } from "firestore-roles-vuex-module";
 import Vue from "vue";
 import { CombinedVueInstance } from "vue/types/vue";
 import Vuex from "vuex";
@@ -7,7 +8,6 @@ import { Commit, Dispatch, Module } from "vuex";
 import { NotificationsModule } from "vuex-notifications-module";
 
 import { AdviceModule } from "./modules/advice/AdviceModule";
-import { AuthModule } from "./modules/auth/AuthModule";
 import { RootStore } from "./root/RootStore";
 
 Vue.use(Vuex);
@@ -22,12 +22,12 @@ export interface Store {
 export namespace Store {
     export interface Modules {
         [NotificationsModule.modulePathName]: Module<NotificationsModule.State, RootStore.State>;
-        [AuthModule.modulePathName]: Module<AuthModule.State, RootStore.State>;
+        [RolesAuthModule.modulePathName]: Module<RolesAuthModule.State, RootStore.State>;
         [AdviceModule.modulePathName]: Module<AdviceModule.State, RootStore.State>;
     }
 
     export type State = {
-        [AuthModule.modulePathName]: AuthModule.State;
+        [RolesAuthModule.modulePathName]: RolesAuthModule.State;
         [NotificationsModule.modulePathName]: NotificationsModule.State;
         [AdviceModule.modulePathName]: Module<AdviceModule.State, RootStore.State>;
     } & RootStore.State;

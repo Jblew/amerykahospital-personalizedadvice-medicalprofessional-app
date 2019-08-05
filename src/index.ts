@@ -3,40 +3,44 @@
 import "firebase/app";
 import "firebase/firestore";
 import "firebaseui/dist/firebaseui.css";
+import { RolesAuthModule } from "firestore-roles-vuex-module";
 import Vue from "vue";
 
 import App from "./App.vue";
 import "./components/common/common_components";
 import "./filters";
+import { initFirebase } from "./plugins/firebase";
 import vuetify from "./plugins/vuetify.js"; // path to vuetify export
 import createRouter from "./router";
 import { routes } from "./routes";
 import { AdviceModule } from "./store/modules/advice/AdviceModule";
-import { AuthModule } from "./store/modules/auth/AuthModule";
-import { Actions, s, store } from "./store/store";
+import { RootStore } from "./store/Store";
+import { StoreImpl } from "./store/StoreImpl";
 
-export default () =>
-    new Vue({
+export default () => {
+    initFirebase();
+
+    return new Vue({
         router: createRouter(),
-        store,
+        store: StoreImpl.constructStore(),
         render: h => h(App),
         computed: {
-            authState(): AuthModule.AuthState {
-                return s(this.$store).state.auth.state;
+            authState(): RolesAuthModule.AuthState {
+                return RolesAuthModule.stateOf(this).state;
             },
         },
         watch: {
             authState(authState, oldAuthState) {
-                if (authState === AuthModule.AuthState.NOTAUTHENTICATED) {
+                if (authState === RolesAuthModule.AuthState.NOTAUTHENTICATED) {
                     this.$router.push(routes.auth.path);
-                } else if (authState === AuthModule.AuthState.AUTHENTICATED) {
+                } else if (authState === RolesAuthModule.AuthState.AUTHENTICATED) {
                     console.log("Dispatch loadList");
                     this.$store.dispatch(AdviceModule.Actions.updateQueryFilterAndReloadList, {});
                 }
             },
         },
         created() {
-            this.$store.dispatch(Actions.initialize);
+            this.$store.dispatch(RootStore.Actions.initialize);
         },
         mounted() {
             //
@@ -44,3 +48,4 @@ export default () =>
         methods: {},
         ...({ vuetify } as any), // type incompatibility
     });
+};

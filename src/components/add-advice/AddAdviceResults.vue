@@ -15,8 +15,9 @@
 <script lang="ts">
 import Vue from "vue";
 
-import { labels, s } from "../../global";
+import { labels } from "../../global";
 import { AdviceModule } from "../../store/modules/advice/AdviceModule";
+import { Store } from "../../store/Store";
 
 import AddAdviceForm from "./AddAdviceForm.vue";
 
@@ -32,34 +33,34 @@ export default Vue.extend({
     },
     computed: {
         addLoading(): boolean {
-            return s(this.$store).state.advice.addOp.loading;
+            return Store.of(this).state.advice.addOp.loading;
         },
         addError(): string {
-            return s(this.$store).state.advice.addOp.error;
+            return Store.of(this).state.advice.addOp.error;
         },
         addResult(): string {
-            return s(this.$store).state.advice.addOp.result.log;
+            return Store.of(this).state.advice.addOp.result.log;
         },
         sendSMSLoading(): boolean {
-            return s(this.$store).state.advice.sendSMSOp.loading;
+            return Store.of(this).state.advice.sendSMSOp.loading;
         },
         sendSMSError(): string {
-            return s(this.$store).state.advice.sendSMSOp.error;
+            return Store.of(this).state.advice.sendSMSOp.error;
         },
         sendSMSResult(): string {
-            return s(this.$store).state.advice.sendSMSOp.result;
+            return Store.of(this).state.advice.sendSMSOp.result;
         },
         resendSMSBtnEnabled(): boolean {
             return (this.sendSMSError.length > 0 || this.sendSMSResult.length > 0) && !this.sendSMSLoading;
         },
         adviceId(): string {
-            const loadedId = s(this.$store).state.advice.addOp.result.adviceId;
+            const loadedId = Store.of(this).state.advice.addOp.result.adviceId;
             return loadedId || labels.idWillBeVisibleAfterAdd;
         },
     },
     methods: {
         resendSMS() {
-            s(this.$store).dispatch(AdviceModule.Actions.sendSMS);
+            Store.of(this).dispatch(AdviceModule.Actions.sendSMS);
         },
     },
     components: {

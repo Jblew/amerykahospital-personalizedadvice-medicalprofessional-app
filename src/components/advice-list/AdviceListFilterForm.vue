@@ -41,8 +41,9 @@
 <script lang="ts">
 import Vue from "vue";
 
-import { labels, s } from "../../global";
+import { labels } from "../../global";
 import { AdviceModule } from "../../store/modules/advice/AdviceModule";
+import { Store } from "../../store/Store";
 
 export default Vue.extend({
     name: "AdviceListPanel",
@@ -69,7 +70,7 @@ export default Vue.extend({
                 patientName: this.patientName.length > 0 ? this.patientName : undefined,
                 parentPhoneNumber: this.parentPhoneNumber.length > 0 ? this.parentPhoneNumber : undefined,
             };
-            s(this.$store).dispatch(AdviceModule.Actions.updateQueryFilterAndReloadList, filter);
+            Store.of(this).dispatch(AdviceModule.Actions.updateQueryFilterAndReloadList, filter);
         },
         resetFilters() {
             this.medicalprofessionalName = "";

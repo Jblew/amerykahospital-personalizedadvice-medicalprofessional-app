@@ -37,14 +37,12 @@
 </template>
 
 <script lang="ts">
-// @ts-check
-
+import { RolesAuthModule } from "firestore-roles-vuex-module";
 import Vue from "vue";
 
 import AccountWarningDialog from "./components/AccountWarningDialog.vue";
 import FooterComponent from "./components/FooterComponent.vue";
 import { config, labels, s } from "./global";
-import { AuthModule } from "./store/modules/auth/AuthModule";
 import AuthView from "./views/Auth.vue";
 
 export default Vue.extend({
@@ -63,7 +61,7 @@ export default Vue.extend({
     methods: {},
     computed: {
         authenticated(): boolean {
-            return s(this.$store).state.auth.state === AuthModule.AuthState.AUTHENTICATED;
+            return RolesAuthModule.stateOf(this).state === RolesAuthModule.AuthState.AUTHENTICATED;
         },
     },
     components: {

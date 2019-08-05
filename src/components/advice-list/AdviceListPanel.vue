@@ -26,7 +26,8 @@
 import { Advice } from "amerykahospital-personalizedadvice-core";
 import Vue from "vue";
 
-import { labels, s } from "../../global";
+import { labels } from "../../global";
+import { Store } from "../../store/Store";
 
 import AdviceListFilterForm from "./AdviceListFilterForm.vue";
 
@@ -53,13 +54,13 @@ export default Vue.extend({
     },
     computed: {
         loading(): boolean {
-            return s(this.$store).state.advice.listLoadingState.loading;
+            return Store.of(this).state.advice.listLoadingState.loading;
         },
         error(): string {
-            return s(this.$store).state.advice.listLoadingState.error;
+            return Store.of(this).state.advice.listLoadingState.error;
         },
         adviceList(): Advice[] {
-            return s(this.$store).state.advice.list;
+            return Store.of(this).state.advice.list;
         },
     },
     methods: {},

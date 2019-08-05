@@ -11,13 +11,13 @@
 </template>
 
 <script lang="ts">
+import { RolesAuthModule } from "firestore-roles-vuex-module";
 import Vue from "vue";
 
 import { AuthConfig } from "../AuthConfig";
-import { config, labels, s } from "../global";
+import { config, labels } from "../global";
 import { FirebaseAuthHelper } from "../helper/FirebaseAuthHelper";
 import { routes } from "../routes";
-import { AuthModule } from "../store/modules/auth/AuthModule";
 
 export default Vue.extend({
     data() {
@@ -36,7 +36,7 @@ export default Vue.extend({
     },
     computed: {
         loading(): boolean {
-            return s(this.$store).state.auth.state === AuthModule.AuthState.LOADING;
+            return RolesAuthModule.stateOf(this).state === RolesAuthModule.AuthState.LOADING;
         },
     },
 });

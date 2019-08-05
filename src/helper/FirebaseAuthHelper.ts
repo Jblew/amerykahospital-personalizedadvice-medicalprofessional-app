@@ -1,4 +1,4 @@
-// tslint:disable:ordered-imports
+// tslint:disable:ordered-imports no-console
 
 import firebase from "firebase/app";
 import "firebase/firestore";
@@ -9,13 +9,19 @@ import { FirestoreCollections, FIREBASE_CONFIG } from "amerykahospital-personali
 export class FirebaseAuthHelper {
     public static initialize(opts: FirebaseAuthHelper.InitializeOptions) {
         firebase.initializeApp(FIREBASE_CONFIG);
-        firebase.auth().onAuthStateChanged((user: FirebaseAuthHelper.User | null) => {
-            if (user) {
-                opts.authenticatedCb(user);
-            } else {
-                opts.notAuthenticatedCb();
-            }
-        });
+        firebase.auth().onAuthStateChanged(
+            (user: FirebaseAuthHelper.User | null) => {
+                if (user) {
+                    opts.authenticatedCb(user);
+                } else {
+                    opts.notAuthenticatedCb();
+                }
+            },
+            (error: firebase.auth.Error) => {
+                console.error(`Auth error: ${error.message}`);
+                opts.errorCb(error.message);
+            },
+        );
     }
 
     public static async signOut() {
@@ -51,6 +57,7 @@ export class FirebaseAuthHelper {
 export namespace FirebaseAuthHelper {
     export interface InitializeOptions {
         authenticatedCb: (user: FirebaseAuthHelper.User) => void;
+        errorCb: (msg: string) => void;
         notAuthenticatedCb: () => void;
     }
 

@@ -6,10 +6,6 @@
           <span class="headline">{{ text.yourAccountIsNotConfirmed }}</span>
         </v-card-title>
         <v-card-text>
-          <p
-            style="color-red"
-            v-if="errorCheckingConfirmation.length > 0"
-          >{{ errorCheckingConfirmation }}</p>
           <p>{{ text.yourAccountIsNotConfirmedAdMedicalprofessionalExplanation }}</p>
         </v-card-text>
       </v-card>
@@ -20,10 +16,11 @@
 <script lang="ts">
 import AddAdvicePanel from "@/components/add-advice/AddAdvicePanel.vue";
 import AdviceListPanel from "@/components/advice-list/AdviceListPanel.vue";
+import { RolesAuthModule } from "firestore-roles-vuex-module";
 import Vue from "vue";
 
-import { labels, s } from "../global";
-import { AuthModule } from "../store/modules/auth/AuthModule";
+import { RoleKey } from "../../../amerykahospital-personalizedadvice-core/src";
+import { labels } from "../global";
 
 export default Vue.extend({
     name: "ListView",
@@ -39,16 +36,14 @@ export default Vue.extend({
         };
     },
     computed: {
-        dialogOpened(): boolean {
+        userIsNotMedicalProfessional(): boolean {
             return (
-                s(this.$store).state.auth.state === AuthModule.AuthState.AUTHENTICATED &&
-                !s(this.$store).state.auth.confirmationState.loading &&
-                (!s(this.$store).state.auth.confirmationState.confirmedMedicalProfessional ||
-                    s(this.$store).state.auth.confirmationState.error.length > 0)
+                RolesAuthModule.stateOf(this).state === RolesAuthModule.AuthState.AUTHENTICATED &&
+                RolesAuthModule.stateOf(this).roles[RoleKey.medicalprofessional] === false
             );
         },
-        errorCheckingConfirmation(): string {
-            return s(this.$store).state.auth.confirmationState.error;
+        dialogOpened(): boolean {
+            return this.userIsNotMedicalProfessional;
         },
     },
     components: {

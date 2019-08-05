@@ -35,8 +35,9 @@
 import { PendingAdvice } from "amerykahospital-personalizedadvice-core";
 import Vue from "vue";
 
-import { labels, s } from "../../global";
+import { labels } from "../../global";
 import { AdviceModule } from "../../store/modules/advice/AdviceModule";
+import { Store } from "../../store/Store";
 
 const phoneNumberRegex = /^[0-9]{9}$/;
 
@@ -69,7 +70,7 @@ export default Vue.extend({
     },
     computed: {
         adviceId(): string {
-            const loadedId = s(this.$store).state.advice.addOp.result.adviceId;
+            const loadedId = Store.of(this).state.advice.addOp.result.adviceId;
             return loadedId || labels.idWillBeVisibleAfterAdd;
         },
     },
@@ -87,7 +88,7 @@ export default Vue.extend({
                 advice: this.advice,
             };
 
-            s(this.$store).dispatch(AdviceModule.Actions.addAdviceAndSendSMS, advice);
+            Store.of(this).dispatch(AdviceModule.Actions.addAdviceAndSendSMS, advice);
         },
         reset() {
             (this.$refs.form as any).reset();
