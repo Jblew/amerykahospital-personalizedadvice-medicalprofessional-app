@@ -23,7 +23,7 @@
 import { RolesAuthModule } from "firestore-roles-vuex-module";
 import Vue from "vue";
 
-import { AuthConfig } from "../AuthConfig";
+import { AuthConfig } from "../config/AuthConfig";
 import { getConfig, labels } from "../global";
 import { FirebaseAuthHelper } from "../helper/FirebaseAuthHelper";
 

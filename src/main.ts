@@ -1,4 +1,4 @@
-import { Configuration } from "./Configuration";
+import { Configuration } from "./config/Configuration";
 import VueInitializer from "./index";
 
 const config: Configuration = {

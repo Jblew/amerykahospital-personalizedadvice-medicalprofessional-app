@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 
-import { Configuration } from "./Configuration";
+import { Configuration } from "./config/Configuration";
 import { routes } from "./routes";
 import List from "./views/List.vue";
 import SendAdvice from "./views/SendAdvice.vue";
