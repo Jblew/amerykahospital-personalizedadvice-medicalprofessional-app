@@ -1,4 +1,4 @@
-export { config } from "./config";
+export { visualConfig } from "./visual-config";
 export { labels } from "./labels";
 
 import { Configuration } from "./Configuration";
