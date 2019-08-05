@@ -67,6 +67,12 @@ export default Vue.extend({
             adviceRules: [(v: string) => !!v || labels.requiredField],
         };
     },
+    mounted() {
+        this.professionalName = "";
+        this.patientName = "";
+        this.parentPhoneNumber = "";
+        this.advice = "";
+    },
     computed: {
         adviceId(): string {
             const loadedId = AdviceModule.stateOf(this).addOp.result.adviceId;
