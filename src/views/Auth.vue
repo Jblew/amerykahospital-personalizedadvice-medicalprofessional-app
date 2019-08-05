@@ -1,13 +1,22 @@
 <template>
-  <div>
-    <h1 v-if="loading">{{ text.loading }}...</h1>
-    <h1 v-else>{{ text.logIn }}</h1>
-
-    <div v-if="loading" class="text-xs-center">
-      <v-progress-circular :size="70" :width="7" :color="colors.secondary" indeterminate></v-progress-circular>
-    </div>
-    <div id="firebaseui-auth-container"></div>
-  </div>
+  <v-container fluid fill-height>
+    <v-layout align-center justify-center>
+      <v-flex xs12 sm10 md6>
+        <v-card class="elevation-12">
+          <v-toolbar color="primary" dark flat>
+            <v-toolbar-title v-if="loading">{{ text.loading }}...</v-toolbar-title>
+            <v-toolbar-title v-else>{{ text.logInPanelTitle }}...</v-toolbar-title>
+          </v-toolbar>
+          <v-card-text>
+            <div id="firebaseui-auth-container"></div>
+            <div v-if="loading" class="text-center px-5 py-5">
+              <v-progress-circular :size="70" :width="7" color="accent" indeterminate></v-progress-circular>
+            </div>
+          </v-card-text>
+        </v-card>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script lang="ts">
@@ -15,24 +24,24 @@ import { RolesAuthModule } from "firestore-roles-vuex-module";
 import Vue from "vue";
 
 import { AuthConfig } from "../AuthConfig";
-import { config, labels } from "../global";
+import { getConfig, labels } from "../global";
 import { FirebaseAuthHelper } from "../helper/FirebaseAuthHelper";
-import { routes } from "../routes";
 
 export default Vue.extend({
     data() {
         return {
-            colors: {
-                secondary: config.colors.secondary,
-            },
             text: {
-                logIn: labels.logIn,
+                logInPanelTitle: labels.logInPanelTitle,
                 loading: labels.loading,
             },
         };
     },
     mounted() {
-        FirebaseAuthHelper.startFirebaseAuthUI("#firebaseui-auth-container", routes.home.path, AuthConfig.PROVIDERS);
+        FirebaseAuthHelper.startFirebaseAuthUI(
+            "#firebaseui-auth-container",
+            getConfig().basePath,
+            AuthConfig.PROVIDERS,
+        );
     },
     computed: {
         loading(): boolean {

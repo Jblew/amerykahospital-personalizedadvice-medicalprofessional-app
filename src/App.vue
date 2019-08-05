@@ -31,6 +31,11 @@
           </v-flex>
         </v-layout>
       </v-container>
+    <drawer-layout v-if="authenticated">
+      <router-view />
+    </drawer-layout>
+    <v-content v-else>
+      <auth-view />
     </v-content>
     <footer-component />
   </v-app>

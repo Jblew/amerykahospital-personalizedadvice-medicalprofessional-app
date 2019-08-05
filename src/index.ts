@@ -12,7 +12,6 @@ import "./filters";
 import { initFirebase } from "./plugins/firebase";
 import vuetify from "./plugins/vuetify.js"; // path to vuetify export
 import createRouter from "./router";
-import { routes } from "./routes";
 import { AdviceModule } from "./store/modules/advice/AdviceModule";
 import { RootStore } from "./store/Store";
 import { StoreImpl } from "./store/StoreImpl";
@@ -31,10 +30,7 @@ export default () => {
         },
         watch: {
             authState(authState, oldAuthState) {
-                if (authState === RolesAuthModule.AuthState.NOTAUTHENTICATED) {
-                    this.$router.push(routes.auth.path);
-                } else if (authState === RolesAuthModule.AuthState.AUTHENTICATED) {
-                    console.log("Dispatch loadList");
+                if (authState === RolesAuthModule.AuthState.AUTHENTICATED) {
                     AdviceModule.Actions.UpdateQueryFilterAndReloadList.dispatch(this.$store.dispatch, {});
                 }
             },
