@@ -22,7 +22,7 @@
     "amerykahospital-personalizedadvice-core": "^6.7.0",
     "firebase": "^6.3.4",
     "firebaseui": "^4.1.0",
-    "firestore-roles-vuex-module": "^2.3.3",
+    "firestore-roles-vuex-module": "^2.4.0",
     "lodash": "^4.17.15",
     "ow": "^0.13.2",
     "vue": "^2.6.10",

@@ -26,4 +26,13 @@ export const labels = {
     idWillBeVisibleAfterAdd: "Będzie widoczny po dodaniu porady",
     sendingSMS: "Wysyłanie wiadomości sms...",
     resendSMS: "Wyślij SMS ponownie",
+    requestAnAccess: "Poproś o przyznanie dostępu",
+    requestAccessExplanation:
+        "Po kliknięciu administrator będzie mógł zaakceptować Twoją prośbę w panelu zarządzania rolami. " +
+        "Pamiętaj, że administrator nie dostaje powiadomienia o prośbie. Musisz mu powiedzieć, " +
+        "aby otworzył panel i zatwierdził prośbę.",
+    requestAccessSuccess: "Poproszono o przyznanie dostępu",
+    alreadyRequestingTheRole:
+        "Poprosiłeś już o przyznanie tej roli. Pamiętaj, że administrator nie dostaje " +
+        "powiadomienia o prośbie. Musisz mu powiedzieć, aby otworzył panel i zatwierdził prośbę.",
 };
