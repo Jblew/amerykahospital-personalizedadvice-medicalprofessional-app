@@ -106,7 +106,6 @@ export default Vue.extend({
             })();
         },
         $checkRoleAgain() {
-            console.log("Checking role again");
             RolesAuthModule.Actions.CheckRole.dispatch(this.$store.dispatch, RoleKey.medicalprofessional);
             this.requestState.success = false;
         },
