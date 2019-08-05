@@ -3,7 +3,7 @@
     <v-navigation-drawer v-model="drawer" clipped fixed app temporary>
       <navigation-drawer-contents />
     </v-navigation-drawer>
-    <v-app-bar app fixed color="primary">
+    <v-app-bar app fixed color="primary" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer">
         <v-icon>fa-bars</v-icon>
       </v-app-bar-nav-icon>

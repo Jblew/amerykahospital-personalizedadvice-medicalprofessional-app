@@ -1,10 +1,10 @@
 <template>
   <div class="advice-list-filter-form">
-    <v-card class="mb-3 elevation-1">
+    <v-card class="mb-3 elevation-1" color="primary" dark>
       <v-form>
-        <v-container>
-          <v-layout>
-            <v-flex xs12 md3>
+        <v-container fill-height>
+          <v-layout align-center>
+            <v-flex xs12 md3 lg4 class="mx-2">
               <v-text-field
                 v-model="medicalprofessionalName"
                 valid="true"
@@ -12,24 +12,24 @@
               ></v-text-field>
             </v-flex>
 
-            <v-flex xs12 md3>
+            <v-flex xs12 md3 lg3 class="mx-2">
               <v-text-field v-model="patientName" valid="true" :label="text.patientName"></v-text-field>
             </v-flex>
 
-            <v-flex xs12 md3>
+            <v-flex xs12 md3 lg3 class="mx-2">
               <v-text-field
                 v-model="parentPhoneNumber"
                 valid="true"
                 :label="text.parentPhoneNumber"
               ></v-text-field>
             </v-flex>
-            <v-flex xs6 md1>
-              <v-btn @click="filterAdvices" color="info" fab class="elevation-4">
+            <v-flex xs6 md1 lg1 class="mx-1" text-center>
+              <v-btn @click="filterAdvices" color="accent" fab class="elevation-4">
                 <v-icon>fa-search</v-icon>
               </v-btn>
             </v-flex>
-            <v-flex xs6 md2 class="ma-2">
-              <v-btn @click="resetFilters">{{ text.showAll }}</v-btn>
+            <v-flex xs6 md2 lg1 class="mx-1" text-center>
+              <v-btn outlined @click="resetFilters">{{ text.showAll }}</v-btn>
             </v-flex>
           </v-layout>
         </v-container>

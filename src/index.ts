@@ -1,6 +1,7 @@
 // tslint:disable:no-console
 
 import "firebase/app";
+import "firebase/auth";
 import "firebase/firestore";
 import "firebaseui/dist/firebaseui.css";
 import { RolesAuthModule } from "firestore-roles-vuex-module";

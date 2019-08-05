@@ -1,81 +1,38 @@
 <template>
-  <div class="advicelist">
-    <h1 class="mb-3 ml-2">
+  <v-container flex class="advicelist">
+    <!--<h1 class="my-0">
       {{ text.adviceList }}
       <v-btn small outlined class="mb-3" @click="addAdvice">{{ text.sendAdvice }}</v-btn>
-    </h1>
-    <advice-list-panel />
-    <v-btn
-      class="add-btn"
-      absolute
-      dark
-      fab
-      large
-      bottom
-      right
-      :color="colors.floatingAddButton"
-      @click="addAdvice"
-    >
-      <v-icon>fa-plus</v-icon>
-    </v-btn>
+    </h1>-->
+    <advice-list-filter-form class="mb-7" />
 
-    <v-dialog v-model="dialog" persistent max-width="600px">
-      <v-card>
-        <v-card-title>
-          <span class="headline">{{ text.sendAdvice }}</span>
-        </v-card-title>
-        <v-card-text>
-          <v-container fluid fill-height>
-            <v-layout justify-center align-start>
-              <v-flex>
-                <add-advice-panel />
-              </v-flex>
-            </v-layout>
-          </v-container>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="closeDialog()">{{ text.close }}</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </div>
+    <advice-list-panel class="my-7" />
+
+    <add-advice-fab />
+  </v-container>
 </template>
 
 <script lang="ts">
-import AddAdvicePanel from "@/components/add-advice/AddAdvicePanel.vue";
-import AdviceListPanel from "@/components/advice-list/AdviceListPanel.vue";
+import AddAdviceFab from "../components/advice-list/AddAdviceFab.vue";
+import AdviceListFilterForm from "../components/advice-list/AdviceListFilterForm.vue";
+import AdviceListPanel from "../components/advice-list/AdviceListPanel.vue";
 import Vue from "vue";
 
 import { labels } from "../global";
-import { AdviceModule } from "../store/modules/advice/AdviceModule";
 
 export default Vue.extend({
     data() {
         return {
-            dialog: false,
             text: {
                 adviceList: labels.adviceList,
-                sendAdvice: labels.sendAdvice,
-                close: labels.close,
-            },
-            colors: {
-                floatingAddButton: "pink",
             },
         };
     },
-    methods: {
-        addAdvice() {
-            this.dialog = true;
-        },
-        closeDialog() {
-            this.dialog = false;
-            AdviceModule.Actions.ResetResults.dispatch(this.$store.dispatch);
-        },
-    },
+    methods: {},
     components: {
         AdviceListPanel,
-        AddAdvicePanel,
+        AddAdviceFab,
+        AdviceListFilterForm,
     },
 });
 </script>

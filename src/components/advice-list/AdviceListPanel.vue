@@ -1,7 +1,5 @@
 <template>
-  <div class="advice-list-panel">
-    <advice-list-filter-form />
-
+  <v-layout class="advice-list-panel">
     <v-alert v-if="loading" :value="true" type="info">{{ text.sendingAdvice }}</v-alert>
     <v-alert v-if="error.length > 0" :value="true" type="error">{{ error }}</v-alert>
 
@@ -19,7 +17,7 @@
         <td class="text-xs">{{ props.item.advice }}</td>
       </template>
     </v-data-table>
-  </div>
+  </v-layout>
 </template>
 
 <script lang="ts">
@@ -28,8 +26,6 @@ import Vue from "vue";
 
 import { labels } from "../../global";
 import { AdviceModule } from "../../store/modules/advice/AdviceModule";
-
-import AdviceListFilterForm from "./AdviceListFilterForm.vue";
 
 export default Vue.extend({
     data() {
@@ -66,9 +62,7 @@ export default Vue.extend({
         },
     },
     methods: {},
-    components: {
-        AdviceListFilterForm,
-    },
+    components: {},
 });
 </script>
 <style scoped lang="scss">

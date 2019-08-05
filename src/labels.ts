@@ -37,5 +37,5 @@ export const labels = {
         "powiadomienia o prośbie. Musisz mu powiedzieć, aby otworzył panel i zatwierdził prośbę.",
     thisIsAFreeSoftware: "Ten program jest wolnym oprogramowaniem",
     getSource: "kod źródłowy",
-    logInPanelTitle: "Zaloguj do panelu profesjonalisty",
+    logInPanelTitle: "Zaloguj się do panelu profesjonalisty",
 };
