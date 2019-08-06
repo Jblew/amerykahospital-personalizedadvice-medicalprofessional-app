@@ -1,8 +1,8 @@
 <template>
   <v-container class="auth-view" fluid fill-height>
     <v-layout align-center justify-center>
-      <v-flex xs12 sm8 md4>
-        <v-card class="elevation-12">
+      <v-flex xs12 sm6 md4>
+        <v-card class="elevation-20">
           <v-toolbar color="primary" flat dark>
             <v-toolbar-title v-if="loading">{{ text.loading }}...</v-toolbar-title>
             <v-toolbar-title v-else>{{ text.logInPanelTitle }}...</v-toolbar-title>
