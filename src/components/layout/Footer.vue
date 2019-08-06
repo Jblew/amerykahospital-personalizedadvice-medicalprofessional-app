@@ -1,5 +1,5 @@
 <template>
-  <v-footer app height="auto" color="footer" dark>
+  <v-footer height="auto" color="footer" dark>
     <v-layout justify-center row wrap>
       <v-flex text-center xs12 caption>
         &copy; {{ yearStr }} by

@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid fill-height>
+  <v-container class="auth-view" fluid fill-height>
     <v-layout align-center justify-center>
       <v-flex xs12 sm8 md4>
         <v-card class="elevation-12">
@@ -16,6 +16,10 @@
         </v-card>
       </v-flex>
     </v-layout>
+    <div class="painting-caption">
+      <strong>Władysław Podkowiński,</strong>
+      <br />Olszynka
+    </div>
   </v-container>
 </template>
 
@@ -50,3 +54,25 @@ export default Vue.extend({
     },
 });
 </script>
+<style lang="scss" scoped>
+.auth-view {
+    //background: url("~@/assets/rapacki-thaw.jpg") no-repeat;
+    //background: url("~@/assets/podkowinski-w-ogrodzie.jpg") no-repeat;
+    //background: url("~@/assets/podkowinski-gra-w-krokieta.jpg") no-repeat;
+    background: url("~@/assets/podkowinski-olszynka.jpg") no-repeat;
+    //background: url("~@/assets/podkowinski-dzieci-w-ogrodzie.jpg") no-repeat;
+    background-size: cover;
+    background-position: center center;
+    position: fixed;
+}
+
+.painting-caption {
+    position: absolute;
+    bottom: 3rem;
+    right: 1.5rem;
+    padding: 0.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.6rem;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+</style>
