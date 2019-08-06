@@ -38,4 +38,5 @@ export const labels = {
     thisIsAFreeSoftware: "Ten program jest wolnym oprogramowaniem",
     getSource: "kod źródłowy",
     logInPanelTitle: "Zaloguj się do panelu profesjonalisty",
+    couldNotLoadAdvices: "Nie można załadować porad",
 };
