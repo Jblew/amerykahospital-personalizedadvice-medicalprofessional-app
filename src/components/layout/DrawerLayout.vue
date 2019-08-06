@@ -1,5 +1,8 @@
 <template>
-  <span id="drawer-layout">
+  <span
+    id="drawer-layout"
+    :class="($vuetify.breakpoint.smAndDown) ? 'sm' : ($vuetify.breakpoint.mdAndDown) ? 'md' : ''"
+  >
     <v-navigation-drawer v-model="drawer" clipped fixed app temporary>
       <navigation-drawer-contents />
     </v-navigation-drawer>
@@ -52,9 +55,18 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 #drawer-layout {
+    min-height: 75rem;
     padding-bottom: 15rem;
     background: url("~@/assets/joseph-turner-lucerne-from-the-lake.jpg") bottom no-repeat;
     background-size: 100% auto;
+
+    &.md {
+        min-height: 70rem;
+    }
+
+    &.sm {
+        min-height: 60rem;
+    }
 }
 
 .layout-painting-caption {
