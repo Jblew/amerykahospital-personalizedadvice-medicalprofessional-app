@@ -77,7 +77,7 @@
     "ui"
   ],
   "author": "Jędrzej Lewandowski <jedrzejblew@gmail.com> (https://jedrzej.lewandowski.doctor/)",
-  "license": "GPLv3",
+  "license": "GPL-3.0-OR-LATER",
   "bugs": {
     "url": "https://github.com/Jblew/amerykahospital-personalizedadvice-medicalprofessional-app/issues"
   },
