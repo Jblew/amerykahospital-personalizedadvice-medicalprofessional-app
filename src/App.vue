@@ -2,17 +2,13 @@
   <v-app id="app">
     <account-warning-dialog />
     <notifications-snackbar />
-    <drawer-layout v-if="authenticated" id="authenticated-app">
+    <drawer-layout v-if="authenticated">
       <router-view />
     </drawer-layout>
     <v-content v-else>
       <auth-view />
     </v-content>
     <footer-component />
-    <div class="painting-caption">
-      <strong>Joseph William Turner</strong>
-      <br />Lucerne from the lake
-    </div>
   </v-app>
 </template>
 
@@ -45,21 +41,5 @@ export default Vue.extend({
 <style lang="scss">
 body {
     background-color: #00885b;
-}
-
-#authenticated-app {
-    padding-bottom: 14rem;
-    background: url("~@/assets/joseph-turner-lucerne-from-the-lake.jpg") bottom no-repeat;
-    background-size: 100% auto;
-}
-
-.painting-caption {
-    position: absolute;
-    bottom: 3rem;
-    left: 1rem;
-    padding: 0.5rem;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.6rem;
-    background-color: rgba(0, 0, 0, 0.2);
 }
 </style>

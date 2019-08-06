@@ -1,5 +1,5 @@
 <template>
-  <span>
+  <span id="drawer-layout">
     <v-navigation-drawer v-model="drawer" clipped fixed app temporary>
       <navigation-drawer-contents />
     </v-navigation-drawer>
@@ -18,6 +18,10 @@
         </v-layout>
       </v-container>
     </v-content>
+    <div class="layout-painting-caption">
+      <strong>Joseph William Turner</strong>
+      <br />Lucerne from the lake
+    </div>
   </span>
 </template>
 
@@ -47,4 +51,19 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+#drawer-layout {
+    padding-bottom: 15rem;
+    background: url("~@/assets/joseph-turner-lucerne-from-the-lake.jpg") bottom no-repeat;
+    background-size: 100% auto;
+}
+
+.layout-painting-caption {
+    position: absolute;
+    bottom: 3rem;
+    left: 1rem;
+    padding: 0.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.6rem;
+    background-color: rgba(0, 0, 0, 0.2);
+}
 </style>
