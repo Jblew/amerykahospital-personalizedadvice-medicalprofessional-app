@@ -1,6 +1,6 @@
 // tslint:disable:max-classes-per-file
 
-import { Advice, AdvicesManager, PendingAdvice } from "amerykahospital-personalizedadvice-core";
+import { Advice, AdviceRepository, PendingAdvice } from "amerykahospital-personalizedadvice-core";
 import ow from "ow";
 import { CombinedVueInstance } from "vue/types/vue";
 import { Action as VuexAction, ActionContext as VuexActionContext, Dispatch } from "vuex";
@@ -24,7 +24,7 @@ export namespace AdviceModule {
         addOp: AddOpState;
         sendSMSOp: SendSMSOpState;
         listLoadingState: ListLoadingState;
-        filter: AdvicesManager.FetchFilter;
+        filter: AdviceRepository.FetchFilter;
         list: Advice[];
     }
     export namespace State {
@@ -100,7 +100,7 @@ export namespace AdviceModule {
         export namespace UpdateQueryFilterAndReloadList {
             export const name = localName("updateQueryFilterAndReloadList");
 
-            export type Payload = AdvicesManager.FetchFilter;
+            export type Payload = AdviceRepository.FetchFilter;
             export type Declaration = ActionFn & ((c: ActionContext, payload: Payload) => void);
             export interface Implementator {
                 getAction(): Declaration;

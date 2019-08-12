@@ -1,4 +1,4 @@
-import { Advice, AdvicesManager } from "amerykahospital-personalizedadvice-core";
+import { Advice, AdviceRepository } from "amerykahospital-personalizedadvice-core";
 import ow from "ow";
 import { MutationTree } from "vuex";
 
@@ -40,7 +40,7 @@ export function constructMutations(): MutationTree<Me.State> {
         Me.State.validate(state);
     };
 
-    const setFilter: Mutations.SetFilter.Declaration = (state: Me.State, payload: AdvicesManager.FetchFilter) => {
+    const setFilter: Mutations.SetFilter.Declaration = (state: Me.State, payload: AdviceRepository.FetchFilter) => {
         ow(payload, "payload", ow.object);
 
         state.filter = payload;

@@ -1,7 +1,8 @@
 // tslint:disable max-classes-per-file no-console
 import { AddAdviceAdapter } from "@/adapter/AddAdviceAdapter";
 import { SendSMSAdapter } from "@/adapter/SendSMSAdapter";
-import { AdvicesManager, PendingAdvice } from "amerykahospital-personalizedadvice-core";
+import { AdviceRepository, PendingAdvice } from "amerykahospital-personalizedadvice-core";
+import * as firebase from "firebase/app";
 import * as _ from "lodash";
 import { ActionTree } from "vuex";
 import { NotificationsModule } from "vuex-notifications-module";
@@ -74,7 +75,7 @@ class ResetResults implements Me.Actions.ResetResults.Implementator {
  */
 class UpdateQueryFilterAndReloadList implements Me.Actions.UpdateQueryFilterAndReloadList.Implementator {
     public getAction(): Me.Actions.UpdateQueryFilterAndReloadList.Declaration {
-        return async ({ commit, dispatch }, payload: AdvicesManager.FetchFilter) => {
+        return async ({ commit, dispatch }, payload: AdviceRepository.FetchFilter) => {
             Mutations.SetFilter.commit(commit, payload);
             Me.Actions.ReloadList.dispatch(dispatch);
         };
@@ -92,7 +93,8 @@ class ReloadList implements Me.Actions.ReloadList.Implementator {
 
             try {
                 Mutations.SetListLoadingState.commit(commit, { loading: true, error: "" });
-                const loadedList = await AdvicesManager.fetchAdvices(state.filter);
+                const adviceRepository = new AdviceRepository(firebase.firestore());
+                const loadedList = await adviceRepository.fetchAdvices(state.filter);
                 Mutations.SetList.commit(commit, loadedList);
                 Mutations.SetListLoadingState.commit(commit, { loading: false, error: "" });
             } catch (error) {

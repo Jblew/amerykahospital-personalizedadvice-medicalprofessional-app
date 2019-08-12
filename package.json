@@ -19,7 +19,7 @@
   ],
   "main": "dist/ahpa-medicalprofessional-app.common.js",
   "dependencies": {
-    "amerykahospital-personalizedadvice-core": "^6.7.0",
+    "amerykahospital-personalizedadvice-core": "^11.0.0",
     "firebase": "^6.3.5",
     "firebaseui": "^4.1.0",
     "firestore-roles-vuex-module": "^2.5.0",

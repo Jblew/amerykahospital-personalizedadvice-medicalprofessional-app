@@ -1,4 +1,4 @@
-import { Advice, AdvicesManager } from "amerykahospital-personalizedadvice-core";
+import { Advice, AdviceRepository } from "amerykahospital-personalizedadvice-core";
 import { Commit, Mutation as VuexMutation } from "vuex";
 
 import { AdviceModule as Me } from "./AdviceModule";
@@ -53,7 +53,7 @@ export namespace Mutations {
     export namespace SetFilter {
         export const name = Me.localName("setFilter");
 
-        export type Payload = AdvicesManager.FetchFilter;
+        export type Payload = AdviceRepository.FetchFilter;
         export type Declaration = MutationFn & ((state: Me.State, payload: Payload) => void);
 
         export function commit(commitFn: Commit, payload: Payload) {
