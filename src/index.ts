@@ -16,6 +16,7 @@ import createRouter from "./router";
 import { AdviceModule } from "./store/modules/advice/AdviceModule";
 import { RootStore } from "./store/Store";
 import { StoreImpl } from "./store/StoreImpl";
+import "./style/style.scss";
 
 export default () => {
     initFirebase();

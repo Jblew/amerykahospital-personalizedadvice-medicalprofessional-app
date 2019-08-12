@@ -1,15 +1,15 @@
 <template>
-  <v-app id="app">
-    <account-warning-dialog />
-    <notifications-snackbar />
-    <drawer-layout v-if="authenticated">
-      <router-view />
-    </drawer-layout>
-    <v-content v-else>
-      <auth-view />
-    </v-content>
-    <footer-component />
-  </v-app>
+    <v-app id="app">
+        <account-warning-dialog />
+        <notifications-snackbar />
+        <drawer-layout v-if="authenticated">
+            <router-view />
+        </drawer-layout>
+        <v-content v-else>
+            <auth-view />
+        </v-content>
+        <footer-component />
+    </v-app>
 </template>
 
 <script lang="ts">
@@ -39,7 +39,4 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-body {
-    background-color: #00885b;
-}
 </style>
