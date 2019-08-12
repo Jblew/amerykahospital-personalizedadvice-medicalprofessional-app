@@ -1,20 +1,20 @@
 <template>
-  <v-layout wrap class="advice-list-panel">
-    <v-flex xs12>
-      <v-data-table
-        v-if="!loading && !error"
-        :headers="headers"
-        :items="adviceList"
-        :items-per-page="10"
-        show-expand
-        class="elevation-1"
-      >
-        <template v-slot:expanded-item="{ headers, item }">
-          <td :colspan="headers.length">{{ item.advice }}</td>
-        </template>
-      </v-data-table>
-    </v-flex>
-  </v-layout>
+    <v-layout wrap class="advice-list-panel">
+        <v-flex xs12>
+            <v-data-table
+                v-if="!loading && !error"
+                :headers="headers"
+                :items="adviceList"
+                :items-per-page="10"
+                show-expand
+                class="elevation-1"
+            >
+                <template v-slot:expanded-item="{ headers, item }">
+                    <td :colspan="headers.length">{{ item.advice }}</td>
+                </template>
+            </v-data-table>
+        </v-flex>
+    </v-layout>
 </template>
 
 <script lang="ts">
