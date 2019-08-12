@@ -1,0 +1,9 @@
+@import "mixins.scss";
+
+body {
+    background-color: #00885b;
+}
+
+.v-alert {
+    @include break-long;
+}
