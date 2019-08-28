@@ -12,8 +12,8 @@ import App from "./App.vue";
 import "./components/common/common_components";
 import "./filters";
 import { initFirebase } from "./plugins/firebase";
-import vuetify from "./plugins/vuetify.js"; // path to vuetify export
-import createRouter from "./router";
+import createRouter from "./plugins/router";
+import vuetify from "./plugins/vuetify.js";
 import { AdviceModule } from "./store/modules/advice/AdviceModule";
 import { RootStore } from "./store/Store";
 import { StoreImpl } from "./store/StoreImpl";
