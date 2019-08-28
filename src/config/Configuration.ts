@@ -1,3 +1,4 @@
+import { ChatConfig } from "amerykahospital-personalizedadvice-businesslogic";
 import ow from "ow";
 
 export interface Configuration {
@@ -9,6 +10,7 @@ export interface Configuration {
         messagingSenderId: string;
         appId: string;
     };
+    chatConfig: ChatConfig;
     basePath: string;
 }
 
@@ -22,6 +24,7 @@ export namespace Configuration {
         ow(c.firebase.messagingSenderId, "Configuration.firebase.messagingSenderId", ow.string.nonEmpty);
         ow(c.firebase.appId, "Configuration.firebase.appId", ow.string.nonEmpty);
 
+        ChatConfig.validate(c.chatConfig);
         ow(c.basePath, "Configuration.basePath", ow.string.nonEmpty);
     }
 
