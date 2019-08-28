@@ -136,6 +136,15 @@
       }
     }
   </style>
+  <script src="settings/dist/main.js"></script>
+  <script>
+    console.log("Settings");
+    window.AHPA_MEDICALPROFESSIONAL_CONFIGURATION = {
+      basePath: "/",
+      firebase: window.AHPA_SETTINGS.FIREBASE_CONFIG,
+    };
+    console.log("Set AHPA_MEDICALPROFESSIONAL_CONFIGURATION var");
+  </script>
 </head>
 
 <body>
@@ -157,10 +166,11 @@
       <p class="error-info">
         If there are any issues or an error occured please contact me on:<br />
         &lt;jedrzej [at] lewandowski.doctor&gt;<br /> or file a <a
-          href="https://github.com/Jblew/amerykahospital-personalizedadvice-medicalprofessional-app/issues">github issue</a>
+          href="https://github.com/Jblew/amerykahospital-personalizedadvice-medicalprofessional-app/issues">github
+          issue</a>
     </div>
   </div>
-    <!-- Prayer: Gloria Patri, et Filio, et Spiritui Sancto, sicut erat in principio et nunc et semper et in saecula saeculorum. Amen. In te, Domine, speravi: non confundar in aeternum. -->
+  <!-- Prayer: Gloria Patri, et Filio, et Spiritui Sancto, sicut erat in principio et nunc et semper et in saecula saeculorum. Amen. In te, Domine, speravi: non confundar in aeternum. -->
   <!-- built files will be auto injected -->
 </body>
 

@@ -1,5 +1,4 @@
 import * as firebase from "firebase/app";
-import "firebase/auth";
 import * as firebaseui from "firebaseui";
 
 export class FirebaseAuthHelper {

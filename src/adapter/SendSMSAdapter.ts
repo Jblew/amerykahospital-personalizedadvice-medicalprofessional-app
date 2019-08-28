@@ -1,15 +1,14 @@
-import { FirebaseFunctionDefinitions } from "amerykahospital-personalizedadvice-core";
+import { SendSMSFunction } from "amerykahospital-personalizedadvice-businesslogic";
 import firebase from "firebase/app";
-import "firebase/functions";
 
 interface SendSMSAdapterTypeguard {
-    sendSMS: FirebaseFunctionDefinitions.SendSMS.Adapter;
+    sendSMS: SendSMSFunction.Function;
 }
 
 export class SendSMSAdapter implements SendSMSAdapterTypeguard {
-    public async sendSMS(adviceIdWrap: { adviceId: string }): Promise<FirebaseFunctionDefinitions.SendSMS.Result> {
+    public async sendSMS(adviceIdWrap: { adviceId: string }): Promise<SendSMSFunction.Result> {
         if (!adviceIdWrap.adviceId) throw new Error("SendSMSAdapter: malformed adviceIdWrap");
-        const fnCallable = firebase.functions().httpsCallable(FirebaseFunctionDefinitions.SendSMS.NAME);
+        const fnCallable = firebase.functions().httpsCallable(SendSMSFunction.NAME);
         const result = await fnCallable(adviceIdWrap);
         return result.data;
     }

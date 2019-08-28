@@ -1,6 +1,6 @@
 // tslint:disable:max-classes-per-file
 
-import { Advice, AdviceRepository, PendingAdvice } from "amerykahospital-personalizedadvice-core";
+import { Advice, AdviceRepository, PendingAdvice } from "amerykahospital-personalizedadvice-businesslogic";
 import ow from "ow";
 import { CombinedVueInstance } from "vue/types/vue";
 import { Action as VuexAction, ActionContext as VuexActionContext, Dispatch } from "vuex";

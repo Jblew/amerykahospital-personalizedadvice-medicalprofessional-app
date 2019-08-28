@@ -1,5 +1,5 @@
 // tslint:disable member-ordering
-import { RolesConfig } from "amerykahospital-personalizedadvice-core";
+import { RolesConfig } from "amerykahospital-personalizedadvice-db";
 import firebase from "firebase/app";
 import FirestoreRoles from "firestore-roles";
 import * as _ from "lodash";

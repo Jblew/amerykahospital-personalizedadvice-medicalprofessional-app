@@ -32,7 +32,7 @@
 </template>
 
 <script lang="ts">
-import { PendingAdvice } from "amerykahospital-personalizedadvice-core";
+import { PendingAdvice } from "amerykahospital-personalizedadvice-businesslogic";
 import Vue from "vue";
 
 import { labels } from "../../global";

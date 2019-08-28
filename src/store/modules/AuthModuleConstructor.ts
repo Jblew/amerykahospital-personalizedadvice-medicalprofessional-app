@@ -1,4 +1,4 @@
-import { RolesConfig } from "amerykahospital-personalizedadvice-core";
+import { RolesConfig } from "amerykahospital-personalizedadvice-db";
 import * as firebase from "firebase/app";
 import {
     Configuration as RolesAuthConfiguration,

@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { Advice } from "amerykahospital-personalizedadvice-core";
+import { Advice } from "amerykahospital-personalizedadvice-businesslogic";
 import Vue from "vue";
 
 import { labels } from "../../global";

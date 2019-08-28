@@ -1,4 +1,4 @@
-import { PendingAdvice } from "amerykahospital-personalizedadvice-core";
+import { PendingAdvice } from "amerykahospital-personalizedadvice-businesslogic";
 import { Action as VuexAction, ActionContext as VuexActionContext, Dispatch } from "vuex";
 
 import { AdviceModule as Me } from "./AdviceModule";

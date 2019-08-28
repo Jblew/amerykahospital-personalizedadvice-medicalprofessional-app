@@ -3,6 +3,7 @@
 import "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/functions";
 import "firebaseui/dist/firebaseui.css";
 import { RolesAuthModule } from "firestore-roles-vuex-module";
 import Vue from "vue";
@@ -19,6 +20,7 @@ import { StoreImpl } from "./store/StoreImpl";
 import "./style/style.scss";
 
 export default () => {
+    console.log("Vue initializer startup");
     initFirebase();
 
     return new Vue({

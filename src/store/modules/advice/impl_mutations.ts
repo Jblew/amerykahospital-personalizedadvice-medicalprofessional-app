@@ -1,4 +1,4 @@
-import { Advice, AdviceRepository } from "amerykahospital-personalizedadvice-core";
+import { Advice, AdviceRepository } from "amerykahospital-personalizedadvice-businesslogic";
 import ow from "ow";
 import { MutationTree } from "vuex";
 

@@ -1,4 +1,4 @@
-import { Advice, AdviceRepository } from "amerykahospital-personalizedadvice-core";
+import { Advice, AdviceRepository } from "amerykahospital-personalizedadvice-businesslogic";
 import { Commit, Mutation as VuexMutation } from "vuex";
 
 import { AdviceModule as Me } from "./AdviceModule";

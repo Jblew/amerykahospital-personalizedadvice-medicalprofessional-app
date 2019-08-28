@@ -1,7 +1,8 @@
 // tslint:disable max-classes-per-file no-console
 import { AddAdviceAdapter } from "@/adapter/AddAdviceAdapter";
 import { SendSMSAdapter } from "@/adapter/SendSMSAdapter";
-import { AdviceRepository, PendingAdvice } from "amerykahospital-personalizedadvice-core";
+import { AdviceRepository, PendingAdvice } from "amerykahospital-personalizedadvice-businesslogic";
+import { AdviceRepositoryFactory } from "amerykahospital-personalizedadvice-db";
 import * as firebase from "firebase/app";
 import * as _ from "lodash";
 import { ActionTree } from "vuex";
@@ -93,7 +94,7 @@ class ReloadList implements Me.Actions.ReloadList.Implementator {
 
             try {
                 Mutations.SetListLoadingState.commit(commit, { loading: true, error: "" });
-                const adviceRepository = new AdviceRepository(firebase.firestore());
+                const adviceRepository = AdviceRepositoryFactory.make(firebase.firestore());
                 const loadedList = await adviceRepository.fetchAdvices(state.filter);
                 Mutations.SetList.commit(commit, loadedList);
                 Mutations.SetListLoadingState.commit(commit, { loading: false, error: "" });

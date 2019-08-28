@@ -1,6 +1,6 @@
 // tslint:disable:max-classes-per-file
 
-import { RoleKey } from "amerykahospital-personalizedadvice-core";
+import { RoleKey } from "amerykahospital-personalizedadvice-businesslogic";
 import * as firebase from "firebase/app";
 import { AccountRecord } from "firestore-roles";
 import { RolesAuthModule } from "firestore-roles-vuex-module";
