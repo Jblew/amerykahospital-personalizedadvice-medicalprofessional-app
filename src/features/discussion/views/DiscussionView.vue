@@ -59,8 +59,9 @@ export default Vue.extend({
             (vm as any).initializeChat();
         });
     },
-    beforeRouteLeave() {
+    beforeRouteLeave(to, from, next) {
         this.teardownChat();
+        next();
     },
     computed: {
         account() {
@@ -72,7 +73,6 @@ export default Vue.extend({
     },
     methods: {
         async sendMessage() {
-            console.log("Begin send message");
             try {
                 if (!this.account) {
                     throw new Error("Missing account");
