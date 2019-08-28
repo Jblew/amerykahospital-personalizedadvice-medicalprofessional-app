@@ -1,18 +1,22 @@
 <template>
-  <div>
-    <v-alert v-if="addLoading" :value="true" type="info">{{ text.sendingAdvice }}</v-alert>
-    <v-alert v-if="addError.length > 0" :value="true" type="error">{{ addError }}</v-alert>
-    <v-alert v-if="addResult.length > 0" :value="true" type="success">{{ addResult }}</v-alert>
+    <div>
+        <augmented-status-component
+            :loading="addLoading"
+            :error="addOpState.error"
+            :success="addResult"
+        />
+        <augmented-status-component
+            :loading="sendSMSLoading"
+            :error="sendSMSOpState.error"
+            :success="sendSMSResult"
+        />
 
-    <v-alert v-if="sendSMSLoading" :value="true" type="info">{{ text.sendingSMS }}</v-alert>
-    <v-alert v-if="sendSMSError.length > 0" :value="true" type="error">{{ sendSMSError }}</v-alert>
-    <v-alert v-if="sendSMSResult.length > 0" :value="true" type="success">{{ sendSMSResult }}</v-alert>
-
-    <v-btn @click="resendSMS" v-if="resendSMSBtnEnabled">{{ text.resendSMS }}</v-btn>
-  </div>
+        <v-btn @click="resendSMS" v-if="resendSMSBtnEnabled">{{ text.resendSMS }}</v-btn>
+    </div>
 </template>
 
 <script lang="ts">
+import AugmentedStatusComponent from "@/components/misc/AugmentedErrorComponent.vue";
 import Vue from "vue";
 
 import { labels } from "../../global";
@@ -31,32 +35,26 @@ export default Vue.extend({
         };
     },
     computed: {
-        addOpState() {
+        addOpState(): AdviceModule.AddOpState {
             return AdviceModule.stateOf(this).addOp;
         },
         addLoading(): boolean {
             return this.addOpState.loading;
         },
-        addError(): string {
-            return this.addOpState.error;
-        },
         addResult(): string {
             return this.addOpState.result.log;
         },
-        sendSMSOpState() {
+        sendSMSOpState(): AdviceModule.SendSMSOpState {
             return AdviceModule.stateOf(this).sendSMSOp;
         },
         sendSMSLoading(): boolean {
             return this.sendSMSOpState.loading;
         },
-        sendSMSError(): string {
-            return this.sendSMSOpState.error;
-        },
         sendSMSResult(): string {
             return this.sendSMSOpState.result;
         },
         resendSMSBtnEnabled(): boolean {
-            return (this.sendSMSError.length > 0 || this.sendSMSResult.length > 0) && !this.sendSMSLoading;
+            return (this.sendSMSOpState.error || this.sendSMSResult.length > 0) && !this.sendSMSLoading;
         },
         adviceId(): string {
             const loadedId = this.addOpState.result.adviceId;
@@ -70,6 +68,7 @@ export default Vue.extend({
     },
     components: {
         AddAdviceForm,
+        AugmentedStatusComponent,
     },
 });
 </script>

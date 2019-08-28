@@ -23,6 +23,7 @@
     "firebase": "^6.3.5",
     "firebaseui": "^4.1.0",
     "firestore-roles-vuex-module": "^2.5.0",
+    "localized-error": "^1.4.0",
     "lodash": "^4.17.15",
     "ow": "^0.13.2",
     "vue": "^2.6.10",

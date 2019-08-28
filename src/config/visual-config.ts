@@ -1,4 +1,5 @@
 export const visualConfig = {
+    locale: "PL",
     appTitle: "AmerykaApp — panel profesjonalisty",
     author: {
         name: "Jędrzej Lewandowski",

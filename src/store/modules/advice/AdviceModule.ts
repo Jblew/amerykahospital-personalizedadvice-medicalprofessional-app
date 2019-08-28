@@ -1,11 +1,11 @@
 // tslint:disable:max-classes-per-file
 
+import { ow_catch } from "@/util/util";
 import { Advice, AdviceRepository, PendingAdvice } from "amerykahospital-personalizedadvice-core";
+import { AugmentedLocalizedError } from "localized-error";
 import ow from "ow";
 import { CombinedVueInstance } from "vue/types/vue";
 import { Action as VuexAction, ActionContext as VuexActionContext, Dispatch } from "vuex";
-
-import { ow_catch } from "../../../util/util";
 
 type ActionFn = VuexAction<AdviceModule.State, AdviceModule.State>;
 type ActionContext = VuexActionContext<AdviceModule.State, AdviceModule.State>;
@@ -131,7 +131,7 @@ export namespace AdviceModule {
      */
     export interface AddOpState {
         loading: boolean;
-        error: string;
+        error: AugmentedLocalizedError<string> | Error | "";
         result: {
             log: string;
             adviceId: string;
@@ -141,7 +141,7 @@ export namespace AdviceModule {
     export namespace AddOpState {
         export function validate(a: AddOpState) {
             ow(a.loading, "AddOpState.loading", ow.boolean);
-            ow(a.error, "AddOpState.error", ow.string);
+            ow(a.error, "AddOpState.error", ow.any(ow.string.empty, ow.object));
             ow(a.result, "AddOpState.result", ow.object);
             ow(a.result.log, "AddOpState.result.log", ow.string);
             ow(a.result.adviceId, "AddOpState.result.adviceId", ow.string);
@@ -154,14 +154,14 @@ export namespace AdviceModule {
      */
     export interface SendSMSOpState {
         loading: boolean;
-        error: string;
+        error: AugmentedLocalizedError<string> | Error | "";
         result: string;
     }
 
     export namespace SendSMSOpState {
         export function validate(o: SendSMSOpState) {
             ow(o.loading, "SendSMSOpState.loading", ow.boolean);
-            ow(o.error, "SendSMSOpState.error", ow.string);
+            ow(o.error, "SendSMSOpState.error", ow.any(ow.string.empty, ow.object));
             ow(o.result, "SendSMSOpState.result", ow.string);
         }
     }

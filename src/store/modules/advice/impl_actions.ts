@@ -1,6 +1,7 @@
 // tslint:disable max-classes-per-file no-console
 import { AddAdviceAdapter } from "@/adapter/AddAdviceAdapter";
 import { SendSMSAdapter } from "@/adapter/SendSMSAdapter";
+import { AdviceMustBeSpecifiedError } from "@/error/AdviceMustBeSpecifiedError";
 import { AdviceRepository, PendingAdvice } from "amerykahospital-personalizedadvice-core";
 import * as firebase from "firebase/app";
 import * as _ from "lodash";
@@ -42,7 +43,7 @@ class SendSMS implements Me.Actions.SendSMS.Implementator {
         return async ({ commit, dispatch, state }, payload?: { adviceId: string }) => {
             try {
                 const adviceId = payload ? payload.adviceId : state.addOp.result.adviceId;
-                if (!adviceId) throw new Error("Advice must be specified");
+                if (!adviceId) throw AdviceMustBeSpecifiedError.make();
 
                 Mutations.SetSendSMSOpState.commit(commit, { loading: true, error: "", result: "" });
                 const result = await new SendSMSAdapter().sendSMS({ adviceId });
@@ -50,7 +51,7 @@ class SendSMS implements Me.Actions.SendSMS.Implementator {
                 Me.Actions.ReloadList.dispatch(dispatch);
             } catch (error) {
                 console.error(error);
-                Mutations.SetSendSMSOpState.commit(commit, { loading: false, error: "" + error, result: "" });
+                Mutations.SetSendSMSOpState.commit(commit, { loading: false, error, result: "" });
             }
         };
     }
@@ -112,6 +113,7 @@ class AddAdvice implements PrivateActions.AddAdvice.Implementator {
     public getAction(): PrivateActions.AddAdvice.Declaration {
         return async ({ commit, dispatch, state }, payload: PendingAdvice) => {
             try {
+                throw AdviceMustBeSpecifiedError.make();
                 Mutations.SetAddOpState.commit(commit, { loading: true, error: "", result: { log: "", adviceId: "" } });
                 const result = await new AddAdviceAdapter().addAdvice(payload);
                 Mutations.SetAddOpState.commit(commit, { loading: false, error: "", result });
@@ -120,7 +122,7 @@ class AddAdvice implements PrivateActions.AddAdvice.Implementator {
                 console.error(error);
                 Mutations.SetAddOpState.commit(commit, {
                     loading: false,
-                    error: "" + error,
+                    error,
                     result: { log: "", adviceId: "" },
                 });
             }
