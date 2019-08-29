@@ -9,9 +9,10 @@ import Vuex, { ActionHandler, Store as VuexStore } from "vuex";
 import { ModuleTree } from "vuex";
 import { NotificationsModule, NotificationsModuleImpl } from "vuex-notifications-module";
 
+import { AuthModuleConstructor } from "../features/auth/store/AuthModuleConstructor";
+
 import { AdviceModule } from "./modules/advice/AdviceModule";
 import { AdviceModuleImpl } from "./modules/advice/AdviceModuleImpl";
-import { AuthModuleConstructor } from "./modules/AuthModuleConstructor";
 import { RootStore } from "./root/RootStore";
 import { RootStoreImpl } from "./root/RootStoreImpl";
 import { Store } from "./Store";
