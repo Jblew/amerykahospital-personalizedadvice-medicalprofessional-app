@@ -1,22 +1,22 @@
 <template>
-  <div>
-    <v-alert v-if="addLoading" :value="true" type="info">{{ text.sendingAdvice }}</v-alert>
-    <v-alert v-if="addError.length > 0" :value="true" type="error">{{ addError }}</v-alert>
-    <v-alert v-if="addResult.length > 0" :value="true" type="success">{{ addResult }}</v-alert>
+    <div>
+        <v-alert v-if="addLoading" :value="true" type="info">{{ text.sendingAdvice }}</v-alert>
+        <v-alert v-if="addError.length > 0" :value="true" type="error">{{ addError }}</v-alert>
+        <v-alert v-if="addResult.length > 0" :value="true" type="success">{{ addResult }}</v-alert>
 
-    <v-alert v-if="sendSMSLoading" :value="true" type="info">{{ text.sendingSMS }}</v-alert>
-    <v-alert v-if="sendSMSError.length > 0" :value="true" type="error">{{ sendSMSError }}</v-alert>
-    <v-alert v-if="sendSMSResult.length > 0" :value="true" type="success">{{ sendSMSResult }}</v-alert>
+        <v-alert v-if="sendSMSLoading" :value="true" type="info">{{ text.sendingSMS }}</v-alert>
+        <v-alert v-if="sendSMSError.length > 0" :value="true" type="error">{{ sendSMSError }}</v-alert>
+        <v-alert v-if="sendSMSResult.length > 0" :value="true" type="success">{{ sendSMSResult }}</v-alert>
 
-    <v-btn @click="resendSMS" v-if="resendSMSBtnEnabled">{{ text.resendSMS }}</v-btn>
-  </div>
+        <v-btn @click="resendSMS" v-if="resendSMSBtnEnabled">{{ text.resendSMS }}</v-btn>
+    </div>
 </template>
 
 <script lang="ts">
+import { labels } from "@/global";
 import Vue from "vue";
 
-import { labels } from "../../global";
-import { AdviceModule } from "../../store/modules/advice/AdviceModule";
+import { AdviceModule } from "../../../../store/modules/advice/AdviceModule";
 
 import AddAdviceForm from "./AddAdviceForm.vue";
 

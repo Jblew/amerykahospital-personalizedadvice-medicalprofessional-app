@@ -1,19 +1,19 @@
 <template>
-  <v-layout wrap>
-    <v-flex v-if="loading" xs12 text-center class="my-2">
-      <loading-indicator />
-    </v-flex>
-    <v-flex v-if="error.length > 0" xs12 text-center class="my-2">
-      <v-alert type="error">{{ text.couldNotLoadAdvices }}. {{ error }}</v-alert>
-    </v-flex>
-  </v-layout>
+    <v-layout wrap>
+        <v-flex v-if="loading" xs12 text-center class="my-2">
+            <loading-indicator />
+        </v-flex>
+        <v-flex v-if="error.length > 0" xs12 text-center class="my-2">
+            <v-alert type="error">{{ text.couldNotLoadAdvices }}. {{ error }}</v-alert>
+        </v-flex>
+    </v-layout>
 </template>
 
 <script lang="ts">
+import { labels } from "@/global";
 import Vue from "vue";
 
-import { labels } from "../../global";
-import { AdviceModule } from "../../store/modules/advice/AdviceModule";
+import { AdviceModule } from "../../../../store/modules/advice/AdviceModule";
 
 export default Vue.extend({
     data() {

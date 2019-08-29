@@ -1,54 +1,54 @@
 <template>
-  <span>
-    <v-tooltip left>
-      <template v-slot:activator="{ on }">
-        <v-btn
-          class="add-btn"
-          fixed
-          dark
-          fab
-          large
-          bottom
-          right
-          color="accent"
-          @click.stop="addAdvice"
-          v-on="on"
-        >
-          <v-icon>fa-plus</v-icon>
-        </v-btn>
-      </template>
-      <span>{{ text.sendAdvice }}</span>
-    </v-tooltip>
+    <span>
+        <v-tooltip left>
+            <template v-slot:activator="{ on }">
+                <v-btn
+                    class="add-btn"
+                    fixed
+                    dark
+                    fab
+                    large
+                    bottom
+                    right
+                    color="accent"
+                    @click.stop="addAdvice"
+                    v-on="on"
+                >
+                    <v-icon>fa-plus</v-icon>
+                </v-btn>
+            </template>
+            <span>{{ text.sendAdvice }}</span>
+        </v-tooltip>
 
-    <v-dialog v-model="dialog" persistent max-width="600px">
-      <v-card>
-        <v-card-title>
-          <span class="headline">{{ text.sendAdvice }}</span>
-        </v-card-title>
-        <v-card-text>
-          <v-container fluid fill-height>
-            <v-layout justify-center align-start>
-              <v-flex>
-                <add-advice-panel />
-              </v-flex>
-            </v-layout>
-          </v-container>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="closeDialog()">{{ text.close }}</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </span>
+        <v-dialog v-model="dialog" persistent max-width="600px">
+            <v-card>
+                <v-card-title>
+                    <span class="headline">{{ text.sendAdvice }}</span>
+                </v-card-title>
+                <v-card-text>
+                    <v-container fluid fill-height>
+                        <v-layout justify-center align-start>
+                            <v-flex>
+                                <add-advice-panel />
+                            </v-flex>
+                        </v-layout>
+                    </v-container>
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="primary" text @click="closeDialog()">{{ text.close }}</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
+    </span>
 </template>
 
 <script lang="ts">
-import AddAdvicePanel from "@/components/add-advice/AddAdvicePanel.vue";
+import { labels } from "@/global";
 import Vue from "vue";
 
-import { labels } from "../../global";
-import { AdviceModule } from "../../store/modules/advice/AdviceModule";
+import { AdviceModule } from "../../../../store/modules/advice/AdviceModule";
+import AddAdvicePanel from "../add-advice/AddAdvicePanel.vue";
 
 export default Vue.extend({
     data() {

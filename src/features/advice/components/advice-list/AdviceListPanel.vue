@@ -18,11 +18,11 @@
 </template>
 
 <script lang="ts">
+import { labels } from "@/global";
 import { Advice } from "amerykahospital-personalizedadvice-businesslogic";
 import Vue from "vue";
 
-import { labels } from "../../global";
-import { AdviceModule } from "../../store/modules/advice/AdviceModule";
+import { AdviceModule } from "../../../../store/modules/advice/AdviceModule";
 
 export default Vue.extend({
     data() {

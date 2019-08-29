@@ -1,42 +1,53 @@
 <template>
-  <v-form ref="form" v-model="valid">
-    <v-text-field
-      v-model="professionalName"
-      :rules="professionalNameRules"
-      :label="text.professionalName"
-      required
-    ></v-text-field>
+    <v-form ref="form" v-model="valid">
+        <v-text-field
+            v-model="professionalName"
+            :rules="professionalNameRules"
+            :label="text.professionalName"
+            required
+        ></v-text-field>
 
-    <v-text-field
-      v-model="patientName"
-      :rules="patientNameRules"
-      :label="text.patientName"
-      required
-    ></v-text-field>
+        <v-text-field
+            v-model="patientName"
+            :rules="patientNameRules"
+            :label="text.patientName"
+            required
+        ></v-text-field>
 
-    <v-text-field
-      v-model="parentPhoneNumber"
-      :rules="parentPhoneNumberRules"
-      :label="text.parentPhoneNumber"
-      required
-    ></v-text-field>
+        <v-text-field
+            v-model="parentPhoneNumber"
+            :rules="parentPhoneNumberRules"
+            :label="text.parentPhoneNumber"
+            required
+        ></v-text-field>
 
-    <p>&nbsp;</p>
+        <p>&nbsp;</p>
 
-    <v-textarea solo v-model="advice" :rules="adviceRules" :label="text.advice" required></v-textarea>
+        <v-textarea solo v-model="advice" :rules="adviceRules" :label="text.advice" required></v-textarea>
 
-    <v-text-field v-model="adviceId" valid="true" :label="text.adviceCode" disabled readonly filled></v-text-field>
+        <v-text-field
+            v-model="adviceId"
+            valid="true"
+            :label="text.adviceCode"
+            disabled
+            readonly
+            filled
+        ></v-text-field>
 
-    <v-btn :disabled="!valid" color="success" @click="validateAndAddAdvice">{{ text.sendAdvice }}</v-btn>
-  </v-form>
+        <v-btn
+            :disabled="!valid"
+            color="success"
+            @click="validateAndAddAdvice"
+        >{{ text.sendAdvice }}</v-btn>
+    </v-form>
 </template>
 
 <script lang="ts">
+import { labels } from "@/global";
 import { PendingAdvice } from "amerykahospital-personalizedadvice-businesslogic";
 import Vue from "vue";
 
-import { labels } from "../../global";
-import { AdviceModule } from "../../store/modules/advice/AdviceModule";
+import { AdviceModule } from "../../../../store/modules/advice/AdviceModule";
 
 const phoneNumberRegex = /^[0-9]{9}$/;
 

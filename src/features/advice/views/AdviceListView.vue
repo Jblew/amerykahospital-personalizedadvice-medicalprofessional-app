@@ -13,7 +13,7 @@
 <script lang="ts">
 import Vue from "vue";
 
-import AddAdviceFab from "../components/add-advice/AddAdviceFab.vue";
+import AddAdviceFab from "../components/advice-list/AddAdviceFab.vue";
 import AdviceListFilterForm from "../components/advice-list/AdviceListFilterForm.vue";
 import AdviceListLoadingState from "../components/advice-list/AdviceListLoadingState.vue";
 import AdviceListPanel from "../components/advice-list/AdviceListPanel.vue";
