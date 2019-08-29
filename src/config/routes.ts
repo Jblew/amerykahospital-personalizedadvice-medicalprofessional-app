@@ -1,6 +1,7 @@
+import { RoleKey } from "amerykahospital-personalizedadvice-businesslogic";
+
 export const routes = {
-    home: { path: "/", name: "list" },
-    list: { path: "/", name: "list" },
-    discussion: { path: "/discussion", name: "discussion" },
-    sendAdvice: { path: "/add", name: "send-advice" },
+    list: { path: "/", name: "list", role: RoleKey.medicalprofessional },
+    sendAdvice: { path: "/add", name: "send-advice", role: RoleKey.medicalprofessional },
+    discussion: { path: "/discussion", name: "discussion", role: RoleKey.medicalprofessional },
 };
