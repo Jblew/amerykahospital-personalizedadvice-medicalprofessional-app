@@ -1,6 +1,5 @@
 <template>
     <v-app id="app">
-        <account-warning-dialog />
         <notifications-snackbar />
         <drawer-layout v-if="authenticated">
             <router-view />
@@ -17,7 +16,6 @@ import AuthView from "@/features/auth/views/AuthView.vue";
 import { RolesAuthModule } from "firestore-roles-vuex-module";
 import Vue from "vue";
 
-import AccountWarningDialog from "./components/AccountWarningDialog.vue";
 import DrawerLayout from "./components/layout/DrawerLayout.vue";
 import FooterComponent from "./components/layout/Footer.vue";
 import NotificationsSnackbar from "./components/misc/NotificationsSnackbar.vue";
@@ -33,7 +31,6 @@ export default Vue.extend({
         DrawerLayout,
         FooterComponent,
         NotificationsSnackbar,
-        AccountWarningDialog,
     },
 });
 </script>
