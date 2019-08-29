@@ -26,7 +26,7 @@ export const labels = {
     idWillBeVisibleAfterAdd: "Będzie widoczny po dodaniu porady",
     sendingSMS: "Wysyłanie wiadomości sms...",
     resendSMS: "Wyślij SMS ponownie",
-    requestAnAccess: "Poproś o przyznanie dostępu",
+    requestAnAccess: "Poproś o przyznanie roli $role",
     requestAccessExplanation:
         "Po kliknięciu administrator będzie mógł zaakceptować Twoją prośbę w panelu zarządzania rolami. " +
         "Pamiętaj, że administrator nie dostaje powiadomienia o prośbie. Musisz mu powiedzieć, " +
@@ -39,4 +39,11 @@ export const labels = {
     getSource: "kod źródłowy",
     logInPanelTitle: "Zaloguj się do panelu profesjonalisty",
     couldNotLoadAdvices: "Nie można załadować porad",
+    checkingRole: "Sprawdzanie uprawnienia",
+    missingRole: "Brakujące uprawnienie",
+    checkingIfSufficientRole: "Sprawdzam, czy posiadasz wymagane uprawnienia, aby otworzyć ten panel",
+    insufficientRole:
+        "Niestety, nie posiadasz wymaganych uprawnień do korzystania z tej funkcji. Możesz " +
+        "poprosiś o nie administratora systemu klikając przycisk poniżej.",
+    checkRoleAgain: "Sprawdź ponownie",
 };
