@@ -6,10 +6,10 @@
 </template>
 
 <script lang="ts">
-import AddAdvicePanel from "@/components/add-advice/AddAdvicePanel.vue";
 import Vue from "vue";
 
 import { labels } from "../../../global";
+import AddAdvicePanel from "../components/add-advice/AddAdvicePanel.vue";
 
 export default Vue.extend({
     name: "send-advice",
