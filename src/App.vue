@@ -13,6 +13,7 @@
 </template>
 
 <script lang="ts">
+import AuthView from "@/features/auth/views/AuthView.vue";
 import { RolesAuthModule } from "firestore-roles-vuex-module";
 import Vue from "vue";
 
@@ -20,7 +21,6 @@ import AccountWarningDialog from "./components/AccountWarningDialog.vue";
 import DrawerLayout from "./components/layout/DrawerLayout.vue";
 import FooterComponent from "./components/layout/Footer.vue";
 import NotificationsSnackbar from "./components/misc/NotificationsSnackbar.vue";
-import AuthView from "./views/Auth.vue";
 
 export default Vue.extend({
     computed: {
