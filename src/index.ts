@@ -11,11 +11,11 @@ import Vue from "vue";
 
 import App from "./App.vue";
 import "./components/common/common_components";
+import { AdviceModule } from "./features/advice/store/AdviceModule";
 import "./filters";
 import { initFirebase } from "./plugins/firebase";
 import createRouter from "./plugins/router";
 import vuetify from "./plugins/vuetify.js";
-import { AdviceModule } from "./store/modules/advice/AdviceModule";
 import { RootStore } from "./store/Store";
 import { StoreImpl } from "./store/StoreImpl";
 import "./style/style.scss";

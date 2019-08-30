@@ -22,7 +22,7 @@ import { labels } from "@/global";
 import { Advice } from "amerykahospital-personalizedadvice-businesslogic";
 import Vue from "vue";
 
-import { AdviceModule } from "../../../../store/modules/advice/AdviceModule";
+import { AdviceModule } from "../../store/AdviceModule";
 
 export default Vue.extend({
     data() {

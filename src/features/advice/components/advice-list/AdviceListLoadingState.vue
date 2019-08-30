@@ -13,7 +13,7 @@
 import { labels } from "@/global";
 import Vue from "vue";
 
-import { AdviceModule } from "../../../../store/modules/advice/AdviceModule";
+import { AdviceModule } from "../../store/AdviceModule";
 
 export default Vue.extend({
     data() {

@@ -1,11 +1,9 @@
 // tslint:disable:max-classes-per-file
 
 import { Advice, AdviceRepository, PendingAdvice } from "amerykahospital-personalizedadvice-businesslogic";
-import ow from "ow";
+import ow from "ow--fork-by-jblew-with-catching";
 import { CombinedVueInstance } from "vue/types/vue";
 import { Action as VuexAction, ActionContext as VuexActionContext, Dispatch } from "vuex";
-
-import { ow_catch } from "../../../util/util";
 
 type ActionFn = VuexAction<AdviceModule.State, AdviceModule.State>;
 type ActionContext = VuexActionContext<AdviceModule.State, AdviceModule.State>;
@@ -29,17 +27,17 @@ export namespace AdviceModule {
     }
     export namespace State {
         export function validate(state: State) {
-            ow(state.addOp, "state.addOp", ow.object.is(v => ow_catch(() => AddOpState.validate(v as AddOpState))));
+            ow(state.addOp, "state.addOp", ow.object.catching(v => AddOpState.validate(v as AddOpState)));
             ow(
                 state.sendSMSOp,
                 "state.sendSMSOp",
-                ow.object.is(v => ow_catch(() => SendSMSOpState.validate(v as SendSMSOpState))),
+                ow.object.catching(v => SendSMSOpState.validate(v as SendSMSOpState)),
             );
 
             ow(
                 state.listLoadingState,
                 "state.listLoadingState",
-                ow.object.is(v => ow_catch(() => ListLoadingState.validate(v as ListLoadingState))),
+                ow.object.catching(v => ListLoadingState.validate(v as ListLoadingState)),
             );
 
             ow(state.filter, "state.filter", ow.object);

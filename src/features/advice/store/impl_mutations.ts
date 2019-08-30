@@ -1,5 +1,5 @@
 import { Advice, AdviceRepository } from "amerykahospital-personalizedadvice-businesslogic";
-import ow from "ow";
+import ow from "ow--fork-by-jblew-with-catching";
 import { MutationTree } from "vuex";
 
 import { AdviceModule as Me } from "./AdviceModule";

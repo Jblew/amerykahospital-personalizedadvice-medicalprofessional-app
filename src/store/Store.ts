@@ -7,7 +7,8 @@ import Vuex from "vuex";
 import { Commit, Dispatch, Module } from "vuex";
 import { NotificationsModule } from "vuex-notifications-module";
 
-import { AdviceModule } from "./modules/advice/AdviceModule";
+import { AdviceModule } from "../features/advice/store/AdviceModule";
+
 import { RootStore } from "./root/RootStore";
 
 Vue.use(Vuex);

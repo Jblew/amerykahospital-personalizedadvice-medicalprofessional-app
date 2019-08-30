@@ -47,7 +47,7 @@ import { labels } from "@/global";
 import { PendingAdvice } from "amerykahospital-personalizedadvice-businesslogic";
 import Vue from "vue";
 
-import { AdviceModule } from "../../../../store/modules/advice/AdviceModule";
+import { AdviceModule } from "../../store/AdviceModule";
 
 const phoneNumberRegex = /^[0-9]{9}$/;
 

@@ -1,5 +1,5 @@
 import { ChatConfig } from "amerykahospital-personalizedadvice-businesslogic";
-import ow from "ow";
+import ow from "ow--fork-by-jblew-with-catching";
 
 export interface Configuration {
     firebase: {
