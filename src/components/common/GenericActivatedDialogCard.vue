@@ -7,7 +7,7 @@
             <span>{{ tooltip }}</span>
         </v-tooltip>
 
-        <v-dialog v-model="dialog" persistent :max-width="maxWidth + 'px'">
+        <v-dialog v-if="dialog" v-model="dialog" persistent :max-width="maxWidth + 'px'">
             <v-card>
                 <v-card-title>
                     <span class="headline">{{ dialogTitle }}</span>
