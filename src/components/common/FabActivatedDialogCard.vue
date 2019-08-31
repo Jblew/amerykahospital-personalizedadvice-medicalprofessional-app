@@ -1,5 +1,11 @@
 <template>
-    <generic-activated-dialog-card ref="genericActivatedDialog" :tooltip="tooltip" :max-width="maxWidth" :dialog-title="dialogTitle">
+    <generic-activated-dialog-card
+            ref="genericActivatedDialog"
+            :tooltip="tooltip"
+            :max-width="maxWidth"
+            :dialog-title="dialogTitle"
+            @closeDialog="emitCloseDialog()"
+    >
         <template v-slot:button="{ on }">
             <v-btn
                     class="dialog-fab"
@@ -22,18 +28,24 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+    import Vue from "vue";
 
-export default Vue.extend({
-    props: {
-        dialogTitle: String,
-        tooltip: String,
-        maxWidth: Number,
-    },
-    methods: {
-        openDialog() { (this.$refs.genericActivatedDialog as any).openDialog(); },
-    },
-});
+    export default Vue.extend({
+        props: {
+            dialogTitle: String,
+            tooltip: String,
+            maxWidth: Number,
+        },
+        methods: {
+            openDialog() {
+                (this.$refs.genericActivatedDialog as any).openDialog();
+                this.$emit("openDialog");
+            },
+            emitCloseDialog() {
+                this.$emit("closeDialog");
+            }
+        },
+    });
 </script>
 <style scoped lang="scss">
     .dialog-fab {
