@@ -1,39 +1,46 @@
 import { AugmentedLocalizedError } from "localized-error";
 import ow from "ow--fork-by-jblew-with-catching";
 
-export interface ResourceStatus {
+export interface ResourceStatus<RESULT_TYPE extends object> {
     loading: boolean;
-    success: string;
+    result: RESULT_TYPE | "";
     error: ResourceStatus.ErrorType;
 }
 
 export namespace ResourceStatus {
     export type ErrorType =  AugmentedLocalizedError | Error | string;
-    export const EMPTY_ERROR: ErrorType = "";
-    export const EMPTY_SUCCESS = "";
+    const errorTypeValidator = ow.any(ow.string, ow.object.instanceOf(Error), ow.object.hasKeys("details"));
+    export const NO_ERROR: ErrorType = "";
+    export const RESULT_NO_SUCCESS = "";
 
-    export function success(msg: string): ResourceStatus {
-        return { loading: false, error: EMPTY_ERROR, success: msg };
+    export function empty<RESULT_TYPE extends object>(): ResourceStatus<RESULT_TYPE> {
+        return { loading: false, error: NO_ERROR, result: RESULT_NO_SUCCESS };
     }
 
-    export function isSuccess(r: ResourceStatus): boolean {
-        return !!r.success;
+    export function success<RESULT_TYPE extends object>(result: RESULT_TYPE): ResourceStatus<RESULT_TYPE> {
+        return { loading: false, error: NO_ERROR, result };
     }
 
-    export function loading(): ResourceStatus {
-        return { loading: true, error: EMPTY_ERROR, success: EMPTY_SUCCESS };
+    export function isSuccess<RESULT_TYPE extends object>(r: ResourceStatus<RESULT_TYPE>): boolean {
+        return r.result !== RESULT_NO_SUCCESS;
     }
 
-    export function error(err: ErrorType): ResourceStatus {
-        ow(err, "ResourceStatus.error", ow.any(ow.string, ow.object.instanceOf(Error), ow.object.hasKeys("details")));
-        return { loading: false, error: err, success: EMPTY_SUCCESS };
+    export function loading<RESULT_TYPE extends object>(): ResourceStatus<RESULT_TYPE> {
+        return { loading: true, error: NO_ERROR, result: RESULT_NO_SUCCESS };
     }
 
-    export function hasError(status: ResourceStatus) {
-        return !!status.error;
+    export function error<RESULT_TYPE extends object>(err: ErrorType): ResourceStatus<RESULT_TYPE> {
+        ow(err, "ResourceStatus.error", errorTypeValidator);
+        return { loading: false, error: err, result: RESULT_NO_SUCCESS };
     }
 
-    export function getLocalizedErrorMessage(status: ResourceStatus, locale: string) {
+    export function hasError<RESULT_TYPE extends object>(status: ResourceStatus<RESULT_TYPE>) {
+        return status.error !== NO_ERROR;
+    }
+
+    export function getLocalizedErrorMessage<RESULT_TYPE extends object>(
+        status: ResourceStatus<RESULT_TYPE>, locale: string,
+    ) {
         const stError = status.error;
         if (typeof stError === "string") return stError;
 
@@ -43,5 +50,24 @@ export namespace ResourceStatus {
         } else {
             return stError.message;
         }
+    }
+
+    export function validate<RESULT_TYPE extends object>(
+        r: ResourceStatus<RESULT_TYPE>, prefix: string, resultValidatorFn: (r: RESULT_TYPE) => void,
+    ) {
+        const baseLabel = `(<ResourceStatus>${prefix})`;
+        ow(r, `${baseLabel}`, ow.object);
+        ow(r.loading, `${baseLabel}.loading`, ow.boolean);
+
+        ow(
+            r.result,
+            `${baseLabel}`,
+            ow.any(
+                ow.string.empty,
+                ow.object.catching(result => resultValidatorFn(result as RESULT_TYPE)),
+            ),
+        );
+
+        ow(r.error, `${baseLabel}.error`, errorTypeValidator);
     }
 }
