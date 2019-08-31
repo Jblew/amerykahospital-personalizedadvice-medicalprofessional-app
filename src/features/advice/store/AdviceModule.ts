@@ -1,5 +1,6 @@
 // tslint:disable:max-classes-per-file
 
+import { ResourceStatus } from "@/util/ResourceStatus";
 import { Advice, AdviceRepository, PendingAdvice } from "amerykahospital-personalizedadvice-businesslogic";
 import ow from "ow--fork-by-jblew-with-catching";
 import { CombinedVueInstance } from "vue/types/vue";
@@ -19,32 +20,22 @@ export namespace AdviceModule {
      * State
      */
     export interface State {
-        addOp: AddOpState;
-        sendSMSOp: SendSMSOpState;
-        listLoadingState: ListLoadingState;
+        addOp: ResourceStatus<AddOpResult>;
+        sendSMSOp: ResourceStatus<SendSMSOpResult>;
+        list: ResourceStatus<Advice []>;
         filter: AdviceRepository.FetchFilter;
-        list: Advice[];
     }
+
     export namespace State {
         export function validate(state: State) {
-            ow(state.addOp, "state.addOp", ow.object.catching(v => AddOpState.validate(v as AddOpState)));
-            ow(
-                state.sendSMSOp,
-                "state.sendSMSOp",
-                ow.object.catching(v => SendSMSOpState.validate(v as SendSMSOpState)),
+            ResourceStatus.validate(state.addOp, "state.addOp", AddOpResult.validate);
+            ResourceStatus.validate(state.sendSMSOp, "state.sendSMSOp", SendSMSOpResult.validate);
+            ResourceStatus.validate(
+                state.list,
+                "state.list",
+                l => ow(l, "list[]", ow.array.ofType(ow.object)),
             );
-
-            ow(
-                state.listLoadingState,
-                "state.listLoadingState",
-                ow.object.catching(v => ListLoadingState.validate(v as ListLoadingState)),
-            );
-
             ow(state.filter, "state.filter", ow.object);
-
-            ow(state.listLoadingState, "state.listLoadingState", ow.object);
-            ow(state.listLoadingState.loading, "state.listLoadingState.loading", ow.boolean);
-            ow(state.listLoadingState.error, "state.listLoadingState.error", ow.string);
         }
     }
 
@@ -125,58 +116,31 @@ export namespace AdviceModule {
 
     /**
      *
-     * AddOpState
+     * AddOpResult
      */
-    export interface AddOpState {
-        loading: boolean;
-        error: string;
-        result: {
-            log: string;
-            adviceId: string;
-        };
+    export interface AddOpResult {
+        log: string;
+        adviceId: string;
     }
 
-    export namespace AddOpState {
-        export function validate(a: AddOpState) {
-            ow(a.loading, "AddOpState.loading", ow.boolean);
-            ow(a.error, "AddOpState.error", ow.string);
-            ow(a.result, "AddOpState.result", ow.object);
-            ow(a.result.log, "AddOpState.result.log", ow.string);
-            ow(a.result.adviceId, "AddOpState.result.adviceId", ow.string);
+    export namespace AddOpResult {
+        export function validate(a: AddOpResult) {
+            ow(a.log, "AddOpResult.log", ow.string);
+            ow(a.adviceId, "AddOpResult.adviceId", ow.string);
         }
     }
 
     /**
      *
-     * SendSMSOpState
+     * SendSMSOpResult
      */
-    export interface SendSMSOpState {
-        loading: boolean;
-        error: string;
-        result: string;
+    export interface SendSMSOpResult {
+        message: string;
     }
 
-    export namespace SendSMSOpState {
-        export function validate(o: SendSMSOpState) {
-            ow(o.loading, "SendSMSOpState.loading", ow.boolean);
-            ow(o.error, "SendSMSOpState.error", ow.string);
-            ow(o.result, "SendSMSOpState.result", ow.string);
-        }
-    }
-
-    /**
-     *
-     * ListLoadingState
-     */
-    export interface ListLoadingState {
-        loading: boolean;
-        error: string;
-    }
-
-    export namespace ListLoadingState {
-        export function validate(o: ListLoadingState) {
-            ow(o.loading, "ListLoadingState.loading", ow.boolean);
-            ow(o.error, "ListLoadingState.error", ow.string);
+    export namespace SendSMSOpResult {
+        export function validate(o: SendSMSOpResult) {
+            ow(o.message, "SendSMSOpResult.message", ow.string);
         }
     }
 

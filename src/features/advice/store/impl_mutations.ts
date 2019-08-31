@@ -1,3 +1,4 @@
+import { ResourceStatus } from "@/util/ResourceStatus";
 import { Advice, AdviceRepository } from "amerykahospital-personalizedadvice-businesslogic";
 import ow from "ow--fork-by-jblew-with-catching";
 import { MutationTree } from "vuex";
@@ -6,8 +7,10 @@ import { AdviceModule as Me } from "./AdviceModule";
 import { Mutations } from "./Mutations";
 
 export function constructMutations(): MutationTree<Me.State> {
-    const setAddOpState: Mutations.SetAddOpState.Declaration = (state: Me.State, payload: Me.AddOpState) => {
-        Me.AddOpState.validate(payload);
+    const setAddOpState: Mutations.SetAddOpState.Declaration = (
+        state: Me.State, payload: ResourceStatus<Me.AddOpResult>
+    ) => {
+        ResourceStatus.validate(payload, "Mutations.SetAddOpState.payload", Me.AddOpResult.validate);
 
         state.addOp = payload;
         Me.State.validate(state);
@@ -15,26 +18,19 @@ export function constructMutations(): MutationTree<Me.State> {
 
     const setSendSMSOpState: Mutations.SetSendSMSOpState.Declaration = (
         state: Me.State,
-        payload: Me.SendSMSOpState,
+        payload: ResourceStatus<Me.SendSMSOpResult>,
     ) => {
-        Me.SendSMSOpState.validate(payload);
+        ResourceStatus.validate(payload, "Mutations.SetSendSMSOpState.payload", Me.SendSMSOpResult.validate);
 
         state.sendSMSOp = payload;
         Me.State.validate(state);
     };
 
-    const setListLoadingState: Mutations.SetListLoadingState.Declaration = (
+    const setList: Mutations.SetList.Declaration = (
         state: Me.State,
-        payload: Me.ListLoadingState,
+        payload: ResourceStatus<Advice []>,
     ) => {
-        Me.ListLoadingState.validate(payload);
-
-        state.listLoadingState = payload;
-        Me.State.validate(state);
-    };
-
-    const setList: Mutations.SetList.Declaration = (state: Me.State, payload: Advice[]) => {
-        ow(payload, "payload", ow.array.ofType(ow.object));
+        ResourceStatus.validate(payload, "Mutations.SetList.payload", (v) => ow(v, ow.array.ofType(ow.object)));
 
         state.list = payload;
         Me.State.validate(state);
@@ -50,7 +46,6 @@ export function constructMutations(): MutationTree<Me.State> {
     const mutations: MutationTree<Me.State> = {
         [Mutations.SetAddOpState.name]: setAddOpState,
         [Mutations.SetSendSMSOpState.name]: setSendSMSOpState,
-        [Mutations.SetListLoadingState.name]: setListLoadingState,
         [Mutations.SetList.name]: setList,
         [Mutations.SetFilter.name]: setFilter,
     };

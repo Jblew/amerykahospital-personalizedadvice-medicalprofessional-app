@@ -1,6 +1,7 @@
 // tslint:disable max-classes-per-file no-console
 import { AddAdviceAdapter } from "@/adapter/AddAdviceAdapter";
 import { SendSMSAdapter } from "@/adapter/SendSMSAdapter";
+import { ResourceStatus } from "@/util/ResourceStatus";
 import { AdviceRepository, PendingAdvice } from "amerykahospital-personalizedadvice-businesslogic";
 import { AdviceRepositoryFactory } from "amerykahospital-personalizedadvice-db";
 import * as firebase from "firebase/app";
@@ -42,16 +43,16 @@ class SendSMS implements Me.Actions.SendSMS.Implementator {
     public getAction(): Me.Actions.SendSMS.Declaration {
         return async ({ commit, dispatch, state }, payload?: { adviceId: string }) => {
             try {
-                const adviceId = payload ? payload.adviceId : state.addOp.result.adviceId;
+                const adviceId = payload ? payload.adviceId : state.addOp.result ? state.addOp.result.adviceId : "";
                 if (!adviceId) throw new Error("Advice must be specified");
 
-                Mutations.SetSendSMSOpState.commit(commit, { loading: true, error: "", result: "" });
+                Mutations.SetSendSMSOpState.commit(commit, ResourceStatus.loading());
                 const result = await new SendSMSAdapter().sendSMS({ adviceId });
-                Mutations.SetSendSMSOpState.commit(commit, { loading: false, error: "", result: result.message });
+                Mutations.SetSendSMSOpState.commit(commit, ResourceStatus.success({ message: result.message }));
                 Me.Actions.ReloadList.dispatch(dispatch);
             } catch (error) {
                 console.error(error);
-                Mutations.SetSendSMSOpState.commit(commit, { loading: false, error: "" + error, result: "" });
+                Mutations.SetSendSMSOpState.commit(commit, ResourceStatus.error(error));
             }
         };
     }
@@ -64,8 +65,8 @@ class SendSMS implements Me.Actions.SendSMS.Implementator {
 class ResetResults implements Me.Actions.ResetResults.Implementator {
     public getAction(): Me.Actions.ResetResults.Declaration {
         return async ({ commit }) => {
-            Mutations.SetAddOpState.commit(commit, { loading: false, error: "", result: { log: "", adviceId: "" } });
-            Mutations.SetSendSMSOpState.commit(commit, { loading: false, error: "", result: "" });
+            Mutations.SetAddOpState.commit(commit, ResourceStatus.empty());
+            Mutations.SetSendSMSOpState.commit(commit, ResourceStatus.empty());
         };
     }
 }
@@ -90,16 +91,15 @@ class UpdateQueryFilterAndReloadList implements Me.Actions.UpdateQueryFilterAndR
 class ReloadList implements Me.Actions.ReloadList.Implementator {
     public getAction(): Me.Actions.ReloadList.Declaration {
         return async ({ commit, dispatch, state }) => {
-            if (state.listLoadingState.loading) return;
+            if (state.list.loading) return;
 
             try {
-                Mutations.SetListLoadingState.commit(commit, { loading: true, error: "" });
+                Mutations.SetList.commit(commit, ResourceStatus.loading());
                 const adviceRepository = AdviceRepositoryFactory.make(firebase.firestore());
                 const loadedList = await adviceRepository.fetchAdvices(state.filter);
-                Mutations.SetList.commit(commit, loadedList);
-                Mutations.SetListLoadingState.commit(commit, { loading: false, error: "" });
+                Mutations.SetList.commit(commit, ResourceStatus.success(loadedList));
             } catch (error) {
-                Mutations.SetListLoadingState.commit(commit, { loading: false, error: "" + error });
+                Mutations.SetList.commit(commit, ResourceStatus.error(error));
             }
         };
     }
@@ -113,17 +113,13 @@ class AddAdvice implements PrivateActions.AddAdvice.Implementator {
     public getAction(): PrivateActions.AddAdvice.Declaration {
         return async ({ commit, dispatch, state }, payload: PendingAdvice) => {
             try {
-                Mutations.SetAddOpState.commit(commit, { loading: true, error: "", result: { log: "", adviceId: "" } });
+                Mutations.SetAddOpState.commit(commit, ResourceStatus.loading());
                 const result = await new AddAdviceAdapter().addAdvice(payload);
-                Mutations.SetAddOpState.commit(commit, { loading: false, error: "", result });
+                Mutations.SetAddOpState.commit(commit, ResourceStatus.success(result));
                 Me.Actions.ReloadList.dispatch(dispatch);
             } catch (error) {
                 console.error(error);
-                Mutations.SetAddOpState.commit(commit, {
-                    loading: false,
-                    error: "" + error,
-                    result: { log: "", adviceId: "" },
-                });
+                Mutations.SetAddOpState.commit(commit, ResourceStatus.error(error));
             }
         };
     }
