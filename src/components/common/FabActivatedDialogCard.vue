@@ -43,7 +43,7 @@
             },
             emitCloseDialog() {
                 this.$emit("closeDialog");
-            }
+            },
         },
     });
 </script>
