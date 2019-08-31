@@ -13,6 +13,7 @@ export const visualConfig = {
     source: {
         url: "https://github.com/jblew/amerykahospital-personalizedadvice",
     },
+    locale: "PL",
     /*colors: {
         primary: "#00885B",
         secondary: "#D20738",
