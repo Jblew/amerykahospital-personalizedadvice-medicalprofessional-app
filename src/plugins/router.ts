@@ -1,15 +1,16 @@
-import Vue from "vue";
+import { Configuration } from "@/config/Configuration";
+import { routes } from "@/config/routes";
+import AdviceListView from "@/features/advice/views/AdviceListView.vue";
+import SendAdviceView from "@/features/advice/views/SendAdviceView.vue";
+import { RoleGuardFactory } from "@/features/auth/hoc/RoleGuardFactory";
+import ChatView from "@/features/discussion/views/DiscussionView.vue";
+import MedicalProfessionalView from "@/features/medicalprofessional/views/MedicalProfessionalView.vue";
+import vue from "vue";
+import router from "vue-router";
 import Router from "vue-router";
 import { CombinedVueInstance } from "vue/types/vue";
 
-import { Configuration } from "../config/Configuration";
-import { routes } from "../config/routes";
-import AdviceListView from "../features/advice/views/AdviceListView.vue";
-import SendAdvice from "../features/advice/views/SendAdviceView.vue";
-import { RoleGuardFactory } from "../features/auth/hoc/RoleGuardFactory";
-import Chat from "../features/discussion/views/DiscussionView.vue";
-
-Vue.use(Router);
+vue.use(router);
 
 export default () => {
     function mapRoute(
@@ -23,8 +24,9 @@ export default () => {
         base: Configuration.get().basePath,
         routes: [
             mapRoute(routes.list, AdviceListView),
-            mapRoute(routes.sendAdvice, SendAdvice),
-            mapRoute(routes.discussion, Chat),
+            mapRoute(routes.sendAdvice, SendAdviceView),
+            mapRoute(routes.medicalprofessional, MedicalProfessionalView),
+            mapRoute(routes.discussion, ChatView),
         ],
     });
 };
