@@ -42,18 +42,16 @@ class AddAdviceAndSendSMS implements Me.Actions.AddAdviceAndSendSMS.Implementato
 class SendSMS implements Me.Actions.SendSMS.Implementator {
     public getAction(): Me.Actions.SendSMS.Declaration {
         return async ({ commit, dispatch, state }, payload?: { adviceId: string }) => {
-            try {
                 const adviceId = payload ? payload.adviceId : state.addOp.result ? state.addOp.result.adviceId : "";
                 if (!adviceId) throw new Error("Advice must be specified");
 
-                Mutations.SetSendSMSOpState.commit(commit, ResourceStatus.loading());
-                const result = await new SendSMSAdapter().sendSMS({ adviceId });
-                Mutations.SetSendSMSOpState.commit(commit, ResourceStatus.success({ message: result.message }));
+                await ResourceStatus.fetchResource(
+                    async () => await new SendSMSAdapter().sendSMS({ adviceId }),
+                    status => Mutations.SetSendSMSOpState.commit(commit, status),
+                );
+
                 Me.Actions.ReloadList.dispatch(dispatch);
-            } catch (error) {
-                console.error(error);
-                Mutations.SetSendSMSOpState.commit(commit, ResourceStatus.error(error));
-            }
+
         };
     }
 }
@@ -93,14 +91,11 @@ class ReloadList implements Me.Actions.ReloadList.Implementator {
         return async ({ commit, dispatch, state }) => {
             if (state.list.loading) return;
 
-            try {
-                Mutations.SetList.commit(commit, ResourceStatus.loading());
-                const adviceRepository = AdviceRepositoryFactory.make(firebase.firestore());
-                const loadedList = await adviceRepository.fetchAdvices(state.filter);
-                Mutations.SetList.commit(commit, ResourceStatus.success(loadedList));
-            } catch (error) {
-                Mutations.SetList.commit(commit, ResourceStatus.error(error));
-            }
+            const adviceRepository = AdviceRepositoryFactory.make(firebase.firestore());
+            await ResourceStatus.fetchResource(
+                async () => await adviceRepository.fetchAdvices(state.filter),
+                status => Mutations.SetList.commit(commit, status),
+            );
         };
     }
 }
@@ -112,15 +107,11 @@ class ReloadList implements Me.Actions.ReloadList.Implementator {
 class AddAdvice implements PrivateActions.AddAdvice.Implementator {
     public getAction(): PrivateActions.AddAdvice.Declaration {
         return async ({ commit, dispatch, state }, payload: PendingAdvice) => {
-            try {
-                Mutations.SetAddOpState.commit(commit, ResourceStatus.loading());
-                const result = await new AddAdviceAdapter().addAdvice(payload);
-                Mutations.SetAddOpState.commit(commit, ResourceStatus.success(result));
-                Me.Actions.ReloadList.dispatch(dispatch);
-            } catch (error) {
-                console.error(error);
-                Mutations.SetAddOpState.commit(commit, ResourceStatus.error(error));
-            }
+            await ResourceStatus.fetchResource(
+                async () => await new AddAdviceAdapter().addAdvice(payload),
+                status => Mutations.SetAddOpState.commit(commit, status),
+            );
+            Me.Actions.ReloadList.dispatch(dispatch);
         };
     }
 }

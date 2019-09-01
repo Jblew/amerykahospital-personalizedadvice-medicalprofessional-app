@@ -136,11 +136,13 @@ export namespace AdviceModule {
      */
     export interface SendSMSOpResult {
         message: string;
+        sentSMSId: string;
     }
 
     export namespace SendSMSOpResult {
         export function validate(o: SendSMSOpResult) {
             ow(o.message, "SendSMSOpResult.message", ow.string);
+            ow(o.sentSMSId, "SendSMSOpResult.sentSMSId", ow.string);
         }
     }
 
