@@ -70,4 +70,18 @@ export namespace ResourceStatus {
 
         ow(r.error, `${baseLabel}.error`, errorTypeValidator);
     }
+
+    export async function fetchResource<RESULT_TYPE extends object>(
+        fetcherFn: () => Promise<RESULT_TYPE>, updateStateCb: (status: ResourceStatus<RESULT_TYPE>) => void
+    ) {
+        try {
+            updateStateCb(loading());
+            const result = await fetcherFn();
+            updateStateCb(success(result));
+        } catch (err) {
+            // tslint:disable no-console
+            console.error(error);
+            updateStateCb(error(err));
+        }
+    }
 }
