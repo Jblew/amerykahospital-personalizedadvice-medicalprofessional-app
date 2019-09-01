@@ -84,4 +84,10 @@ export namespace ResourceStatus {
             updateStateCb(error(err));
         }
     }
+
+    export function ensureResult<RESULT_TYPE extends object>(
+        rs: ResourceStatus<RESULT_TYPE>, name: string = "",
+    ): RESULT_TYPE {
+        throw new Error(`ResourceStatus.ensureResult: resource ${name ? name + " " : ""}is not loaded`);
+    }
 }
