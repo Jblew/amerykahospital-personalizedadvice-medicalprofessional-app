@@ -1,5 +1,10 @@
 // tslint:disable:max-classes-per-file
 
+import { AdviceModule } from "@/features/advice/store/AdviceModule";
+import { AdviceModuleImpl } from "@/features/advice/store/AdviceModuleImpl";
+import { AuthModuleConstructor } from "@/features/auth/store/AuthModuleConstructor";
+import { MedicalProfessionalModule } from "@/features/medicalprofessional/store/MedicalProfessionalModule";
+import { constructMedicalProfessionalModule } from "@/features/medicalprofessional/store/MedicalProfessionalModuleImpl";
 import { RoleKey } from "amerykahospital-personalizedadvice-businesslogic";
 import * as firebase from "firebase/app";
 import { AccountRecord } from "firestore-roles";
@@ -8,10 +13,6 @@ import Vue from "vue";
 import Vuex, { ActionHandler, Store as VuexStore } from "vuex";
 import { ModuleTree } from "vuex";
 import { NotificationsModule, NotificationsModuleImpl } from "vuex-notifications-module";
-
-import { AdviceModule } from "../features/advice/store/AdviceModule";
-import { AdviceModuleImpl } from "../features/advice/store/AdviceModuleImpl";
-import { AuthModuleConstructor } from "../features/auth/store/AuthModuleConstructor";
 
 import { RootStore } from "./root/RootStore";
 import { RootStoreImpl } from "./root/RootStoreImpl";
@@ -63,10 +64,11 @@ export namespace StoreImpl {
             [RolesAuthModule.modulePathName]: constructAuthModule(),
             [NotificationsModule.modulePathName]: NotificationsModuleImpl.module,
             [AdviceModule.modulePathName]: AdviceModuleImpl.module,
+            [MedicalProfessionalModule.modulePathName]: constructMedicalProfessionalModule(firebase.firestore()),
         };
 
         const store = new Vuex.Store<RootStore.State>({
-            strict: window.location.hostname === "localhost" ? true : false,
+            strict: window.location.hostname === "localhost",
             ...RootStoreImpl.constructRootStore(initializer),
             modules,
         });

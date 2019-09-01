@@ -1,5 +1,6 @@
 // tslint:disable:max-classes-per-file
 
+import { MedicalProfessionalModule } from "@/features/medicalprofessional/store/MedicalProfessionalModule";
 import { RolesAuthModule } from "firestore-roles-vuex-module";
 import Vue from "vue";
 import { CombinedVueInstance } from "vue/types/vue";
@@ -25,12 +26,14 @@ export namespace Store {
         [NotificationsModule.modulePathName]: Module<NotificationsModule.State, RootStore.State>;
         [RolesAuthModule.modulePathName]: Module<RolesAuthModule.State, RootStore.State>;
         [AdviceModule.modulePathName]: Module<AdviceModule.State, RootStore.State>;
+        [MedicalProfessionalModule.modulePathName]: Module<MedicalProfessionalModule.State, RootStore.State>;
     }
 
     export type State = {
         [RolesAuthModule.modulePathName]: RolesAuthModule.State;
         [NotificationsModule.modulePathName]: NotificationsModule.State;
-        [AdviceModule.modulePathName]: Module<AdviceModule.State, RootStore.State>;
+        [AdviceModule.modulePathName]: AdviceModule.State;
+        [MedicalProfessionalModule.modulePathName]: MedicalProfessionalModule.State;
     } & RootStore.State;
 
     /**
