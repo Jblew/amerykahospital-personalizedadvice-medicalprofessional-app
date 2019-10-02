@@ -90,8 +90,7 @@ export default Vue.extend({
                 this.requestState.success = false;
 
                 this.scheduleCheckRole();
-            }
-            catch (error) {
+            } catch (error) {
                 console.error("Error in RoleGuardComponent.checkRole", error);
             }
         },
@@ -105,8 +104,7 @@ export default Vue.extend({
 
                 if (timerHandle) clearTimeout(timerHandle);
                 timerHandle = setTimeout(() => this.checkRole(), timeoutMs);
-            }
-            catch (error) {
+            } catch (error) {
                 console.error("Error in RoleGuardComponent.scheduleCheckRole", error);
             }
         },
