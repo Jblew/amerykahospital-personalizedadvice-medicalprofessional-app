@@ -1,6 +1,6 @@
 // tslint:disable:max-classes-per-file
 
-import { dispatcher, GenericDeclaration, moduleActionRegistratorFactory } from "@/util/action_utils";
+import { moduleActionRegistratorFactory } from "@/util/action_utils";
 import { ResourceStatus } from "@/util/ResourceStatus";
 import {
     MedicalProfessional, PendingMedicalProfessional,

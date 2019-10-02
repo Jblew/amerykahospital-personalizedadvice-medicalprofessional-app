@@ -1,7 +1,6 @@
 import { moduleMutationFactory } from "@/util/mutation_utils";
 import { ResourceStatus } from "@/util/ResourceStatus";
 import {
-    Advice,
     MedicalProfessional,
     PendingMedicalProfessional,
 } from "amerykahospital-personalizedadvice-businesslogic";

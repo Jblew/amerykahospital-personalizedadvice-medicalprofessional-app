@@ -1,4 +1,5 @@
 import { ResourceStatus } from "@/util/ResourceStatus";
+
 import { AdviceModule as Me } from "./AdviceModule";
 
 export const state: Me.State = {

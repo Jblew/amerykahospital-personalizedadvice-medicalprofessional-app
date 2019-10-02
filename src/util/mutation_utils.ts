@@ -1,4 +1,3 @@
-import { MedicalProfessionalModule as Me } from "@/features/medicalprofessional/store/MedicalProfessionalModule";
 import { Commit, Mutation as VuexMutation, MutationTree } from "vuex";
 
 type MutationFn<STATE_TYPE> = VuexMutation<STATE_TYPE>;

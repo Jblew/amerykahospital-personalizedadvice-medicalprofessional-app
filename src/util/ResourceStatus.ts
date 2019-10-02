@@ -72,7 +72,7 @@ export namespace ResourceStatus {
     }
 
     export async function fetchResource<RESULT_TYPE extends object>(
-        fetcherFn: () => Promise<RESULT_TYPE>, updateStateCb: (status: ResourceStatus<RESULT_TYPE>) => void
+        fetcherFn: () => Promise<RESULT_TYPE>, updateStateCb: (status: ResourceStatus<RESULT_TYPE>) => void,
     ) {
         try {
             updateStateCb(loading());
