@@ -14,39 +14,38 @@
 </template>
 
 <script lang="ts">
-    import { visualConfig } from "@/global";
-    import { ResourceStatus } from "@/util/ResourceStatus";
-    import Vue from "vue";
+import { visualConfig } from "@/global";
+import { ResourceStatus } from "@/util/ResourceStatus";
+import Vue from "vue";
 
-    import AugmentedErrorComponent from "./AugmentedErrorComponent.vue";
+import AugmentedErrorComponent from "./AugmentedErrorComponent.vue";
 
-    export default Vue.extend({
-        props: {
-            resource: () => ({} as ResourceStatus<any>),
-            successText: {
-                type: String,
-                default: "",
-            },
+export default Vue.extend({
+    props: {
+        resource: Object as ResourceStatus<any>,
+        successText: {
+            type: String,
+            default: "",
         },
-        data() {
-            return {
-                locale: visualConfig.locale,
-            };
+    },
+    data() {
+        return {
+            locale: visualConfig.locale,
+        };
+    },
+    computed: {
+        success(): boolean {
+            return !!this.successText && ResourceStatus.isSuccess(this.resource);
         },
-        computed: {
-            success(): boolean {
-                  return !!this.successText && ResourceStatus.isSuccess(this.resource);
-            },
-            hasError(): boolean {
-                return  ResourceStatus.hasError(this.resource);
-            },
-            show(): boolean {
-                return this.resource.loading || this.hasError || this.success;
-            },
-
+        hasError(): boolean {
+            return ResourceStatus.hasError(this.resource);
         },
-        components: {
-            AugmentedErrorComponent,
+        show(): boolean {
+            return this.resource.loading || this.hasError || this.success;
         },
-    });
+    },
+    components: {
+        AugmentedErrorComponent,
+    },
+});
 </script>
