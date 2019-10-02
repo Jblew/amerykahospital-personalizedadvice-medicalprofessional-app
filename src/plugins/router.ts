@@ -3,7 +3,6 @@ import { routes } from "@/config/routes";
 import AdviceListView from "@/features/advice/views/AdviceListView.vue";
 import SendAdviceView from "@/features/advice/views/SendAdviceView.vue";
 import ChatView from "@/features/discussion/views/DiscussionView.vue";
-import MedicalProfessionalView from "@/features/medicalprofessional/views/MedicalProfessionalView.vue";
 import vue from "vue";
 import router from "vue-router";
 import Router from "vue-router";
