@@ -19,6 +19,7 @@
 
 <script lang="ts">
 import { labels } from "@/global";
+import { ResourceStatus } from "@/util/ResourceStatus";
 import { Advice } from "amerykahospital-personalizedadvice-businesslogic";
 import Vue from "vue";
 
@@ -45,17 +46,15 @@ export default Vue.extend({
         };
     },
     computed: {
-        listLoadingState() {
-            return AdviceModule.stateOf(this).listLoadingState;
+        resource(): ResourceStatus<Advice []> {
+            return AdviceModule.stateOf(this).list;
         },
-        loading(): boolean {
-            return this.listLoadingState.loading;
-        },
-        error(): string {
-            return this.listLoadingState.error;
+        showList(): boolean {
+            return !this.resource.loading && !ResourceStatus.hasError(this.resource);
         },
         adviceList(): Advice[] {
-            return AdviceModule.stateOf(this).list.map(item => ({
+            console.log("AdviceList.computed.adviceList");
+            return ResourceStatus.resultOrDefault(this.resource, []).map(item => ({
                 ...item,
                 adviceShort: this.$shorten(item.advice, 80),
             }));
@@ -70,5 +69,3 @@ export default Vue.extend({
     },
 });
 </script>
-<style scoped lang="scss">
-</style>
