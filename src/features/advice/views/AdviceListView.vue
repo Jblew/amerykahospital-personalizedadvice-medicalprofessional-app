@@ -18,8 +18,14 @@ import Vue from "vue";
 import AddAdviceFab from "../components/advice-list/AddAdviceFab.vue";
 import AdviceListFilterForm from "../components/advice-list/AdviceListFilterForm.vue";
 import AdviceListPanel from "../components/advice-list/AdviceListPanel.vue";
+import { RoleKey } from "amerykahospital-personalizedadvice-businesslogic";
 
 export default Vue.extend({
+    data() {
+        return {
+            role: RoleKey.medicalprofessional,
+        };
+    },
     computed: {
         listResource() {
             return ResourceStatus.lightweight(AdviceModule.stateOf(this).list);

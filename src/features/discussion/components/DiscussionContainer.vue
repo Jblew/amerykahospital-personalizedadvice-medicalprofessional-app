@@ -1,17 +1,16 @@
 <template>
     <v-container fluid>
         <v-row class="conversation-row">
-            <v-col cols="10" md="9" sm="8" class="bordered">
+            <v-col cols="12">
                 <div v-for="msg in channelMessagesSorted" :key="msg.id">
                     <strong>{{ msg.fromName }}</strong>
                     {{ msg.message }}
                     <i>{{ new Date(msg.timestampMs).toTimeString() }}</i>
                 </div>
             </v-col>
-            <v-col cols="2" md="3" sm="4" class="bordered">List of channels and users</v-col>
         </v-row>
         <v-row>
-            <v-col cols="10" md="9" sm="8" class="bordered">
+            <v-col cols="10" md="9" sm="8">
                 <v-text-field
                     label="Filled"
                     placeholder="Placeholder"
@@ -25,7 +24,7 @@
 </template>
 
 <script lang="ts">
-// tslint:disable
+// tslint:disable no-console
 
 import { ChatMessage, ChatRepository, PendingChatMessage } from "amerykahospital-personalizedadvice-businesslogic";
 import { ChatRepositoryFactory } from "amerykahospital-personalizedadvice-db";
@@ -123,9 +122,6 @@ export default Vue.extend({
 });
 </script>
 <style scoped lang="scss">
-.bordered {
-    border: 1px solid red;
-}
 .conversation-row {
     min-height: 30rem;
 }

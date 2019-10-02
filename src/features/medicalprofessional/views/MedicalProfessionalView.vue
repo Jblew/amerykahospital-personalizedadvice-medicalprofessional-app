@@ -21,6 +21,7 @@ import { ResourceStatus } from "@/util/ResourceStatus";
 import { RoleGuardComponent } from "@/features/auth";
 
 import Vue from "vue";
+import { RoleKey } from "amerykahospital-personalizedadvice-businesslogic";
 
 export default Vue.extend({
     data() {
@@ -40,6 +41,7 @@ export default Vue.extend({
     },
     components: {
         MedicalProfessionalList,
+        RoleGuardComponent,
     },
 });
 </script>

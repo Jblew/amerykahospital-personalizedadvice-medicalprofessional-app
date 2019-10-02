@@ -1,1 +1,1 @@
-export { default as RoleGuardComponent } from "./components/RoleGuardomponent.vue";
+export { default as RoleGuardComponent } from "./components/RoleGuardComponent.vue";

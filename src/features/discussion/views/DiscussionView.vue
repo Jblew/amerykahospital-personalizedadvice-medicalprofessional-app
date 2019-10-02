@@ -19,7 +19,7 @@ export default Vue.extend({
     },
     beforeRouteEnter(to, from, next) {
         next(vm => {
-            (this.$refs.discussionContainer as any).initializeChat();
+            (vm.$refs.discussionContainer as any).initializeChat();
         });
     },
     beforeRouteLeave(to, from, next) {

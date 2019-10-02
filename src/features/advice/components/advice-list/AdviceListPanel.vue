@@ -2,7 +2,6 @@
     <v-layout wrap class="advice-list-panel">
         <v-flex xs12>
             <v-data-table
-                v-if="!loading && !error"
                 :headers="headers"
                 :items="adviceList"
                 :items-per-page="10"
@@ -46,14 +45,13 @@ export default Vue.extend({
         };
     },
     computed: {
-        resource(): ResourceStatus<Advice []> {
+        resource(): ResourceStatus<Advice[]> {
             return AdviceModule.stateOf(this).list;
         },
         showList(): boolean {
             return !this.resource.loading && !ResourceStatus.hasError(this.resource);
         },
         adviceList(): Advice[] {
-            console.log("AdviceList.computed.adviceList");
             return ResourceStatus.resultOrDefault(this.resource, []).map(item => ({
                 ...item,
                 adviceShort: this.$shorten(item.advice, 80),
