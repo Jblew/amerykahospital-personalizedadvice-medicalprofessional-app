@@ -2,7 +2,7 @@
     <v-container flex class="advicelist">
         <advice-list-filter-form class="mb-3" />
 
-        <advice-list-loading-state class="my-3" />
+        <augmented-status-component :resource="listResource" class="my-3" />
 
         <advice-list-panel class="my-3" />
 
@@ -11,19 +11,24 @@
 </template>
 
 <script lang="ts">
+import { AdviceModule } from "../store/AdviceModule";
+import { ResourceStatus } from "@/util/ResourceStatus";
 import Vue from "vue";
 
 import AddAdviceFab from "../components/advice-list/AddAdviceFab.vue";
 import AdviceListFilterForm from "../components/advice-list/AdviceListFilterForm.vue";
-import AdviceListLoadingState from "../components/advice-list/AdviceListLoadingState.vue";
 import AdviceListPanel from "../components/advice-list/AdviceListPanel.vue";
 
 export default Vue.extend({
+    computed: {
+        listResource() {
+            return ResourceStatus.lightweight(AdviceModule.stateOf(this).list);
+        },
+    },
     components: {
         AdviceListPanel,
         AddAdviceFab,
         AdviceListFilterForm,
-        AdviceListLoadingState,
     },
 });
 </script>

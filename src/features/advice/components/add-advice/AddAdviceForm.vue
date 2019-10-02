@@ -44,6 +44,7 @@
 
 <script lang="ts">
 import { labels } from "@/global";
+import { ResourceStatus } from "@/util/ResourceStatus";
 import { PendingAdvice } from "amerykahospital-personalizedadvice-businesslogic";
 import Vue from "vue";
 
@@ -86,7 +87,9 @@ export default Vue.extend({
     },
     computed: {
         adviceId(): string {
-            const loadedId = AdviceModule.stateOf(this).addOp.result.adviceId;
+            const loadedId = ResourceStatus.resultOrDefault(
+                AdviceModule.stateOf(this).addOp, { adviceId: "" },
+            ).adviceId;
             return loadedId || labels.idWillBeVisibleAfterAdd;
         },
     },

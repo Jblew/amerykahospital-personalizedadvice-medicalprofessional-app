@@ -43,6 +43,7 @@ export default Vue.extend({
     },
     computed: {
         hasRole(): boolean {
+            console.log("hasRole called");
             const role: string = this.role as any;
             return (
                 RolesAuthModule.stateOf(this).state === RolesAuthModule.AuthState.AUTHENTICATED &&
@@ -84,20 +85,30 @@ export default Vue.extend({
             })();
         },
         checkRole() {
-            RolesAuthModule.Actions.CheckRole.dispatch(this.$store.dispatch, this.role as string);
-            this.requestState.success = false;
+            try {
+                RolesAuthModule.Actions.CheckRole.dispatch(this.$store.dispatch, this.role as string);
+                this.requestState.success = false;
 
-            this.scheduleCheckRole();
+                this.scheduleCheckRole();
+            }
+            catch (error) {
+                console.error("Error in RoleGuardComponent.checkRole", error);
+            }
         },
         scheduleCheckRole() {
-            const timeoutMs =
-                1000 *
-                (this.hasRole
-                    ? AuthConfig.ROLE_CHECKING_FREQUENCY_SECONDS.whenHasRole
-                    : AuthConfig.ROLE_CHECKING_FREQUENCY_SECONDS.whenDoesNotHaveRole);
+            try {
+                const timeoutMs =
+                    1000 *
+                    (this.hasRole
+                        ? AuthConfig.ROLE_CHECKING_FREQUENCY_SECONDS.whenHasRole
+                        : AuthConfig.ROLE_CHECKING_FREQUENCY_SECONDS.whenDoesNotHaveRole);
 
-            if (timerHandle) clearTimeout(timerHandle);
-            timerHandle = setTimeout(() => this.checkRole(), timeoutMs);
+                if (timerHandle) clearTimeout(timerHandle);
+                timerHandle = setTimeout(() => this.checkRole(), timeoutMs);
+            }
+            catch (error) {
+                console.error("Error in RoleGuardComponent.scheduleCheckRole", error);
+            }
         },
     },
     components: {

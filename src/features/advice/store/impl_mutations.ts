@@ -8,7 +8,7 @@ import { Mutations } from "./Mutations";
 
 export function constructMutations(): MutationTree<Me.State> {
     const setAddOpState: Mutations.SetAddOpState.Declaration = (
-        state: Me.State, payload: ResourceStatus<Me.AddOpResult>
+        state: Me.State, payload: ResourceStatus<Me.AddOpResult>,
     ) => {
         ResourceStatus.validate(payload, "Mutations.SetAddOpState.payload", Me.AddOpResult.validate);
 

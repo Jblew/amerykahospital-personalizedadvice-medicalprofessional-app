@@ -1,26 +1,33 @@
 <template>
     <v-container flex>
-        <!--<medicalprofessional-loading-state class="my-3" />
+        <augmented-status-component :resource="listResource" class="my-3" />
 
-        <medicalprofessional-list-panel class="my-3" />-->
+        <medical-professional-list />
 
         <fab-activated-dialog-card :max-width="600" tooltip="Dodaj lekarza" dialog-title="Dodaj lekarza">
-            <v-card-text>
                 Inside card
-            </v-card-text>
         </fab-activated-dialog-card>
     </v-container>
 </template>
 
 <script lang="ts">
+import { MedicalProfessionalModule } from "@/features/medicalprofessional/store/MedicalProfessionalModule";
+import MedicalProfessionalList from "../components/MedicalProfessionalList.vue";
+import { ResourceStatus } from "@/util/ResourceStatus";
 import Vue from "vue";
 
 export default Vue.extend({
+    beforeRouteEnter() {
+        console.log("Call MedicalProfessionalModule.Actions.LoadList.dispatch");
+        MedicalProfessionalModule.Actions.LoadList.dispatch(this);
+    },
     computed: {
-
+        listResource() {
+            return ResourceStatus.lightweight(MedicalProfessionalModule.stateOf(this).list);
+        },
+    },
+    components: {
+        MedicalProfessionalList,
     },
 });
 </script>
-<style scoped lang="scss">
-
-</style>

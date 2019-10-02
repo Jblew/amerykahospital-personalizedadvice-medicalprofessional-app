@@ -16,15 +16,17 @@
 <script lang="ts">
     import { visualConfig } from "@/global";
     import { ResourceStatus } from "@/util/ResourceStatus";
-    import { AugmentedLocalizedError } from "localized-error";
     import Vue from "vue";
 
     import AugmentedErrorComponent from "./AugmentedErrorComponent.vue";
 
     export default Vue.extend({
         props: {
-            resource: () => ResourceStatus,
-            successText: String,
+            resource: () => ({} as ResourceStatus<any>),
+            successText: {
+                type: String,
+                default: "",
+            },
         },
         data() {
             return {

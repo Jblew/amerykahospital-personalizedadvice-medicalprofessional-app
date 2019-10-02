@@ -55,6 +55,7 @@ export default Vue.extend({
         };
     },
     beforeRouteEnter(to, from, next) {
+        console.log("DiscussionView.beforeRouteEnter");
         next(vm => {
             (vm as any).initializeChat();
         });

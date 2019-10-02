@@ -12,6 +12,7 @@ export namespace ResourceStatus {
     const errorTypeValidator = ow.any(ow.string, ow.object.instanceOf(Error), ow.object.hasKeys("details"));
     export const NO_ERROR: ErrorType = "";
     export const RESULT_NO_SUCCESS = "";
+    export const RESULT_SUCCESS_PLACEHOLDER = "success";
 
     export function empty<RESULT_TYPE extends object>(): ResourceStatus<RESULT_TYPE> {
         return { loading: false, error: NO_ERROR, result: RESULT_NO_SUCCESS };
@@ -72,7 +73,7 @@ export namespace ResourceStatus {
     }
 
     export async function fetchResource<RESULT_TYPE extends object>(
-        fetcherFn: () => Promise<RESULT_TYPE>, updateStateCb: (status: ResourceStatus<RESULT_TYPE>) => void
+        fetcherFn: () => Promise<RESULT_TYPE>, updateStateCb: (status: ResourceStatus<RESULT_TYPE>) => void,
     ) {
         try {
             updateStateCb(loading());
@@ -88,6 +89,20 @@ export namespace ResourceStatus {
     export function ensureResult<RESULT_TYPE extends object>(
         rs: ResourceStatus<RESULT_TYPE>, name: string = "",
     ): RESULT_TYPE {
-        throw new Error(`ResourceStatus.ensureResult: resource ${name ? name + " " : ""}is not loaded`);
+        if (ResourceStatus.isSuccess(rs)) return rs.result as RESULT_TYPE;
+        else throw new Error(`ResourceStatus.ensureResult: resource ${name ? name + " " : ""}is not loaded`);
+    }
+
+    export function resultOrDefault<RESULT_TYPE extends object>(
+        rs: ResourceStatus<RESULT_TYPE>, defaultV: RESULT_TYPE,
+    ): RESULT_TYPE {
+        if (ResourceStatus.isSuccess(rs)) return rs.result as RESULT_TYPE;
+        else return defaultV;
+    }
+
+    export function lightweight(rs: ResourceStatus<any>):
+        Omit<ResourceStatus<any>, "result"> & { result: typeof RESULT_SUCCESS_PLACEHOLDER } {
+        const { result, ...rsWithoutResult } = rs;
+        return { ...rsWithoutResult, result: RESULT_SUCCESS_PLACEHOLDER };
     }
 }

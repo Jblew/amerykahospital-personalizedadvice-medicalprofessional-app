@@ -1,4 +1,3 @@
-import { MedicalProfessionalModule as Me } from "@/features/medicalprofessional/store/MedicalProfessionalModule";
 import { Commit, Mutation as VuexMutation, MutationTree } from "vuex";
 
 type MutationFn<STATE_TYPE> = VuexMutation<STATE_TYPE>;
@@ -25,7 +24,8 @@ export function moduleMutationFactory<STATE_TYPE>(
     return <PAYLOAD_TYPE>(mutationName: string) => {
         return (setterFn: MutationSetterFn<PAYLOAD_TYPE, STATE_TYPE>): CommiterFn<PAYLOAD_TYPE> => {
             const name = `${moduleName}_${mutationName}`;
-            const mutation: GenericDeclaration<PAYLOAD_TYPE, STATE_TYPE> = (state: STATE_TYPE, payload: PAYLOAD_TYPE) => {
+            const mutation: GenericDeclaration<PAYLOAD_TYPE, STATE_TYPE>
+                = (state: STATE_TYPE, payload: PAYLOAD_TYPE) => {
                 setterFn({ state, payload });
                 stateValidator(state);
             };
