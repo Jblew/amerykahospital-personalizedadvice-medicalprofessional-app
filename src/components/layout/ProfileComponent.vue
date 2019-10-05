@@ -1,29 +1,31 @@
 <template>
-  <div v-if="authenticated">
-    <v-toolbar flat class="transparent">
-      <v-list class="pa-0 pb-0 mb-0">
-        <v-list-item avatar>
-          <v-list-item-avatar>
-            <img :src="photoUrl" v-if="photoUrl.length > 0" />
-            <v-icon v-else>person</v-icon>
-          </v-list-item-avatar>
+    <div v-if="authenticated">
+        <v-toolbar flat class="transparent">
+            <v-list class="pa-0 pb-0 mb-0">
+                <v-list-item>
+                    <v-list-item-avatar>
+                        <img :src="photoUrl" v-if="photoUrl.length > 0" />
+                        <v-avatar v-else color="teal" size="48">
+                            <span class="white--text headline">{{ name | firstLetter }}</span>
+                        </v-avatar>
+                    </v-list-item-avatar>
 
-          <v-list-item-content>
-            <v-list-item-title>{{ name }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-toolbar>
-    <v-toolbar flat class="transparent">
-      <v-list class="pa-0">
-        <v-list-item>
-          <v-list-item-content>
-            <v-btn small @click="signOut()">{{ text.signOut }}</v-btn>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-toolbar>
-  </div>
+                    <v-list-item-content>
+                        <v-list-item-title>{{ name }}</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+            </v-list>
+        </v-toolbar>
+        <v-toolbar flat class="transparent">
+            <v-list class="pa-0">
+                <v-list-item>
+                    <v-list-item-content>
+                        <v-btn small @click="signOut()">{{ text.signOut }}</v-btn>
+                    </v-list-item-content>
+                </v-list-item>
+            </v-list>
+        </v-toolbar>
+    </div>
 </template>
 
 <script lang="ts">
@@ -58,6 +60,11 @@ export default Vue.extend({
     methods: {
         signOut() {
             RolesAuthModule.Actions.Logout.dispatch(this.$store.dispatch);
+        },
+    },
+    filters: {
+        firstLetter(text: string) {
+            return text.slice(0, 1);
         },
     },
 });
