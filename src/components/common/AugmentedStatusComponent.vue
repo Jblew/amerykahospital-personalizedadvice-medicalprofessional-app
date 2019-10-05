@@ -22,7 +22,7 @@ import AugmentedErrorComponent from "./AugmentedErrorComponent.vue";
 
 export default Vue.extend({
     props: {
-        resource: Object as ResourceStatus<any>,
+        resource: Object as () => ResourceStatus<any>,
         successText: {
             type: String,
             default: "",
