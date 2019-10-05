@@ -19,11 +19,13 @@ export default Vue.extend({
     },
     beforeRouteEnter(to, from, next) {
         next(vm => {
-            (vm.$refs.discussionContainer as any).initializeChat();
+            const discussionContainer: any = vm.$refs.discussionContainer;
+            if (discussionContainer) discussionContainer.initializeChat();
         });
     },
     beforeRouteLeave(to, from, next) {
-        (this.$refs.discussionContainer as any).teardownChat();
+        const discussionContainer: any = this.$refs.discussionContainer;
+        if (discussionContainer) discussionContainer.teardownChat();
         next();
     },
     components: {
