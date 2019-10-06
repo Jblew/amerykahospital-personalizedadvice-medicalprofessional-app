@@ -19,8 +19,8 @@
   ],
   "main": "dist/ahpa-medicalprofessional-app.common.js",
   "dependencies": {
-    "amerykahospital-personalizedadvice-businesslogic": "^5.1.1",
-    "amerykahospital-personalizedadvice-db": "^1.4.0",
+    "amerykahospital-personalizedadvice-businesslogic": "^5.5.1",
+    "amerykahospital-personalizedadvice-db": "^1.6.0",
     "firebase": "^6.3.5",
     "firebaseui": "^4.1.0",
     "firestore-roles-vuex-module": "^2.5.0",

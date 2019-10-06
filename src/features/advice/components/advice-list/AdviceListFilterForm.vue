@@ -4,15 +4,7 @@
             <v-form>
                 <v-container fill-height>
                     <v-layout align-center>
-                        <v-flex xs12 md3 lg4 class="mx-2">
-                            <v-text-field
-                                v-model="medicalprofessionalName"
-                                valid="true"
-                                :label="text.medicalprofessionalName"
-                            ></v-text-field>
-                        </v-flex>
-
-                        <v-flex xs12 md3 lg3 class="mx-2">
+                        <v-flex xs12 md5 lg5 class="mx-2">
                             <v-text-field
                                 v-model="patientName"
                                 valid="true"
@@ -20,7 +12,7 @@
                             ></v-text-field>
                         </v-flex>
 
-                        <v-flex xs12 md3 lg3 class="mx-2">
+                        <v-flex xs12 md4 lg4 class="mx-2">
                             <v-text-field
                                 v-model="parentPhoneNumber"
                                 valid="true"
@@ -52,13 +44,11 @@ export default Vue.extend({
     data() {
         return {
             text: {
-                medicalprofessionalName: labels.professionalName,
                 patientName: labels.patientName,
                 parentPhoneNumber: labels.parentPhoneNumber,
                 searchAdvice: labels.searchAdvice,
                 showAll: labels.showAll,
             },
-            medicalprofessionalName: "",
             patientName: "",
             parentPhoneNumber: "",
         };
@@ -67,15 +57,12 @@ export default Vue.extend({
     methods: {
         filterAdvices() {
             const filter = {
-                medicalprofessionalName:
-                    this.medicalprofessionalName.length > 0 ? this.medicalprofessionalName : undefined,
                 patientName: this.patientName.length > 0 ? this.patientName : undefined,
                 parentPhoneNumber: this.parentPhoneNumber.length > 0 ? this.parentPhoneNumber : undefined,
             };
             AdviceModule.Actions.UpdateQueryFilterAndReloadList.dispatch(this.$store.dispatch, filter);
         },
         resetFilters() {
-            this.medicalprofessionalName = "";
             this.patientName = "";
             this.parentPhoneNumber = "";
             this.filterAdvices();

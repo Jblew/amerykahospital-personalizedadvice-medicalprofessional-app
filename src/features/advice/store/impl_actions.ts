@@ -12,6 +12,7 @@ import { NotificationsModule } from "vuex-notifications-module";
 import { AdviceModule as Me } from "./AdviceModule";
 import { Mutations } from "./Mutations";
 import { PrivateActions } from "./PrivateActions";
+import { RolesAuthModule } from "firestore-roles-vuex-module";
 
 /**
  *
@@ -88,16 +89,24 @@ class UpdateQueryFilterAndReloadList implements Me.Actions.UpdateQueryFilterAndR
  */
 class ReloadList implements Me.Actions.ReloadList.Implementator {
     public getAction(): Me.Actions.ReloadList.Declaration {
-        return async ({ commit, dispatch, state }) => {
+        return async ({ commit, dispatch, state, rootState }) => {
             if (state.list.loading) return;
+
+            const filter: AdviceRepository.FetchFilter = this.getFilterForCurrentMedicalprofessional(state, rootState);
 
             const adviceRepository = AdviceRepositoryFactory.make(firebase.firestore());
             await ResourceStatus.fetchResource(
                 "AdviceRepository.fetchAdvices",
-                async () => await adviceRepository.fetchAdvices(state.filter),
+                async () => await adviceRepository.fetchAdvices(filter),
                 status => Mutations.SetList.commit(commit, status),
             );
         };
+    }
+
+    private getFilterForCurrentMedicalprofessional(state: Me.State, rootState: any): AdviceRepository.FetchFilter {
+        const currentAccount = (rootState.roles_auth as RolesAuthModule.State).account;
+        if (!currentAccount) throw new Error("User must be logged in to reloadList");
+        return { ...state.filter, authorUid: currentAccount.uid };
     }
 }
 
