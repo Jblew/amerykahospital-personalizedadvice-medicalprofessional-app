@@ -75,10 +75,11 @@ export default Vue.extend({
                 this.requestState.success = false;
                 this.requestState.error = "";
                 try {
+                    console.log("Request role: ", { uid: this.uid, role: this.role });
                     await FirestoreRolesAdapter.getInstance().requestRole(this.uid, this.role as string);
                     this.requestState.success = true;
                 } catch (error) {
-                    console.error(error);
+                    console.error("Error in RoleGuardComponent.requestRole", error);
                     this.requestState.error = error.message;
                 }
                 this.requestState.loading = false;
@@ -86,6 +87,7 @@ export default Vue.extend({
         },
         checkRole() {
             try {
+                console.log("Checking role for ", this.account, this.role);
                 RolesAuthModule.Actions.CheckRole.dispatch(this.$store.dispatch, this.role as string);
                 this.requestState.success = false;
 

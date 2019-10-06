@@ -1,7 +1,8 @@
 import { emptyPendingMedicalProfessional } from "@/features/medicalprofessional/store/emptyPendingMedicalProfessional";
 import { ResourceStatus } from "@/util/ResourceStatus";
 import {
-    MedicalProfessionalRepository, PendingMedicalProfessional,
+    MedicalProfessionalRepository,
+    PendingMedicalProfessional,
 } from "amerykahospital-personalizedadvice-businesslogic";
 import { MedicalProfessionalRepositoryFactory } from "amerykahospital-personalizedadvice-db";
 import * as firebase from "firebase/app";
@@ -22,7 +23,7 @@ export function constructActions(firestore: firebase.firestore.Firestore): Actio
         Mutations.SetCurrent(commit, emptyPendingMedicalProfessional());
     });
 
-    Me.Actions.Edit.register(actionTree, ({ state, commit }, payload ) => {
+    Me.Actions.Edit.register(actionTree, ({ state, commit }, payload) => {
         if (!state.list) throw new Error("List not loaded yet");
         const mpToEdit = ResourceStatus.ensureResult(state.list, "state.list").filter(mp => mp.id === payload.id);
         if (mpToEdit.length === 0) {
@@ -31,19 +32,19 @@ export function constructActions(firestore: firebase.firestore.Firestore): Actio
         Mutations.SetCurrent(commit, mpToEdit[0]);
     });
 
-    Me.Actions.Save.register(actionTree, ({ state, commit, dispatch }, mp ) => {
+    Me.Actions.Save.register(actionTree, ({ state, commit, dispatch }, mp) => {
         PendingMedicalProfessional.validate(mp);
         ResourceStatus.fetchResource(
-            async () => await (
-                "id" in mp ? mpRepository.update(mp) : mpRepository.add(mp)
-            ),
+            "MedicalProfessionalRepository.update or add",
+            async () => await ("id" in mp ? mpRepository.update(mp) : mpRepository.add(mp)),
             status => Mutations.SetSaveState(commit, status),
         );
         Me.Actions.LoadList.dispatch(dispatch);
     });
 
-    Me.Actions.LoadList.register(actionTree, ({ state, commit, dispatch } ) => {
+    Me.Actions.LoadList.register(actionTree, ({ state, commit, dispatch }) => {
         ResourceStatus.fetchResource(
+            "MedicalProfessionalRepository.list",
             async () => await mpRepository.list(),
             status => Mutations.SetList(commit, status),
         );

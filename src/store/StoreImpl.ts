@@ -7,8 +7,7 @@ import { MedicalProfessionalModule } from "@/features/medicalprofessional/store/
 import { constructMedicalProfessionalModule } from "@/features/medicalprofessional/store/MedicalProfessionalModuleImpl";
 import { RoleKey } from "amerykahospital-personalizedadvice-businesslogic";
 import * as firebase from "firebase/app";
-import { AccountRecord } from "firestore-roles";
-import { RolesAuthModule } from "firestore-roles-vuex-module";
+import { RolesAuthModule, Account } from "firestore-roles-vuex-module";
 import Vue from "vue";
 import Vuex, { ActionHandler, Store as VuexStore } from "vuex";
 import { ModuleTree } from "vuex";
@@ -32,7 +31,7 @@ export namespace StoreImpl {
         function constructAuthModule() {
             return AuthModuleConstructor.constructAuthModule(
                 {
-                    onAuthenticated: (account: AccountRecord) => {
+                    onAuthenticated: (account: Account) => {
                         RolesAuthModule.Actions.CheckRole.dispatch(store.dispatch, RoleKey.medicalprofessional);
                     },
                     onNotAuthenticated: () => {

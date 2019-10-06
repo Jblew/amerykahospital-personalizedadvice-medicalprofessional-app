@@ -24,7 +24,7 @@ class AddAdviceAndSendSMS implements Me.Actions.AddAdviceAndSendSMS.Implementato
                 await PrivateActions.AddAdvice.dispatch(dispatch, payload);
                 await Me.Actions.SendSMS.dispatch(dispatch);
             } catch (error) {
-                console.error(error);
+                console.error("AddAdviceAndSendSMS action handler error", error);
                 NotificationsModule.Actions.ShowNotification.dispatch(dispatch, {
                     message: "" + error,
                     timeoutMs: 5000,
@@ -42,16 +42,16 @@ class AddAdviceAndSendSMS implements Me.Actions.AddAdviceAndSendSMS.Implementato
 class SendSMS implements Me.Actions.SendSMS.Implementator {
     public getAction(): Me.Actions.SendSMS.Declaration {
         return async ({ commit, dispatch, state }, payload?: { adviceId: string }) => {
-                const adviceId = payload ? payload.adviceId : state.addOp.result ? state.addOp.result.adviceId : "";
-                if (!adviceId) throw new Error("Advice must be specified");
+            const adviceId = payload ? payload.adviceId : state.addOp.result ? state.addOp.result.adviceId : "";
+            if (!adviceId) throw new Error("Advice must be specified");
 
-                await ResourceStatus.fetchResource(
-                    async () => await new SendSMSAdapter().sendSMS({ adviceId }),
-                    status => Mutations.SetSendSMSOpState.commit(commit, status),
-                );
+            await ResourceStatus.fetchResource(
+                "SendSMSAdapter.sendSMS",
+                async () => await new SendSMSAdapter().sendSMS({ adviceId }),
+                status => Mutations.SetSendSMSOpState.commit(commit, status),
+            );
 
-                Me.Actions.ReloadList.dispatch(dispatch);
-
+            Me.Actions.ReloadList.dispatch(dispatch);
         };
     }
 }
@@ -93,6 +93,7 @@ class ReloadList implements Me.Actions.ReloadList.Implementator {
 
             const adviceRepository = AdviceRepositoryFactory.make(firebase.firestore());
             await ResourceStatus.fetchResource(
+                "AdviceRepository.fetchAdvices",
                 async () => await adviceRepository.fetchAdvices(state.filter),
                 status => Mutations.SetList.commit(commit, status),
             );
@@ -108,6 +109,7 @@ class AddAdvice implements PrivateActions.AddAdvice.Implementator {
     public getAction(): PrivateActions.AddAdvice.Declaration {
         return async ({ commit, dispatch, state }, payload: PendingAdvice) => {
             await ResourceStatus.fetchResource(
+                "AddAdviceAdapter.addAdvice",
                 async () => await new AddAdviceAdapter().addAdvice(payload),
                 status => Mutations.SetAddOpState.commit(commit, status),
             );

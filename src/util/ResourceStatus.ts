@@ -73,6 +73,7 @@ export namespace ResourceStatus {
     }
 
     export async function fetchResource<RESULT_TYPE extends object>(
+        resourceName: string,
         fetcherFn: () => Promise<RESULT_TYPE>,
         updateStateCb: (status: ResourceStatus<RESULT_TYPE>) => void,
     ) {
@@ -82,7 +83,7 @@ export namespace ResourceStatus {
             updateStateCb(success(result));
         } catch (err) {
             // tslint:disable no-console
-            console.error(err);
+            console.error(`Error in ResourceStatus.fetchResource(${resourceName})`, err);
             updateStateCb(error(err));
         }
     }
