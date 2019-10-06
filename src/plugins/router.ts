@@ -1,7 +1,6 @@
 import { Configuration } from "@/config/Configuration";
 import { routes } from "@/config/routes";
 import AdviceListView from "@/features/advice/views/AdviceListView.vue";
-import SendAdviceView from "@/features/advice/views/SendAdviceView.vue";
 import ChatView from "@/features/discussion/views/DiscussionView.vue";
 import vue from "vue";
 import router from "vue-router";
@@ -17,10 +16,6 @@ export default () => {
 
     return new Router({
         base: Configuration.get().basePath,
-        routes: [
-            mapRoute(routes.list, AdviceListView),
-            mapRoute(routes.sendAdvice, SendAdviceView),
-            mapRoute(routes.discussion, ChatView),
-        ],
+        routes: [mapRoute(routes.list, AdviceListView), mapRoute(routes.discussion, ChatView)],
     });
 };
