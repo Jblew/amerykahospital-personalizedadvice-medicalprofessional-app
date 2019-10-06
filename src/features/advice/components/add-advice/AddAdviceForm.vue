@@ -1,9 +1,10 @@
 <template>
     <v-form ref="form" v-model="valid">
         <v-text-field
-            v-model="professionalName"
+            :value="professionalName"
             :rules="professionalNameRules"
             :label="text.professionalName"
+            :disabled="true"
             required
         ></v-text-field>
 
@@ -46,6 +47,7 @@
 import { labels } from "@/global";
 import { ResourceStatus } from "@/util/ResourceStatus";
 import { PendingAdvice } from "amerykahospital-personalizedadvice-businesslogic";
+import { RolesAuthModule } from "firestore-roles-vuex-module";
 import Vue from "vue";
 
 import { AdviceModule } from "../../store/AdviceModule";
@@ -66,7 +68,6 @@ export default Vue.extend({
                 adviceCode: labels.adviceCode,
             },
             valid: true,
-            professionalName: "",
             professionalNameRules: [(v: string) => !!v || labels.requiredField],
             patientName: "",
             patientNameRules: [(v: string) => !!v || labels.requiredField],
@@ -80,16 +81,18 @@ export default Vue.extend({
         };
     },
     mounted() {
-        this.professionalName = "";
         this.patientName = "";
         this.parentPhoneNumber = "";
         this.advice = "";
     },
     computed: {
+        professionalName(): string {
+            const account = RolesAuthModule.stateOf(this).account;
+            return (account ? account.displayName : "") || "";
+        },
         adviceId(): string {
-            const loadedId = ResourceStatus.resultOrDefault(
-                AdviceModule.stateOf(this).addOp, { adviceId: "" },
-            ).adviceId;
+            const loadedId = ResourceStatus.resultOrDefault(AdviceModule.stateOf(this).addOp, { adviceId: "" })
+                .adviceId;
             return loadedId || labels.idWillBeVisibleAfterAdd;
         },
     },
