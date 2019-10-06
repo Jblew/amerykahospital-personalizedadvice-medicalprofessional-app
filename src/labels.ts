@@ -46,4 +46,5 @@ export const labels = {
         "Niestety, nie posiadasz wymaganych uprawnień do korzystania z tej funkcji. Możesz " +
         "poprosiś o nie administratora systemu klikając przycisk poniżej.",
     checkRoleAgain: "Sprawdź ponownie",
+    addAdviceSuccess: "Pomyślnie dodano poradę",
 };

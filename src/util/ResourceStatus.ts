@@ -106,8 +106,9 @@ export namespace ResourceStatus {
 
     export function lightweight(
         rs: ResourceStatus<any>,
-    ): Omit<ResourceStatus<any>, "result"> & { result: typeof RESULT_SUCCESS_PLACEHOLDER } {
+    ): Omit<ResourceStatus<any>, "result"> & { result: typeof RESULT_SUCCESS_PLACEHOLDER | typeof RESULT_NO_SUCCESS } {
         const { result, ...rsWithoutResult } = rs;
-        return { ...rsWithoutResult, result: RESULT_SUCCESS_PLACEHOLDER };
+        const lightWeightResult = isSuccess(rs) ? RESULT_SUCCESS_PLACEHOLDER : RESULT_NO_SUCCESS;
+        return { ...rsWithoutResult, result: lightWeightResult };
     }
 }

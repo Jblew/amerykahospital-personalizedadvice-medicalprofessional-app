@@ -1,13 +1,12 @@
 <template v-if="show">
     <v-layout wrap>
-        <v-flex v-if="this.resource.loading" xs12 text-center class="my-2">
-            <span>Loading</span>
+        <v-flex v-if="resource.loading" xs12 text-center class="my-2">
             <loading-indicator />
         </v-flex>
-        <v-flex v-if="hasError" xs12 text-center class="my-2">
+        <v-flex v-if="hasError" xs12 class="my-2">
             <AugmentedErrorComponent :locale="locale" :error="this.resource.error" />
         </v-flex>
-        <v-flex v-if="success" xs12 text-center class="my-2">
+        <v-flex v-if="success" xs12 class="my-2">
             <v-alert type="success">{{ successText }}</v-alert>
         </v-flex>
     </v-layout>
