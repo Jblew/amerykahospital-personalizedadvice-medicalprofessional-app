@@ -1,7 +1,7 @@
 <template>
     <span
         id="drawer-layout"
-        :class="($vuetify.breakpoint.smAndDown) ? 'sm' : ($vuetify.breakpoint.mdAndDown) ? 'md' : ''"
+        :class="($vuetify.breakpoint.smAndDown) ? 'sm' : ($vuetify.breakpoint.mdAndDown) ? 'md' : ($vuetify.breakpoint.lgAndDown) ? 'lg' : ''"
     >
         <v-navigation-drawer v-model="drawer" clipped fixed app temporary>
             <navigation-drawer-contents />
@@ -60,8 +60,12 @@ export default Vue.extend({
     background: url("~@/assets/joseph-turner-lucerne-from-the-lake.jpg") bottom no-repeat;
     background-size: 100% auto;
 
+    &.lg {
+        min-height: 90rem;
+    }
+
     &.md {
-        min-height: 70rem;
+        min-height: 80rem;
     }
 
     &.sm {
