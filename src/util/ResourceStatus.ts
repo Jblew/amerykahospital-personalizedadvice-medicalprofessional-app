@@ -85,6 +85,7 @@ export namespace ResourceStatus {
             // tslint:disable no-console
             console.error(`Error in ResourceStatus.fetchResource(${resourceName})`, err);
             updateStateCb(error(err));
+            throw err;
         }
     }
 
