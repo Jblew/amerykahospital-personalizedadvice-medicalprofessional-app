@@ -9,7 +9,18 @@
                 class="elevation-1"
             >
                 <template v-slot:expanded-item="{ headers, item }">
-                    <td :colspan="headers.length">{{ item.advice }}</td>
+                    <td :colspan="headers.length">
+                        <p></p>
+                        <p>{{ item.advice }}</p>
+                        <p class="grey--text">
+                            <strong>Kod porady:</strong>
+                            {{ item.id }}
+                            <br />
+                            <strong>Czas:</strong>
+                            {{ item.timestamp | formatTime }}
+                            <br />
+                        </p>
+                    </td>
                 </template>
             </v-data-table>
         </v-flex>
@@ -63,6 +74,11 @@ export default Vue.extend({
             if (value.length > maxLength) {
                 return value.substr(0, maxLength - 3) + "...";
             } else return value;
+        },
+    },
+    filters: {
+        formatTime(value: number) {
+            return new Date(value * 1000).toLocaleString();
         },
     },
 });
