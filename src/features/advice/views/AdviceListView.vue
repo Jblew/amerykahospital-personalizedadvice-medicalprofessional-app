@@ -1,14 +1,16 @@
 <template>
-    <v-container flex class="advicelist">
-        <patient-selector class="mb-3" />
+    <role-guard-component :role="role">
+        <v-container flex class="advicelist">
+            <patient-selector class="mb-3" />
 
-        <augmented-status-component :resource="listResource" class="my-3" />
+            <augmented-status-component :resource="listResource" class="my-3" />
 
-        <filter-status />
-        <advice-list-panel class="my-3" />
+            <filter-status />
+            <advice-list-panel class="my-3" />
 
-        <add-advice-fab />
-    </v-container>
+            <add-advice-fab />
+        </v-container>
+    </role-guard-component>
 </template>
 
 <script lang="ts">
@@ -20,6 +22,8 @@ import PatientSelector from "../components/advice-list/PatientSelector.vue";
 import AddAdviceFab from "../components/advice-list/AddAdviceFab.vue";
 import FilterStatus from "../components/advice-list/FilterStatus.vue";
 import AdviceListPanel from "../components/advice-list/AdviceListPanel.vue";
+import { RoleGuardComponent } from "@/features/auth";
+
 import { RoleKey } from "amerykahospital-personalizedadvice-businesslogic";
 
 export default Vue.extend({
@@ -38,6 +42,7 @@ export default Vue.extend({
         AddAdviceFab,
         FilterStatus,
         PatientSelector,
+        RoleGuardComponent,
     },
 });
 </script>
