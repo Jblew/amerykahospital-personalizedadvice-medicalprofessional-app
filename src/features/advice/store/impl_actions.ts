@@ -78,6 +78,7 @@ class UpdateQueryFilterAndReloadList implements Me.Actions.UpdateQueryFilterAndR
     public getAction(): Me.Actions.UpdateQueryFilterAndReloadList.Declaration {
         return async ({ commit, dispatch }, payload: AdviceRepository.FetchFilter) => {
             Mutations.SetFilter.commit(commit, payload);
+            console.log("Filter", payload);
             Me.Actions.ReloadList.dispatch(dispatch);
         };
     }
@@ -117,9 +118,20 @@ class ReloadList implements Me.Actions.ReloadList.Implementator {
 class AddAdvice implements PrivateActions.AddAdvice.Implementator {
     public getAction(): PrivateActions.AddAdvice.Declaration {
         return async ({ commit, dispatch, state }, payload: PendingAdvice) => {
+            async function doAddAdvice() {
+                if (!state.filter.evidenceHash) {
+                    throw new Error("To send advice you must set evidenceHash filter first");
+                }
+                const pendingAdvice = {
+                    ...payload,
+                    evidenceHash: state.filter.evidenceHash,
+                };
+                return await new AddAdviceAdapter().addAdvice(pendingAdvice);
+            }
+
             await ResourceStatus.fetchResource(
                 "AddAdviceAdapter.addAdvice",
-                async () => await new AddAdviceAdapter().addAdvice(payload),
+                async () => await doAddAdvice(),
                 status => Mutations.SetAddOpState.commit(commit, status),
             );
             Me.Actions.ReloadList.dispatch(dispatch);

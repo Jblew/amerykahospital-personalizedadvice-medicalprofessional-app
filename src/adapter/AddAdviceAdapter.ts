@@ -7,12 +7,8 @@ interface AddAdviceAdapterTypeguard {
 
 export class AddAdviceAdapter implements AddAdviceAdapterTypeguard {
     public async addAdvice(advice: PendingAdvice): Promise<AddAdviceFunction.Result> {
-        const adviceWithEvidenceHash: PendingAdvice = {
-            ...advice,
-            evidenceHash: "testevidencehash",
-        };
         const fnCallable = firebase.functions().httpsCallable(AddAdviceFunction.NAME);
-        const result = await fnCallable(adviceWithEvidenceHash);
+        const result = await fnCallable(advice);
         return result.data;
     }
 }

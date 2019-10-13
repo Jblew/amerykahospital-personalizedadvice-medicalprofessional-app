@@ -12,6 +12,7 @@ export interface Configuration {
     };
     chatConfig: ChatConfig;
     basePath: string;
+    evidenceIdHashSalt: string;
 }
 
 export namespace Configuration {
@@ -26,6 +27,7 @@ export namespace Configuration {
 
         ChatConfig.validate(c.chatConfig);
         ow(c.basePath, "Configuration.basePath", ow.string.nonEmpty);
+        ow(c.evidenceIdHashSalt, "Configuration.evidenceIdHashSalt", ow.string.nonEmpty);
     }
 
     export function get(): Configuration {

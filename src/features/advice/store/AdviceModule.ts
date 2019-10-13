@@ -22,7 +22,7 @@ export namespace AdviceModule {
     export interface State {
         addOp: ResourceStatus<AddOpResult>;
         sendSMSOp: ResourceStatus<SendSMSOpResult>;
-        list: ResourceStatus<Advice []>;
+        list: ResourceStatus<Advice[]>;
         filter: AdviceRepository.FetchFilter;
     }
 
@@ -30,11 +30,7 @@ export namespace AdviceModule {
         export function validate(state: State) {
             ResourceStatus.validate(state.addOp, "state.addOp", AddOpResult.validate);
             ResourceStatus.validate(state.sendSMSOp, "state.sendSMSOp", SendSMSOpResult.validate);
-            ResourceStatus.validate(
-                state.list,
-                "state.list",
-                l => ow(l, "list[]", ow.array.ofType(ow.object)),
-            );
+            ResourceStatus.validate(state.list, "state.list", l => ow(l, "list[]", ow.array.ofType(ow.object)));
             ow(state.filter, "state.filter", ow.object);
         }
     }

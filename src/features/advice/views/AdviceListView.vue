@@ -1,9 +1,10 @@
 <template>
     <v-container flex class="advicelist">
-        <advice-list-filter-form class="mb-3" />
+        <patient-selector class="mb-3" />
 
         <augmented-status-component :resource="listResource" class="my-3" />
 
+        <filter-status />
         <advice-list-panel class="my-3" />
 
         <add-advice-fab />
@@ -15,8 +16,9 @@ import { AdviceModule } from "../store/AdviceModule";
 import { ResourceStatus } from "@/util/ResourceStatus";
 import Vue from "vue";
 
+import PatientSelector from "../components/advice-list/PatientSelector.vue";
 import AddAdviceFab from "../components/advice-list/AddAdviceFab.vue";
-import AdviceListFilterForm from "../components/advice-list/AdviceListFilterForm.vue";
+import FilterStatus from "../components/advice-list/FilterStatus.vue";
 import AdviceListPanel from "../components/advice-list/AdviceListPanel.vue";
 import { RoleKey } from "amerykahospital-personalizedadvice-businesslogic";
 
@@ -34,7 +36,8 @@ export default Vue.extend({
     components: {
         AdviceListPanel,
         AddAdviceFab,
-        AdviceListFilterForm,
+        FilterStatus,
+        PatientSelector,
     },
 });
 </script>

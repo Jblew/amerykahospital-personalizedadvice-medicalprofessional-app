@@ -6,7 +6,7 @@
                 :items="adviceList"
                 :items-per-page="10"
                 show-expand
-                class="elevation-1"
+                :class="evidenceHashPresent? 'elevation-15 mx-4' : 'elevation-1'"
             >
                 <template v-slot:expanded-item="{ headers, item }">
                     <td :colspan="headers.length">
@@ -69,6 +69,9 @@ export default Vue.extend({
                 adviceShort: this.$shorten(item.advice, 80),
                 state: !!item.uid ? labels.adviceStateRead : labels.adviceStateUnread,
             }));
+        },
+        evidenceHashPresent() {
+            return !!AdviceModule.stateOf(this).filter.evidenceHash;
         },
     },
     methods: {

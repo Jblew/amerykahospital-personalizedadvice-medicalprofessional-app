@@ -50,4 +50,9 @@ export const labels = {
     adviceReadHeader: "Odczytana",
     adviceStateRead: "Odczytana",
     adviceStateUnread: "Nie",
+    evicenceId: "Podaj nr PESEL pacjenta",
+    invalidPeselNumber: "Nieprawidłowy numer pesel",
+    pleaseProvideEvidenceIdBeforeYouAddAdvice: "Proszę podać nr PESEL przed dodaniem porady",
+    filteringByPesel: "wyświetlanie pojedynczego pacjenta",
+    displayingAllResults: "Wyświetlanie wszystkich pacjentów",
 };
