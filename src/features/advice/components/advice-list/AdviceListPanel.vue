@@ -52,6 +52,7 @@ export default Vue.extend({
                 { text: labels.patientName, value: Advice.keys.patientName },
                 { text: labels.parentPhoneNumber, value: Advice.keys.parentPhoneNumber },
                 { text: labels.advice, value: "adviceShort" },
+                { text: labels.adviceReadHeader, value: "state" },
             ],
         };
     },
@@ -66,6 +67,7 @@ export default Vue.extend({
             return ResourceStatus.resultOrDefault(this.resource, []).map(item => ({
                 ...item,
                 adviceShort: this.$shorten(item.advice, 80),
+                state: !!item.uid ? labels.adviceStateRead : labels.adviceStateUnread,
             }));
         },
     },

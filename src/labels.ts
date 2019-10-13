@@ -47,4 +47,7 @@ export const labels = {
         "poprosiś o nie administratora systemu klikając przycisk poniżej.",
     checkRoleAgain: "Sprawdź ponownie",
     addAdviceSuccess: "Pomyślnie dodano poradę",
+    adviceReadHeader: "Odczytana",
+    adviceStateRead: "Odczytana",
+    adviceStateUnread: "Nie",
 };
