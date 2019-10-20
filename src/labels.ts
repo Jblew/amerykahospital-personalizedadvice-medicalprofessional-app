@@ -1,6 +1,6 @@
 export const labels = {
     sendAdvice: "Wyślij poradę",
-    parentPhoneNumber: "Numer telefonu rodzica",
+    parentPhoneNumber: "Numer telefonu pacjenta/rodzica",
     patientName: "Imię pacjenta",
     professionalName: "Imię, nazwisko i funkcja medyka",
     requiredField: "To pole jest wymagane",
