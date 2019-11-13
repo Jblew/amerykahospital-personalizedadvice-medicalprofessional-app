@@ -22,6 +22,13 @@
                         </p>
                     </td>
                 </template>
+                <template v-slot:item.state="{ item }">
+                    {{ item | formatReadState }}
+                    <ThanksBadge
+                        v-if="item.thanksCount && item.thanksCount > 0"
+                        :count="Number(item.thanksCount)"
+                    />
+                </template>
             </v-data-table>
         </v-flex>
     </v-layout>
@@ -34,6 +41,7 @@ import { Advice } from "amerykahospital-personalizedadvice-businesslogic";
 import Vue from "vue";
 
 import { AdviceModule } from "../../store/AdviceModule";
+import ThanksBadge from "./ThanksBadge.vue";
 
 export default Vue.extend({
     data() {
@@ -67,7 +75,6 @@ export default Vue.extend({
             return ResourceStatus.resultOrDefault(this.resource, []).map(item => ({
                 ...item,
                 adviceShort: this.$shorten(item.advice, 80),
-                state: !!item.uid ? labels.adviceStateRead : labels.adviceStateUnread,
             }));
         },
         evidenceHashPresent() {
@@ -85,6 +92,27 @@ export default Vue.extend({
         formatTime(value: number) {
             return new Date(value * 1000).toLocaleString();
         },
+        formatReadState(advice: Advice) {
+            return !!advice.uid ? labels.adviceStateRead : labels.adviceStateUnread;
+        },
+    },
+    components: {
+        ThanksBadge,
     },
 });
 </script>
+<style lang="scss" scoped>
+.thanksBadge {
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    color: #fff;
+    background-color: #28a745;
+}
+</style>

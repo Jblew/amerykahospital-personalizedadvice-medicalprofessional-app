@@ -47,7 +47,7 @@ export const labels = {
         "poprosiś o nie administratora systemu klikając przycisk poniżej.",
     checkRoleAgain: "Sprawdź ponownie",
     addAdviceSuccess: "Pomyślnie dodano poradę",
-    adviceReadHeader: "Odczytana",
+    adviceReadHeader: "Odczytana / podziękowania",
     adviceStateRead: "Odczytana",
     adviceStateUnread: "Nie",
     evicenceId: "Podaj nr PESEL pacjenta",
@@ -55,4 +55,7 @@ export const labels = {
     pleaseProvideEvidenceIdBeforeYouAddAdvice: "Proszę podać nr PESEL przed dodaniem porady",
     filteringByPesel: "wyświetlanie pojedynczego pacjenta",
     displayingAllResults: "Wyświetlanie wszystkich pacjentów",
+    thanksInfoHtml:
+        "Pacjent ma moliwość kliknięcia przycisku &bdquo;podziękuj&rdquo;<br />" +
+        "za kadym razem, gdy porada jest przydatna.",
 };
