@@ -22,6 +22,6 @@ export namespace EvidenceHashAdapter {
             sum += parseInt(pesel.substring(i, i + 1), 10) * weight[i];
         }
         sum = sum % 10;
-        return 10 - sum === controlNumber;
+        return ((10 - sum) % 10) === controlNumber;
     }
 }
